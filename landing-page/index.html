@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body class="body">
+
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <h3 class="header">Logo</h3>
+
+        <ul class="nav-list">
+            <li class="list-items"><a href="" class="nav-links">Link one</a></li>
+            <li class="list-items"><a href="" class="nav-links">Link two</a></li>
+            <li class="list-items"><a href="" class="nav-links">Link three</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <!-- Navigation END -->
+
+
+
+
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Section one Container -->
+        <section class="sections one">
+            <!-- Hero -->
+            <div class="hero">
+                <!-- Hero Text -->
+                <div class="hero-text">
+                    <h1 class="hero-header">
+                        Wubba Lubba Dub-Dub
+                    </h1>
+                    <p class="hero-para">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat reprehenderit reiciendis fugiat ab suscipit facere cumque recusandae, dolores beatae asperiores qui exercitationem.
+                    </p>
+                    <div class="sign-up-btn hero">
+                        <a href="" class="btn hero">Sign up</a>
+                    </div>
+                </div>
+                <!-- Hero Text END-->
+
+
+
+
+
+                <!-- Hero Image -->
+                <div class="hero-img">
+                    <img class="image" src="michael-marais-OVqrDBM0afM-unsplash.jpg" alt="">
+                </div>
+                <!-- Hero Image END-->
+            </div>
+            <!-- Hero END -->
+        </section>
+            <!-- Section one END -->
+
+
+
+
+
+        <!-- Section two -->
+        <section class="sections two">
+            <div class="content two">
+                <h2 class="section-two-header">
+                    Some random stuff
+                </h2>
+                <div class="card-box-container">
+                    <div class="cards">
+                        <div class="box box-one"></div>
+                        <p class="sub-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, sed.</p>
+                    </div>
+                    <div class="cards">
+                        <div class="box box-two"></div>
+                        <p class="sub-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, esse?</p>
+                    </div>
+                    <div class="cards">
+                        <div class="box box-three"></div>
+                        <p class="sub-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, dolorum!</p>
+                    </div>
+                    <div class="cards">
+                        <div class="box box-four"></div>
+                        <p class="sub-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, sunt.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section two END -->
+
+
+
+
+
+        <!-- Section three -->
+        <section class="sections three">
+            <div class="content three">
+                <p class="quote">
+                    Listen to me, Morty. I know that new situations can be intimidating. You're lookin’ around and it’s all scary and different, but y’know … meeting them head-on, charging into ‘em like a bull — that’s how we grow as people.
+                </p>
+                <blockquote class='author'>
+                    Some scientist.
+                </blockquote>
+            </div>
+        </section>
+        <!-- Section three END -->
+
+
+
+
+
+        <!-- Section four -->
+        <section class="sections four">
+            <div class="content four">
+                <div class="cta">
+                    <div class="cta-text">
+                        <h4 class="cta-header">
+                            Call to action! it's time!
+                        </h4>
+                        <p class="cta-sub-text">
+                            sign up for our product by clicking that button right over there!
+                        </p>
+                    </div>
+
+                    <div class="sign-up-btn cta">
+                        <a class="btn cta" href="">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section four END -->
+    </div>
+        <!-- Container END -->
+
+
+
+
+
+            <!-- Footer -->
+    <footer class="footer"><p>Copyright &copy; The Odin Project 2022</p></footer>
+
+
+<script>
+    const navSlide = () => {
+        const burger = document.querySelector(".burger");
+        const nav = document.querySelector(".nav-list");
+
+        burger.addEventListener("click", () => {
+            nav.classList.toggle("nav-active");
+        });
+    };
+
+    navSlide();
+</script>
+</body>
+</html>

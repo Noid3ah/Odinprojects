@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>RPS</title>
+	<script defer src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="container alignment">
+			<div class="header">
+				<h3 class="row flex-header"><img src="/assets/happyscreen.png" alt="" class="screen__good"><img src="/assets/evil-screen.png" alt="" class="screen__evil">How about a round? </h3>
+                <div class="score-block">			
+					<div class="score">Score</div>
+					<div class="score__col">
+						<div class="player">
+							<h3 class="player__title">User</h3> 
+							<div class="line"></div>
+							<span class="player__score">0</span> 
+							<span id="userr"></span> 
+                        </div>
+						
+                        <div class="computer">
+                            <h3 class="computer__title">Comp</h3>
+							<div class="line"></div>
+							<span class="computer__score">0</span>
+							<span id="compp"></span>
+                        </div>
+                    </div>
+					<div class="round">Round:<span class="round__span"></spa></div>
+					<div class="outcome"></div>
+                </div>
+                <h3 class="header__choose">Choose:</h3>
+				
+			</div>
+			<div class="section row">
+				<div class="box rock" id="rock">
+					<h2 class="box__title">Rock</h2>
+					<img src="/assets/rock.svg" alt="graphic of a hand curled into a fist">
+				</div>
+				<div class="box paper" id="paper">
+					<h2 class="box__title">Paper</h2>
+					<img src="/assets/Mask group.svg" alt="graphic of a hand with open palms">
+				</div>
+				<div class="box scissors" id="scissors">
+					<h2 class="box__title">Scissors</h2>
+					<img src="/assets/scissors.svg" alt="graphic of a hand in the shape of a scissors">
+				</div>
+				<dialog id="new__game" class="new__game">
+					<h1 class="game__outcome"></h1>
+					<div class="final-score">
+						<span class="final__user__score">0</span>
+						<div class="final__score__line"></div>
+						<span class="final__comp__score">0</span>
+					</div>
+					<div class="newgame-wrap_btn"><button class="newGame__btn btn">New game</button></div>
+				</dialog>
+			</div>
+			<div class="button">
+				<button class="btn reset__btn">Reset</button>
+				<button class="btn help__btn">Help</button>
+			</div>
+			<dialog class='modal' id='modal'>
+				<img src="https://slideplayer.com/slide/8708708/26/images/3/Rock%2C+paper%2C+scissors+In+the+game+rock%2C+paper%2C+scissors+two+players+have+to+show+either+rock%2C+paper+or+scissors+using+their+hands+as+follows%3A.jpg" alt="rock beats scissors, scissors beats paper, paper beats rock.">
+				<div class="close-wrap"><button class="close__modal btn">Close help</button></div>
+			</dialog>
+            
+		</div>
+	</div>
+</body>
+</html>
