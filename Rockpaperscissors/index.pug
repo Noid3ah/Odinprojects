@@ -1,0 +1,60 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0')
+    title RPS
+    script(defer='' src='main.js')
+    link(rel='stylesheet' href='style.css')
+  body
+    .wrapper
+      .container.alignment
+        .header
+          h3.row.flex-header
+            img.screen__good(src='/assets/happyscreen.png' alt='')
+            img.screen__evil(src='/assets/evil-screen.png' alt='')
+            | How about a round?
+          .score-block
+            .score Score
+            .score__col
+              .player
+                h3.player__title User
+                .line
+                span.player__score 0
+                span#userr
+              .computer
+                h3.computer__title Comp
+                .line
+                span.computer__score 0
+                span#compp
+            .round
+              | Round:
+              span.round__span
+            .outcome
+          h3.header__choose Choose:
+        .section.row
+          #rock.box.rock
+            h2.box__title Rock
+            img(src='/assets/rock.svg' alt='graphic of a hand curled into a fist')
+          #paper.box.paper
+            h2.box__title Paper
+            img(src='/assets/Mask group.svg' alt='graphic of a hand with open palms')
+          #scissors.box.scissors
+            h2.box__title Scissors
+            img(src='/assets/scissors.svg' alt='graphic of a hand in the shape of a scissors')
+          dialog#new__game.new__game
+            h1.game__outcome
+            .final-score
+              span.final__user__score 0
+              .final__score__line
+              span.final__comp__score 0
+            .newgame-wrap_btn
+              button.newGame__btn.btn New game
+        .button
+          button.btn.reset__btn Reset
+          button.btn.help__btn Help
+        dialog#modal.modal
+          img(src='https://slideplayer.com/slide/8708708/26/images/3/Rock%2C+paper%2C+scissors+In+the+game+rock%2C+paper%2C+scissors+two+players+have+to+show+either+rock%2C+paper+or+scissors+using+their+hands+as+follows%3A.jpg' alt='rock beats scissors, scissors beats paper, paper beats rock.')
+          .close-wrap
+            button.close__modal.btn Close help
