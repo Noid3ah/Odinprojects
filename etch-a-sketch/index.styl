@@ -1,0 +1,55 @@
+*, *::before, *::after 
+  box-sizing border-box
+
+* 
+  margin 0
+  padding 0
+
+img 
+  max-width 100%
+  display block
+
+h1, h2, h3, h4, h5, h6 
+  word-break balance
+
+clr-100 = #f0f0f0;
+
+body 
+  min-height 100vh
+  background-color clr-100
+  display flex
+  align-items center
+  justify-content center
+
+.wrapper
+  width 100%
+  display flex
+  flex-direction: column
+  align-items center
+  .sketchpad
+    display grid
+    width 500px
+    height 500px
+    div
+      aspect-ratio: 1 / 1
+      // transition: background-color 9s ease-out
+    // div:hover 
+    //   background-color black
+    //   transition: background-color .0s ease
+  .actions
+    margin-top 1rem
+    display flex
+    justify-content: space-between
+    .input-div
+      input
+        max-width 40px
+        height: 40px
+        font-size: 1.5rem
+        text-align: center
+    button
+      border: none
+      background-color transparent
+      border: 2px solid #202020
+      border-radius: .25rem
+      padding .5rem 1rem
+      cursor pointer
