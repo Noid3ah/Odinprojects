@@ -1,26 +1,37 @@
-const container = document.querySelector('.sketchpad');
-const inputValue = document.querySelector('.input').value
+const sketchpad = document.querySelector('.sketchpad');
+const inputValue = document.querySelector('.input')
+const submit = document.querySelector('.submitt')
 
-container.style.gridTemplateColumns = `repeat(16, 1fr)`
-container.style.gridTemplateRows = `repeat(16, 1fr)`
 
-const createSquare=(size)=> {
-
+const createPixels=(size)=> {
+  sketchpad.innerHTML = "";
+  sketchpad.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+  sketchpad.style.gridTemplateRows = `repeat(${size}, 1fr)`
+  
   for (let i = 0; i < (size * size); i++) {
     const div = document.createElement('div');
-    container.append(div)
+    sketchpad.insertAdjacentElement("beforeend", div)
   }
+  handleInk()
 }
-createSquare(16)
+createPixels(16)
 
-const squares = [...container.children];
+const getSketchPadSize = (input) => {
+  createPixels(input)
+}
 
-squares.forEach((sqr)=>{
-  sqr.addEventListener('mouseover', (e) => draw(e))
-})
+function handleInk() {
+  const squares = [...sketchpad.children];
+  squares.forEach((sqr)=>{
+    sqr.addEventListener('mouseover', (e) => draw(e))
+  })
+}
 
 const draw = (e) => {
   e.target.style.backgroundColor = 'black'
 }
 
-console.log(inputValue)
+submit.addEventListener('click', () => {
+  if(!inputValue.value) return;
+  getSketchPadSize(inputValue.value)
+})

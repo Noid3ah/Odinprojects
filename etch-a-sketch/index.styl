@@ -20,6 +20,7 @@ body
   display flex
   align-items center
   justify-content center
+  font-family: sans-serif
 
 .wrapper
   width 100%
@@ -28,8 +29,10 @@ body
   align-items center
   .sketchpad
     display grid
+    // width 100%
     width 500px
     height 500px
+    border: 1px solid rgba(black, 0.1)
     div
       aspect-ratio: 1 / 1
       // transition: background-color 9s ease-out
@@ -40,12 +43,19 @@ body
     margin-top 1rem
     display flex
     justify-content: space-between
+    width 100%
+    max-width: 500px;
+
     .input-div
+      display flex
+      align-items center
+      gap: .5rem
       input
-        max-width 40px
+        max-width 60px
         height: 40px
         font-size: 1.5rem
         text-align: center
+        
     button
       border: none
       background-color transparent
