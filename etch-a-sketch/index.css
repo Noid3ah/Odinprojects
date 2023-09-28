@@ -55,6 +55,8 @@ body {
   display: grid;
   width: 500px;
   height: 500px;
+  background-color: #fff;
+  box-shadow: 0px 5px 8px rgba(0,0,0,0.2);
   border: 1px solid rgba(0,0,0,0.1);
 }
 .main .sketchpad div {
@@ -63,19 +65,35 @@ body {
 .main .actions {
   margin-top: 1rem;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
   max-width: 500px;
 }
 .main .actions .input-div {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 0.5rem;
+  height: fit-content;
+}
+.main .actions .input-div label {
+  align-self: center;
 }
 .main .actions .input-div input {
   max-width: 60px;
   height: 40px;
   font-size: 1.5rem;
   text-align: center;
+}
+.main .actions .buttons {
+  display: grid;
+  grid-template-columns: repeat(6, 20px);
+  grid-auto-rows: 1fr;
+  width: fit-content;
+  gap: 0.3rem;
+}
+.main .actions .buttons button {
+  padding: 0 0;
+  border: none;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
 }

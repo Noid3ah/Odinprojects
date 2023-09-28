@@ -47,32 +47,41 @@ body
 
   .sketchpad
     display grid
-    // width 100%
     width 500px
     height 500px
+    background-color #fff
+    box-shadow: 0px 5px 8px rgba(black, 0.2)
     border: 1px solid rgba(black, 0.1)
     div
       aspect-ratio: 1 / 1
-      // transition: background-color 9s ease-out
-    // div:hover 
-    //   background-color black
-    //   transition: background-color .0s ease
   .actions
     margin-top 1rem
     display flex
-    flex-wrap: wrap
+    // flex-wrap: wrap
     justify-content: space-between
     width 100%
     max-width: 500px;
-
     .input-div
       display flex
-      align-items center
+      align-items start
       gap: .5rem
+      height fit-content
+      label
+        align-self: center
       input
         max-width 60px
         height: 40px
         font-size: 1.5rem
-        text-align: center     
-    
+        text-align: center 
+    .buttons
+      display grid
+      grid-template-columns: repeat(6, 20px)
+      grid-auto-rows: 1fr
+      width fit-content
+      gap: .3rem
+      button
+        padding 0 0
+        border: none
+        border-radius: 50%
+        aspect-ratio: 1 / 1
 

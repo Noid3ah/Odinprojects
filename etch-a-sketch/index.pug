@@ -12,13 +12,11 @@ html(lang="en")
         button.reset-pad reset
         ul.sketchpad
         .actions
-          .input-div size:
-            input.input(type="number" maxlength="2")
+          .input-div
+            label(for="size") size:
+            input.input(type="number" id="size" maxlength="2")
             button.submitt load
-          .buttons colors:
-            button black 
-            button gray 
-            button eraser
+          .buttons 
 
 
 

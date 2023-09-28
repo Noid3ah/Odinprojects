@@ -1,51 +1,93 @@
-const sketchpad = document.querySelector('.sketchpad');
-const inputValue = document.querySelector('.input');
-const submit = document.querySelector('.submitt');
-const reset = document.querySelector('.reset-pad');
+const availableInks = [
+  { ink: "black" },
+  { ink: "brown" },
+  { ink: "gray" },
+  { ink: "red" },
+  { ink: "green" },
+  { ink: "blue" },
+  { ink: "purple" },
+  { ink: "cyan" },
+  { ink: "yellow" },
+  { ink: "orange" },
+  { ink: "pink" },
+  { ink: "white" },
+  { ink: "linear-gradient(to)" },
+];
 
-const resetPad = (size) => {sketchpad.innerHTML = ""; inputValue.value = [...sketchpad.children].length / size};
-reset.onclick = resetPad;
+const sketchpad = document.querySelector(".sketchpad");
+const inputValue = document.querySelector(".input");
+const submit = document.querySelector(".submitt");
+const reset = document.querySelector(".reset-pad");
+const inksContainer = document.querySelector(".buttons");
 
-const fillSketchPad=(size)=> {
+let ink = "black";
+let click = true;
+
+function resetPad(size) {
+  sketchpad.innerHTML = "";
+  inputValue.value = [...sketchpad.children].length / size;
+}
+
+function fillSketchPad(size) {
   // Don't render squares if the input value is equal to the total squares on sketchpad
-  if([...sketchpad.children].length === inputValue.value * inputValue.value) return;
+  if ([...sketchpad.children].length === inputValue.value * inputValue.value)
+    return;
 
-  resetPad(size)
-  sketchpad.style.gridTemplateColumns = `repeat(${size}, 1fr)`
-  sketchpad.style.gridTemplateRows = `repeat(${size}, 1fr)`
-  
-  for (let i = 0; i < (size * size); i++) {
-    const div = document.createElement('div');
-    sketchpad.insertAdjacentElement("beforeend", div)
+  resetPad(size);
+  sketchpad.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  sketchpad.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+
+  for (let i = 0; i < size * size; i++) {
+    const div = document.createElement("div");
+    div.addEventListener("mouseover", draw);
+    sketchpad.insertAdjacentElement("beforeend", div);
   }
   inputValue.value = [...sketchpad.children].length / size;
-  handlePixels()
 }
 
-const getSketchPadSize = (input) => {
-  fillSketchPad(input)
+function getDimensions(input) {
+  fillSketchPad(input);
 }
 
-function handlePixels() {
-  const squares = [...sketchpad.children];
-  squares.forEach((sqr)=>{
-    sqr.addEventListener('mouseover', (e) => draw(e))
-  })
+function draw() {
+  this.style.backgroundColor = ink;
 }
 
-const draw = (e) => {
-  e.target.style.backgroundColor = 'black'
+function renderInks() {
+  availableInks.map((color) => {
+    const { ink } = color;
+    const element = document.createElement("button");
+    element.dataset.ink = ink;
+    element.style.background = ink;
+    inksContainer.insertAdjacentElement("beforeend", element);
+  });
 }
 
-submit.addEventListener('click', () => {
-  if(!inputValue.value) return;
-  getSketchPadSize(inputValue.value)
-})
+function handleInks(e) {
+  const target = e.target;
+  if (target.tagName !== "BUTTON") return;
+  changeInk(target.dataset.ink);
+}
 
-inputValue.addEventListener("change", (e)=> {
-  if(inputValue.value < 2) inputValue.value = 2
-  else if(inputValue.value > 100) inputValue.value = 100
-  console.log(inputValue.value)
-})
+function changeInk(uc) {
+  ink = uc;
+}
 
-fillSketchPad(32)
+function handleInput() {
+  if (inputValue.value < 2) inputValue.value = 2;
+  else if (inputValue.value > 100) inputValue.value = 100;
+}
+
+function handleSubmit() {
+  if (!inputValue.value) return;
+  getDimensions(inputValue.value);
+}
+
+
+inksContainer.onclick = handleInks;
+submit.onclick = handleSubmit;
+inputValue.onchange = handleInput;
+reset.onclick = resetPad;
+
+renderInks();
+fillSketchPad(32);
