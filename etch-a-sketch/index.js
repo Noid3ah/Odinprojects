@@ -29,9 +29,9 @@ function resetPad() {
 }
 
 function fillSketchPad(size) {
-  // Don't render squares if the input value is equal to the total squares on sketchpad
-  if ([...sketchpad.children].length === inputValue.value * inputValue.value)
-    return;
+  
+  // if ([...sketchpad.children].length === inputValue.value * inputValue.value)
+  //   return;
 
   resetPad();
   sketchpad.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -39,15 +39,20 @@ function fillSketchPad(size) {
 
   for (let i = 0; i < size * size; i++) {
     const div = document.createElement("div");
-    div.addEventListener("mouseover", draw);
-    div.addEventListener("mousedown", draw);
+
+    // event delegaion
+    sketchpad.addEventListener('mouseover', draw)
+    sketchpad.addEventListener('mousedown', draw)
     div.style.userSelect = 'none'
+
     sketchpad.insertAdjacentElement("beforeend", div);
   }
   inputValue.value = [...sketchpad.children].length / size;
 }
 
 function getDimensions(input) {
+  // Don't render squares if the input value is equal to the total squares on sketchpad
+  if ([...sketchpad.children].length === inputValue.value * inputValue.value) return;
   fillSketchPad(input);
 }
 
@@ -55,13 +60,13 @@ function draw(e) {
   // left click
   if (e.buttons == 1 || e.buttons == 3) {
     if (ink === longVal) {
-      this.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    } else this.style.background = ink;
+      e.target.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    } else e.target.style.background = ink;
   }
 
   // right click
   if (e.buttons == 2) {
-    this.style.background = "white";
+    e.target.style.background = "white";
   }
 }
 
@@ -72,6 +77,7 @@ function renderInks() {
     element.dataset.ink = ink;
     element.style.background = ink;
     inksContainer.insertAdjacentElement("beforeend", element);
+    [...inksContainer.children][0].classList.add('selected')
   });
 }
 
