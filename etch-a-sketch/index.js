@@ -11,7 +11,7 @@ const availableInks = [
   { ink: "orange" },
   { ink: "pink" },
   { ink: "white" },
-  { ink: "linear-gradient(to)" },
+  { ink: "linear-gradient(to bottom right, red, blue, green, yellow, purple)" },
 ];
 
 const sketchpad = document.querySelector(".sketchpad");
@@ -19,12 +19,13 @@ const inputValue = document.querySelector(".input");
 const submit = document.querySelector(".submitt");
 const reset = document.querySelector(".reset-pad");
 const inksContainer = document.querySelector(".buttons");
+const longVal = `linear-gradient(to bottom right, red, blue, green, yellow, purple)`;
 
 let ink = "black";
 
-function resetPad(size) {
+function resetPad() {
   sketchpad.innerHTML = "";
-  inputValue.value = [...sketchpad.children].length / size;
+  inputValue.value = 16;
 }
 
 function fillSketchPad(size) {
@@ -32,7 +33,7 @@ function fillSketchPad(size) {
   if ([...sketchpad.children].length === inputValue.value * inputValue.value)
     return;
 
-  resetPad(size);
+  resetPad();
   sketchpad.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   sketchpad.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
@@ -40,6 +41,7 @@ function fillSketchPad(size) {
     const div = document.createElement("div");
     div.addEventListener("mouseover", draw);
     div.addEventListener("mousedown", draw);
+    div.style.userSelect = 'none'
     sketchpad.insertAdjacentElement("beforeend", div);
   }
   inputValue.value = [...sketchpad.children].length / size;
@@ -50,13 +52,16 @@ function getDimensions(input) {
 }
 
 function draw(e) {
-    // left click
-  if(e.buttons == 1 || e.buttons == 3) {
-    this.style.backgroundColor = ink;
+  // left click
+  if (e.buttons == 1 || e.buttons == 3) {
+    if (ink === longVal) {
+      this.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    } else this.style.background = ink;
+  }
 
-    // right click
-  } else if(e.buttons == 2) {
-    this.style.backgroundColor = 'white'
+  // right click
+  if (e.buttons == 2) {
+    this.style.background = "white";
   }
 }
 
@@ -73,6 +78,12 @@ function renderInks() {
 function handleInks(e) {
   const target = e.target;
   if (target.tagName !== "BUTTON") return;
+  // remove "selected" from all children
+  [...inksContainer.children].forEach((child) =>
+    child.classList.remove("selected")
+  );
+  target.classList.add("selected");
+
   changeInk(target.dataset.ink);
 }
 
@@ -81,6 +92,7 @@ function changeInk(uc) {
 }
 
 function handleInput() {
+  // set maximum and minimum values for input
   if (inputValue.value < 2) inputValue.value = 2;
   else if (inputValue.value > 100) inputValue.value = 100;
 }
@@ -99,4 +111,4 @@ renderInks();
 fillSketchPad(32);
 
 // Prevent contextmenu from popping up when (right click) within sketchpad
-sketchpad.addEventListener("contextmenu", e => e.preventDefault());
+sketchpad.addEventListener("contextmenu", (e) => e.preventDefault());
