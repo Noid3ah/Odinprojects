@@ -21,7 +21,6 @@ const reset = document.querySelector(".reset-pad");
 const inksContainer = document.querySelector(".buttons");
 
 let ink = "black";
-let click = true;
 
 function resetPad(size) {
   sketchpad.innerHTML = "";
@@ -40,6 +39,7 @@ function fillSketchPad(size) {
   for (let i = 0; i < size * size; i++) {
     const div = document.createElement("div");
     div.addEventListener("mouseover", draw);
+    div.addEventListener("mousedown", draw);
     sketchpad.insertAdjacentElement("beforeend", div);
   }
   inputValue.value = [...sketchpad.children].length / size;
@@ -49,8 +49,15 @@ function getDimensions(input) {
   fillSketchPad(input);
 }
 
-function draw() {
-  this.style.backgroundColor = ink;
+function draw(e) {
+    // left click
+  if(e.buttons == 1 || e.buttons == 3) {
+    this.style.backgroundColor = ink;
+
+    // right click
+  } else if(e.buttons == 2) {
+    this.style.backgroundColor = 'white'
+  }
 }
 
 function renderInks() {
@@ -83,7 +90,6 @@ function handleSubmit() {
   getDimensions(inputValue.value);
 }
 
-
 inksContainer.onclick = handleInks;
 submit.onclick = handleSubmit;
 inputValue.onchange = handleInput;
@@ -91,3 +97,6 @@ reset.onclick = resetPad;
 
 renderInks();
 fillSketchPad(32);
+
+// Prevent contextmenu from popping up when (right click) within sketchpad
+sketchpad.addEventListener("contextmenu", e => e.preventDefault());
