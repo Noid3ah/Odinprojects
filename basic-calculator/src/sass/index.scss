@@ -43,12 +43,11 @@ p, h1, h2, h3, h4, h5, h6 {
 /*
   8. Create a root stacking context
 */
-#root, #__next {
-  isolation: isolate;
-}
+#root, #__next {isolation: isolate;}
 
 body {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; 
+  font-family: 'Open sans', sans-serif;
 }
 
 .wrapper {
@@ -69,10 +68,27 @@ body {
 
   .display {
     height: 8rem;
-    // background-color: #fff;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-inline: .8rem;
+    
+    .computation,
+    .values {
+      width: 100%;
+      text-align: end;
+    }
+
+    .computation{padding-top: 1rem;}
+
+    .values {
+      font-size: 2.5rem;
+      margin-top: auto;
+      font-weight: 600;
+    }
   }
 
-  .key-pads {
+  .key-pad{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: .2rem;
@@ -91,12 +107,18 @@ body {
     }
 
     .key:last-child {
-      grid-column: span 4;
+      grid-column: span 3;
       background-color: #7f7f7f;
       color: #28282b;
       &:hover {
       background-color: #6f6f6f;
       }
+    }
+
+    .key:nth-child(20) {
+      grid-column: 4;
+      grid-row: span 2;
+      height: auto;
     }
   }
 

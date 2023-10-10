@@ -4,36 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
-    <script src="./scripts/index.js" defer> </script>
+    <script src="../src/scripts/index.js" defer> </script>
     <title>Calculator</title>
   </head>
 </html>
 <body class="bg-[#000]">
   <main class="wrapper">
     <div class="calculator">
-      <div class="display"> </div>
-      <div class="key-pads">
-        <button class="key" id="key0">%</button>
-        <button class="key" id="key1">CE</button>
-        <button class="key" id="key2">C</button>
-        <button class="key" id="key3">delete</button>
-        <button class="key" id="key4">7</button>
-        <button class="key" id="key5">8</button>
-        <button class="key" id="key6">9</button>
-        <button class="key" id="key7">÷</button>
-        <button class="key" id="key8">4</button>
-        <button class="key" id="key9">5</button>
-        <button class="key" id="key10">6</button>
-        <button class="key" id="key11">×</button>
-        <button class="key" id="key12">1</button>
-        <button class="key" id="key13">2</button>
-        <button class="key" id="key14">3</button>
-        <button class="key" id="key15">−</button>
-        <button class="key" id="key16">±</button>
-        <button class="key" id="key17">0</button>
-        <button class="key" id="key18">.</button>
-        <button class="key" id="key19">+</button>
-        <button class="key" id="key20">=</button>
+      <div class="display">
+        <div class="computation"></div>
+        <div class="values">0</div>
+      </div>
+      <div class="key-pad">
+        <button class="key" id="key0" data-key="operand">%</button>
+        <button class="key" id="key1" data-key="number">CE</button>
+        <button class="key" id="key2" data-key="number">C</button>
+        <button class="key" id="key3" data-key="number">delete</button>
+        <button class="key" id="key4" data-key="number">7</button>
+        <button class="key" id="key5" data-key="number">8</button>
+        <button class="key" id="key6" data-key="number">9</button>
+        <button class="key" id="key7" data-key="operand">÷</button>
+        <button class="key" id="key8" data-key="number">4</button>
+        <button class="key" id="key9" data-key="number">5</button>
+        <button class="key" id="key10" data-key="number">6</button>
+        <button class="key" id="key11" data-key="operand">*</button>
+        <button class="key" id="key12" data-key="number">1</button>
+        <button class="key" id="key13" data-key="number">2</button>
+        <button class="key" id="key14" data-key="number">3</button>
+        <button class="key" id="key15" data-key="operand">-</button>
+        <button class="key" id="key16" data-key="operand">±</button>
+        <button class="key" id="key17" data-key="number">0</button>
+        <button class="key" id="key18" data-key="decimal">.</button>
+        <button class="key" id="key19" data-key="operand">+</button>
+        <button class="key" id="key20" data-key="equals">=</button>
       </div>
     </div>
   </main>
