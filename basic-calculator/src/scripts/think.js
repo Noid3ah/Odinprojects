@@ -1,6 +1,7 @@
 const calculator = document.querySelector(".calculator");
 const keyPad = calculator.querySelector(".key-pad");
 const display = calculator.querySelector(".value");
+const computation = calculator.querySelector(".computation");
 
 let previousNumber = "";
 let currentNumber = "";
@@ -34,6 +35,18 @@ keyPad.addEventListener("click", (e) => {
   calculator.dataset.previousKeyType = type;
 });
 
+function showComputation() {
+  let sym = "";
+  function convert(op) {
+    if (op === "add") sym = "+";
+    if (op === "minus") sym = "-";
+    if (op === "times") sym = "*";
+    if (op === "divide") sym = "/";
+  }
+  convert(operand);
+  computation.textContent = `${previousNumber} ${sym}`;
+}
+
 const handlePercentage = (val) => (display.textContent = val / 100);
 const handleNegate = (val) => (display.textContent = -val);
 
@@ -48,14 +61,15 @@ const handleNumber = (displayVal, previousKeyType, keyValue) => {
   } else {
     display.textContent += keyValue;
   }
+  showComputation();
 };
 
 const handleOperands = (operands, key, displayVal) => {
   operands.forEach((el) => (el.dataset.state = ""));
   key.dataset.state = "selected";
-
   previousNumber = displayVal;
   operand = key.dataset.key;
+  showComputation();
 };
 
 const handleEquals = (operands, displayVal) => {
@@ -66,9 +80,9 @@ const handleEquals = (operands, displayVal) => {
     currentNumber,
     displayVal
   );
-
   operands.forEach((el) => (el.dataset.state = ""));
   operand = "";
+  computation.textContent = "";
 };
 
 const handleClear = (op) => {
