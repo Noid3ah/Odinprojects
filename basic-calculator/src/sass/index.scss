@@ -130,20 +130,13 @@ body {
 
       &:last-child {
         grid-column: span 3;
-        background-color: #ffa500;
+        background-color: #c69943;
         color: #28282b;
         &:hover {
         background-color: #cca000;
         }
       }
     }
-
-
-    // .key[data-key="operand"] {
-    //   background-color: skyblue;
-    //   color:#282828;
-    // }
-
   }
   
 }

@@ -27,6 +27,7 @@ keyPad.addEventListener("click", (e) => {
   if (type === "operand") handleOperands(operands, key, displayVal);
   if (type === "negate") handleNegate(displayVal);
   if (type === "percentage") handlePercentage(displayVal);
+  if (type === "decimal") handleDecimal(displayVal);
   if (type === "equal") handleEquals(operands, displayVal);
   if (type === "clear") handleClear(operands);
 
@@ -36,21 +37,27 @@ keyPad.addEventListener("click", (e) => {
 const handlePercentage = (val) => (display.textContent = val / 100);
 const handleNegate = (val) => (display.textContent = -val);
 
-function handleNumber(displayVal, previousKeyType, keyValue) {
+const handleDecimal = (val) => {
+  if (val.includes(".")) return;
+  display.textContent = val + ".";
+};
+
+const handleNumber = (displayVal, previousKeyType, keyValue) => {
   if (displayVal === "0" || previousKeyType === "operand") {
     display.textContent = keyValue;
   } else {
     display.textContent += keyValue;
   }
-}
+};
 
-function handleOperands(operands, key, displayVal) {
+const handleOperands = (operands, key, displayVal) => {
   operands.forEach((el) => (el.dataset.state = ""));
   key.dataset.state = "selected";
 
   previousNumber = displayVal;
   operand = key.dataset.key;
-}
+};
+
 const handleEquals = (operands, displayVal) => {
   currentNumber = displayVal;
   display.textContent = calculate(
