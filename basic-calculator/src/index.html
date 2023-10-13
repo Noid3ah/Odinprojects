@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="../src/scripts/index.js" defer> </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="../src/scripts/think.js" defer></script>
     <title>Calculator</title>
   </head>
 </html>
@@ -13,30 +13,42 @@
     <div class="calculator">
       <div class="display">
         <div class="computation"></div>
-        <div class="values">0</div>
+        <div class="value">0</div>
       </div>
       <div class="key-pad">
-        <button class="key" id="key0" data-key="operand">%</button>
-        <button class="key" id="key1" data-key="number">CE</button>
-        <button class="key" id="key2" data-key="number">C</button>
-        <button class="key" id="key3" data-key="number">delete</button>
-        <button class="key" id="key4" data-key="number">7</button>
-        <button class="key" id="key5" data-key="number">8</button>
-        <button class="key" id="key6" data-key="number">9</button>
-        <button class="key" id="key7" data-key="operand">÷</button>
-        <button class="key" id="key8" data-key="number">4</button>
-        <button class="key" id="key9" data-key="number">5</button>
-        <button class="key" id="key10" data-key="number">6</button>
-        <button class="key" id="key11" data-key="operand">*</button>
-        <button class="key" id="key12" data-key="number">1</button>
-        <button class="key" id="key13" data-key="number">2</button>
-        <button class="key" id="key14" data-key="number">3</button>
-        <button class="key" id="key15" data-key="operand">-</button>
-        <button class="key" id="key16" data-key="operand">±</button>
-        <button class="key" id="key17" data-key="number">0</button>
-        <button class="key" id="key18" data-key="decimal">.</button>
-        <button class="key" id="key19" data-key="operand">+</button>
-        <button class="key" id="key20" data-key="equals">=</button>
+        <button class="key" id="key2" data-type="clear">AC</button>
+        <button class="key" id="key16" data-type="negate" data-key="negate">
+          +/-
+        </button>
+        <button class="key" id="key0" data-type="percentage" data-key="percent">
+          %
+        </button>
+        <button class="key" id="key3" data-type="backspace">del</button>
+        <button class="key" id="key4" data-type="number">7</button>
+        <button class="key" id="key5" data-type="number">8</button>
+        <button class="key" id="key6" data-type="number">9</button>
+        <button class="key" id="key7" data-type="operand" data-key="divide">
+          /
+        </button>
+        <button class="key" id="key8" data-type="number">4</button>
+        <button class="key" id="key9" data-type="number">5</button>
+        <button class="key" id="key10" data-type="number">6</button>
+        <button class="key" id="key11" data-type="operand" data-key="times">
+          *
+        </button>
+        <button class="key" id="key12" data-type="number">1</button>
+        <button class="key" id="key13" data-type="number">2</button>
+        <button class="key" id="key14" data-type="number">3</button>
+        <button class="key" id="key15" data-type="operand" data-key="minus">
+          -
+        </button>
+        <button class="key" id="key16" data-type="empty"></button>
+        <button class="key" id="key17" data-type="number">0</button>
+        <button class="key" id="key18" data-type="decimal">.</button>
+        <button class="key" id="key19" data-type="operand" data-key="add">
+          +
+        </button>
+        <button class="key" id="key20" data-type="equal">=</button>
       </div>
     </div>
   </main>
