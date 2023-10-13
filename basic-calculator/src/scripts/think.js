@@ -30,7 +30,7 @@ keyPad.addEventListener("click", (e) => {
   if (type === "percentage") handlePercentage(displayVal);
   if (type === "decimal") handleDecimal(displayVal);
   if (type === "equal") handleEquals(operands, displayVal);
-  if (type === "backspace") handleBackspace(displayVal);
+  if (type === "backspace") handleBackspace(displayVal, operands);
   if (type === "clear") handleClear(operands);
 
   calculator.dataset.previousKeyType = type;
@@ -42,7 +42,7 @@ function showComputation() {
     if (op === "add") sym = "+";
     if (op === "minus") sym = "-";
     if (op === "times") sym = "*";
-    if (op === "divide") sym = "/";
+    if (op === "divide") sym = "÷";
   }
   convert(operand);
   computation.textContent = `${previousNumber} ${sym}`;
@@ -52,6 +52,7 @@ const handleNumber = (displayVal, previousKeyType, keyValue) => {
   if (displayVal === "0" || previousKeyType === "operand") {
     display.textContent = keyValue;
   } else {
+    if (displayVal.length > 11) return;
     display.textContent += keyValue;
   }
   showComputation();
@@ -76,26 +77,34 @@ const handleDecimal = (val) => {
 
 const handleEquals = (operands, displayVal) => {
   currentNumber = displayVal;
-  display.textContent = calculate(
-    previousNumber,
-    operand,
-    currentNumber,
-    displayVal
-  );
+
+  const result = calculate(previousNumber, operand, currentNumber, displayVal);
+
+  if (result.toString().length > 11) {
+    display.style.fontSize = "1.5rem";
+  } else {
+    display.style.fontSize = "2.5rem";
+  }
+  display.textContent = result;
   operands.forEach((el) => (el.dataset.state = ""));
   operand = "";
   computation.textContent = "";
 };
 
-const handleBackspace = (val) => {
+const handleBackspace = (val, operands) => {
   if (val === "0") return;
   // 00 because the function returns if val == 0
-  if (display.textContent.length === 1) val = "00";
+  if (display.textContent.length === 1) {
+    val = "00";
+  } else if (display.textContent.length < 14) {
+    display.style.fontSize = "2.5rem";
+  }
   display.textContent = val.slice(0, -1);
 };
 
 const handleClear = (op) => {
   op.forEach((el) => (el.dataset.state = ""));
+  display.style.fontSize = "2.5rem";
   display.textContent = "0";
   previousNumber = "";
   currentNumber = "";
