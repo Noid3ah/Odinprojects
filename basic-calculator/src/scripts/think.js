@@ -30,6 +30,7 @@ keyPad.addEventListener("click", (e) => {
   if (type === "percentage") handlePercentage(displayVal);
   if (type === "decimal") handleDecimal(displayVal);
   if (type === "equal") handleEquals(operands, displayVal);
+  if (type === "backspace") handleBackspace(displayVal);
   if (type === "clear") handleClear(operands);
 
   calculator.dataset.previousKeyType = type;
@@ -46,14 +47,6 @@ function showComputation() {
   convert(operand);
   computation.textContent = `${previousNumber} ${sym}`;
 }
-
-const handlePercentage = (val) => (display.textContent = val / 100);
-const handleNegate = (val) => (display.textContent = -val);
-
-const handleDecimal = (val) => {
-  if (val.includes(".")) return;
-  display.textContent = val + ".";
-};
 
 const handleNumber = (displayVal, previousKeyType, keyValue) => {
   if (displayVal === "0" || previousKeyType === "operand") {
@@ -72,6 +65,15 @@ const handleOperands = (operands, key, displayVal) => {
   showComputation();
 };
 
+const handleNegate = (val) => (display.textContent = -val);
+
+const handlePercentage = (val) => (display.textContent = val / 100);
+
+const handleDecimal = (val) => {
+  if (val.includes(".")) return;
+  display.textContent = val + ".";
+};
+
 const handleEquals = (operands, displayVal) => {
   currentNumber = displayVal;
   display.textContent = calculate(
@@ -85,12 +87,20 @@ const handleEquals = (operands, displayVal) => {
   computation.textContent = "";
 };
 
+const handleBackspace = (val) => {
+  if (val === "0") return;
+  // 00 because the function returns if val == 0
+  if (display.textContent.length === 1) val = "00";
+  display.textContent = val.slice(0, -1);
+};
+
 const handleClear = (op) => {
   op.forEach((el) => (el.dataset.state = ""));
   display.textContent = "0";
   previousNumber = "";
   currentNumber = "";
   operand = "";
+  computation.textContent = "";
 };
 
 function calculate(n1, operand, n2, val) {
