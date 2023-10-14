@@ -62,6 +62,7 @@ const handleOperands = (operands, key, displayVal) => {
   operands.forEach((el) => (el.dataset.state = ""));
   key.dataset.state = "selected";
   previousNumber = displayVal;
+  display.textContent = "";
   operand = key.dataset.key;
   showComputation();
 };

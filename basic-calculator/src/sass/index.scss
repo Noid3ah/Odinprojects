@@ -123,14 +123,14 @@ body {
         background-color: rgb(159, 55, 55);
       }
       
-      &:nth-child(20) {
-        grid-column: 4;
-        grid-row: span 2;
-        height: auto;
-      }
+      // &:nth-child(20) {
+      //   grid-column: 4;
+      //   grid-row: span 2;
+      //   height: auto;
+      // }
 
-      &:last-child {
-        grid-column: span 3;
+      &[data-type="equal"]{
+        // grid-column: span 3;
         background-color: #c69943;
         color: #28282b;
         &:hover {

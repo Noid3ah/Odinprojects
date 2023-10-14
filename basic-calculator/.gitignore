@@ -1,9 +1,13 @@
 node_modules/
 public/
 package-lock.json
+package.json
+tailwind.config.js
 src/index.pug
 src/scripts/app.js
 src/scripts/index.js
 src/scripts/test.js
 src/scripts/test2.js
 src/scripts/test3.js
+src/sass/
+dist/
