@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@400;500;600;700;800&family=Poppins:wght@200;400;500;600&family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Changa:wght@200;300&family=Handjet:wght@300;400&display=swap");
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -68,16 +69,20 @@ body {
 .calculator {
   background-color: #282828;
   width: 100%;
-  max-width: 400px;
-  padding: 0.2rem;
-  border-radius: 0.25rem;
+  max-width: 300px;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 .calculator .display {
+  font-family: "Handjet", sans-serif;
   height: 6rem;
   color: #fff;
   display: flex;
   flex-direction: column;
   padding-inline: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 .calculator .display .computation,
 .calculator .display .value {
@@ -88,7 +93,6 @@ body {
   padding-top: 0.5rem;
 }
 .calculator .display .value {
-  font-family: "Roboto", sans-serif;
   font-size: 2.5rem;
   margin-top: auto;
   font-weight: 400;
@@ -97,14 +101,15 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 1fr;
-  gap: 0.2rem;
+  gap: 0.5rem;
 }
 .calculator .key-pad .key {
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   height: 50px;
   background-color: #3c3c3c;
   color: white;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
 }
 .calculator .key-pad .key:hover {
   background-color: #2f2f2f;

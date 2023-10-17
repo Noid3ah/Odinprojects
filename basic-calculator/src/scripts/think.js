@@ -52,7 +52,7 @@ const handleNumber = (displayVal, previousKeyType, keyValue) => {
   if (displayVal === "0" || previousKeyType === "operand") {
     display.textContent = keyValue;
   } else {
-    if (displayVal.length > 11) return;
+    if (displayVal.length > 14) return;
     display.textContent += keyValue;
   }
   showComputation();
@@ -78,9 +78,9 @@ const handleDecimal = (val) => {
 
 const handleEquals = (operands, displayVal) => {
   currentNumber = displayVal;
-
+  // Wait for second number
+  if (!displayVal) return;
   const result = calculate(previousNumber, operand, currentNumber, displayVal);
-
   if (result.toString().length > 11) {
     display.style.fontSize = "1.5rem";
   } else {
@@ -88,6 +88,7 @@ const handleEquals = (operands, displayVal) => {
   }
   display.textContent = result;
   operands.forEach((el) => (el.dataset.state = ""));
+  previousNumber = "";
   operand = "";
   computation.textContent = "";
 };
@@ -100,6 +101,7 @@ const handleBackspace = (val, operands) => {
   } else if (display.textContent.length < 14) {
     display.style.fontSize = "2.5rem";
   }
+  previousNumber = "";
   display.textContent = val.slice(0, -1);
 };
 
