@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="./css/style.css")
+    script(src="./script/app.js") 
+    title Sign-up Form
+  body 
+    main.wrapper 
+      section.img-section
+        img.eye-candy(src="./assets/photo1.avif", alt="")
+      section.form-section
+
+        header.align
+          p This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. Sign up now to get started.
+          p You know you want to.
+        section.form-wrap
+          form(action="#" method="post")
+            h2.align Let's do this!
+            .list-wrap
+              ul.align
+                li
+                  label(for="first_name") First name
+                  input(type="text" name="first_name" id="first_name")
+
+                li
+                  label(for="last_name") Last name
+                  input(type="text" name="last_name" id="last_name")
+
+                li
+                  label(for="email") Email
+                  input(type="email" name="email" id="email" autocomplete required)
+
+                li
+                  label(for="tel-number") Phone number
+                  input(type="tel" name="tel-number" id="tel-number")
+
+                li
+                  label(for="password") Password
+                  input(type="password" name="password" id="password" autocomplete required)
+
+                li
+                  label(for="confirm_password") Confirm password
+                  input(type="password" name="confirm_password" id="confirm_password" autocomplete required)
+            .submit
+              button.align Create Account 
+              p.align Already have an account? 
+                a(href="#") Log in
