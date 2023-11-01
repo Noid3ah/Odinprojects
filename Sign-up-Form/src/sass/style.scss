@@ -100,7 +100,6 @@ body {
   }
 
   .form-wrap {
-    // background-color: white;
   }
   form {
     padding-block: 1rem;
@@ -142,6 +141,7 @@ body {
   }
 
   .submit {
+    padding-block: 3rem;
     background-color: var(--_light-gray);
     display: flex;
     flex-direction: column;

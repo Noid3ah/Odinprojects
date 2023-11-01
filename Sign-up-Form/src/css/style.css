@@ -135,6 +135,7 @@ body {
   border: 2px solid var(--_nuetral-input);
 }
 .form-section .submit {
+  padding-block: 3rem;
   background-color: var(--_light-gray);
   display: flex;
   flex-direction: column;
