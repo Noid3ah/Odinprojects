@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/favicon1.jpg" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
     <script src="./script/app.js"> </script>
     <title>Sign-up Form</title>
   </head>
   <body> 
     <main class="wrapper"> 
-      <section class="img-section"><img class="eye-candy" src="./assets/photo1.avif" alt=""></section>
+      <section class="img-section"><img class="eye-candy" src="./assets/elephant.jpg" alt=""></section>
       <section class="form-section">
         <header class="align">
           <p>This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. Sign up now to get started.</p>
@@ -17,28 +18,30 @@
         </header>
         <section class="form-wrap">
           <form action="#" method="post">
-            <h2 class="align">Let's do this!</h2>
+            <div class="tag-line">
+              <h2 class="align">Let's do this!</h2>
+            </div>
             <div class="list-wrap">
               <ul class="align">
                 <li>
                   <label for="first_name">First name</label>
-                  <input type="text" name="first_name" id="first_name">
+                  <input type="text" title="No special characters allowed" name="first_name" id="first_name" pattern="[A-Za-z0-9]+" required>
                 </li>
                 <li>
                   <label for="last_name">Last name</label>
-                  <input type="text" name="last_name" id="last_name">
+                  <input type="text" title="No special characters allowed" name="last_name" id="last_name" pattern="[A-Za-z0-9]+" required>
                 </li>
                 <li>
-                  <label for="email">Email</label>
+                  <label for="email">Email<span>*</span></label>
                   <input type="email" name="email" id="email" autocomplete required>
                 </li>
                 <li>
                   <label for="tel-number">Phone number</label>
-                  <input type="tel" name="tel-number" id="tel-number">
+                  <input type="tel" name="tel-number" id="tel-number" title="only numbers allowed" minlength="9" maxlength="9" pattern="[0-9]+">
                 </li>
                 <li>
-                  <label for="password">Password</label>
-                  <input type="password" name="password" id="password" autocomplete required>
+                  <label for="password">Password <span>*</span></label>
+                  <input type="password" title="Password must be at least 6 characters long" name="password" id="password" pattern="[a-zA-Z0-9[!@#$%^&amp;*]]{6,12}" autocomplete required>
                 </li>
                 <li>
                   <label for="confirm_password">Confirm password</label>
@@ -46,10 +49,12 @@
                 </li>
               </ul>
             </div>
-            <div class="submit">
-              <button class="align">Create Account </button>
-              <p class="align">Already have an account? <a href="#">Log in</a></p>
-            </div>
+            <footer> 
+              <div class="submit align">
+                <button type="submit">Create Account </button>
+                <p>Already have an account? <a href="#">Log in</a></p>
+              </div>
+            </footer>
           </form>
         </section>
       </section>

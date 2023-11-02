@@ -3,13 +3,14 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="shortcut icon", href="./assets/favicon1.jpg", type="image/x-icon")
     link(rel="stylesheet", href="./css/style.css")
     script(src="./script/app.js") 
     title Sign-up Form
   body 
     main.wrapper 
       section.img-section
-        img.eye-candy(src="./assets/photo1.avif", alt="")
+        img.eye-candy(src="./assets/elephant.jpg", alt="")
       section.form-section
 
         header.align
@@ -17,33 +18,42 @@ html(lang="en")
           p You know you want to.
         section.form-wrap
           form(action="#" method="post")
-            h2.align Let's do this!
+            .tag-line
+              h2.align Let's do this!
             .list-wrap
               ul.align
                 li
                   label(for="first_name") First name
-                  input(type="text" name="first_name" id="first_name")
+                  input(type="text" title="No special characters allowed" name="first_name" id="first_name" pattern="[A-Za-z0-9]+" required)
 
                 li
                   label(for="last_name") Last name
-                  input(type="text" name="last_name" id="last_name")
+                  input(type="text" title="No special characters allowed" name="last_name" id="last_name" pattern="[A-Za-z0-9]+" required)
 
                 li
                   label(for="email") Email
-                  input(type="email" name="email" id="email" autocomplete required)
+                    span *
+                  input(
+                    type="email" 
+                    name="email" 
+                    id="email"
+                    autocomplete 
+                    required )
 
                 li
                   label(for="tel-number") Phone number
-                  input(type="tel" name="tel-number" id="tel-number")
+                  input(type="tel" name="tel-number" id="tel-number" title="only numbers allowed" minlength="9" maxlength="9" pattern="[0-9]+")
 
                 li
-                  label(for="password") Password
-                  input(type="password" name="password" id="password" autocomplete required)
+                  label(for="password") Password 
+                    span *
+                  input(type="password" title="Password must be at least 6 characters long" name="password" id="password" pattern="[a-zA-Z0-9[!@#$%^&*]]{6,12}" autocomplete required)
 
                 li
                   label(for="confirm_password") Confirm password
                   input(type="password" name="confirm_password" id="confirm_password" autocomplete required)
-            .submit
-              button.align Create Account 
-              p.align Already have an account? 
-                a(href="#") Log in
+            footer 
+              .submit.align
+                button(type="submit") Create Account 
+                p Already have an account? 
+                  a(href="#") Log in
