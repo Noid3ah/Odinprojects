@@ -25,27 +25,27 @@
               <ul class="align">
                 <li>
                   <label for="first_name">First name</label>
-                  <input type="text" title="No special characters allowed" name="first_name" id="first_name" pattern="[A-Za-z0-9]+" required>
+                  <input type="text" title="No special characters allowed" name="first_name" id="first_name" pattern="[A-Za-z0-9]+" required placeholder="First name">
                 </li>
                 <li>
                   <label for="last_name">Last name</label>
-                  <input type="text" title="No special characters allowed" name="last_name" id="last_name" pattern="[A-Za-z0-9]+" required>
+                  <input type="text" title="No special characters allowed" name="last_name" id="last_name" pattern="[A-Za-z0-9]+" required placeholder="Surname">
                 </li>
                 <li>
                   <label for="email">Email<span>*</span></label>
-                  <input type="email" name="email" id="email" autocomplete required>
+                  <input type="email" name="email" id="email" autocomplete required placeholder="example@example.com">
                 </li>
                 <li>
                   <label for="tel-number">Phone number</label>
-                  <input type="tel" name="tel-number" id="tel-number" title="only numbers allowed" minlength="9" maxlength="9" pattern="[0-9]+">
+                  <input type="tel" name="tel-number" id="tel-number" title="only numbers allowed" minlength="9" maxlength="9" pattern="[0-9]+" placeholder="xxxxxxxxx">
                 </li>
                 <li>
                   <label for="password">Password <span>*</span></label>
-                  <input type="password" title="Password must be at least 6 characters long" name="password" id="password" pattern="[a-zA-Z0-9[!@#$%^&amp;*]]{6,12}" autocomplete required>
+                  <input type="password" title="Password must be at least 6 characters long" name="password" id="password" pattern="[a-zA-Z0-9[!@#$%^&amp;*]]{6,12}" autocomplete required placeholder="Enter password"><span></span>
                 </li>
                 <li>
                   <label for="confirm_password">Confirm password</label>
-                  <input type="password" name="confirm_password" id="confirm_password" autocomplete required>
+                  <input type="password" name="confirm_password" id="confirm_password" autocomplete required placeholder="Re-type password">
                 </li>
               </ul>
             </div>

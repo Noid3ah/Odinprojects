@@ -82,14 +82,14 @@ h6 {
   --_ff3: "Poppins", sans-serif;
 }
 
-li + li {
-  margin-top: 1rem;
-}
-
 .align {
   width: 100%;
   max-width: calc(100% - 6rem);
   margin: 0 auto;
+}
+
+.error {
+  outline: 2px solid var(--_error-input);
 }
 
 body {
@@ -104,7 +104,7 @@ body {
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 1100px;
+  max-width: 1000px;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -136,7 +136,10 @@ body {
 .form-section form ul {
   padding-block: 1.2rem 1rem;
 }
-@media (width > 768px) {
+.form-section form ul li + li {
+  margin-top: 1rem;
+}
+@media (width > 868px) {
   .form-section form ul {
     display: grid;
     grid-template-columns: repeat(2, minmax(230px, 1fr));
@@ -149,7 +152,11 @@ body {
 .form-section form ul li {
   display: flex;
   flex-direction: column;
-  max-width: 230px;
+}
+@media (width > 868px) {
+  .form-section form ul li {
+    max-width: 230px;
+  }
 }
 .form-section form ul li label {
   text-transform: uppercase;
@@ -157,6 +164,9 @@ body {
   font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.035rem;
+}
+.form-section form ul li label > span {
+  color: var(--_error-input);
 }
 .form-section form ul li input:focus-visible {
   outline: 2px solid var(--_focus-input);
@@ -166,16 +176,25 @@ body {
 .form-section form ul li input[type=email],
 .form-section form ul li input[type=tel],
 .form-section form ul li input[type=password] {
-  max-width: 230px;
   padding: 0.3rem 0.3rem;
   border-radius: 0.3rem;
   border: 2px solid var(--_nuetral-input);
 }
-.form-section form ul li input:focus:invalid {
+.form-section form ul li input[type=text]::placeholder,
+.form-section form ul li input[type=email]::placeholder,
+.form-section form ul li input[type=tel]::placeholder,
+.form-section form ul li input[type=password]::placeholder {
+  font-size: 0.725rem;
+  opacity: 0.5;
+}
+.form-section form ul li input:invalid:not(:focus):not(:placeholder-shown) {
   outline: 2px solid var(--_error-input);
 }
-.form-section form ul li input:focus:valid {
-  outline: 2px solid var(--_success-input);
+.form-section form ul li > span {
+  color: var(--_error-input);
+  font-size: 0.725rem;
+  margin-left: 0.25rem;
+  height: 18px;
 }
 .form-section footer {
   padding-block: 2rem 6rem;
@@ -192,4 +211,11 @@ body {
   border: none;
   margin-bottom: 1.5rem;
   cursor: pointer;
+}
+.form-section footer .submit a {
+  text-decoration: none;
+  color: #597de2;
+}
+.form-section footer .submit a:visited {
+  color: pink;
 }
