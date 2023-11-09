@@ -1,10 +1,33 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
+img{
+  max-width: 100%;
+  display: block;
+}
+
+
+
 .container {
   text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  /* grid-template-rows: repeat(3, 1fr); */
+  grid-template-areas: 
+  "header header header header"
+  "sidebar nav nav nav"
+  "sidebar article article article"
+  "sidebar article article article"
+  "footer footer footer footer"
+  ;
+
+  gap: 4px;
 }
 
 .container div {
@@ -17,6 +40,11 @@
 
 .header {
   background-color: #393f4d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  grid-area: header;
 }
 
 .logo {
@@ -26,6 +54,10 @@
 }
 
 .menu ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  gap: 3rem;
 }
 
 .menu ul,
@@ -35,6 +67,16 @@
 
 .sidebar {
   background-color: #FF7755;
+  grid-area: sidebar;
+
+  display: grid;
+  grid-template-rows: repeat(4, 1fr) ;
+  gap: 50px;
+}
+
+.sidebar > * {
+  display: grid;
+  place-content: center;
 }
 
 .sidebar .photo {
@@ -43,9 +85,14 @@
   font-size: 12px;
   font-weight: normal;
   border-radius: 10px;
+  padding: 0;
+
 }
 
-.photo  {
+.photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sidebar .side-content {
@@ -53,13 +100,18 @@
   color: black;
   font-size: 16px;
   font-weight: normal;
+  
 }
 
 .nav {
   background-color: #FF7755;
+  grid-area: nav;
 }
 
 .nav ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
 }
 
 .nav ul li {
@@ -69,6 +121,11 @@
 
 .article {
   background-color: #bccbde;
+  grid-area: article;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
 }
 
 .article p {
@@ -82,6 +139,7 @@
   background-color: #FFFFFF;
   color: black;
   text-align: center;
+  height: 200px;
 }
 
 .card p {
@@ -97,6 +155,7 @@
 
 .footer {
   background-color: #393f4d;
+  grid-area: footer;
 }
 
 .footer p {
