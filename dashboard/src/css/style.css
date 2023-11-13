@@ -348,10 +348,6 @@ template {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
-.rotate {
-  transform: rotate(445deg);
-}
-
 .main {
   font-family: var(--_ff2);
   background-color: var(--_background);
@@ -359,6 +355,7 @@ template {
   grid-template-columns: repeat(6, 1fr);
   grid-template-areas: "sb hd hd hd hd hd" "sb ct ct ct ct ct";
   overflow: hidden;
+  min-height: 100vh;
 }
 @media (width < 850px) {
   .main {
@@ -374,7 +371,7 @@ template {
   grid-template-rows: repeat(2, 1fr);
   padding: 0rem calc(8px + 1.5625vw) 1rem;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
   gap: 1rem;
 }
 @media (width < 768px) {
@@ -449,8 +446,8 @@ template {
 }
 .main > header .top-nav .profile span > span {
   color: var(--_paragraphs);
-  font-weight: 700;
-  font-size: 1.5rem;
+  font-weight: 200;
+  font-size: 1.3rem;
 }
 @media (width < 850px) {
   .main > header .top-nav .profile {
@@ -522,21 +519,26 @@ template {
 .sidebar {
   background-color: var(--_sidebar);
   color: var(--_cards);
-  padding-left: 1.5rem;
-  padding-right: 2rem;
+  padding: 1rem 2rem 2rem 1.5rem;
   grid-area: sb;
 }
 .sidebar header {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  margin-bottom: 2.5rem;
+  margin-left: -0.5rem;
 }
 .sidebar header span {
   color: var(--_border);
   font-size: 2.5rem;
 }
 .sidebar .sidebar__nav ul + ul {
-  margin-top: 3rem;
+  margin-top: 4rem;
+}
+.sidebar .sidebar__nav ul {
+  display: grid;
+  gap: 1.2rem;
 }
 .sidebar .sidebar__nav ul li {
   display: flex;
@@ -563,6 +565,7 @@ template {
   grid-area: ct;
   display: grid;
   grid-template-columns: 4fr 1fr;
+  margin-bottom: 1rem;
 }
 .content section h3 {
   font-weight: 600;
@@ -576,12 +579,13 @@ template {
 }
 
 .project__content {
-  margin-inline: 1rem;
+  margin-inline: 1.5rem;
 }
 .project__content .project__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  grid-auto-rows: 1fr;
+  gap: 1.2rem;
 }
 .project__content .project__grid .project__grid__card {
   display: grid;
@@ -592,6 +596,7 @@ template {
 }
 .project__content .project__grid .project__grid__card h4 {
   margin: 0;
+  margin-bottom: 0.5rem;
 }
 .project__content .project__grid .project__grid__card p {
   color: var(--_paragraphs);
@@ -603,6 +608,12 @@ template {
   margin-top: 1.2rem;
   display: flex;
   gap: 0.5rem;
+  align-items: end;
+}
+@media (width < 850px) {
+  .project__content {
+    margin-inline: 1rem;
+  }
 }
 
 .side__content {
@@ -663,6 +674,7 @@ template {
 }
 @media (width < 850px) {
   .side__content {
+    margin-top: 2rem;
     margin-left: 1rem;
   }
 }

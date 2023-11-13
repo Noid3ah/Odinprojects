@@ -13,11 +13,3 @@ menu.addEventListener("click", () => {
   }
   closed = !closed;
 });
-
-// window.addEventListener("resize", () => {
-//   const width = window.innerWidth;
-//   console.log(width);
-//   if (width > "850px") {
-//     dashboard.style.backgroundColor = "#555";
-//   }
-// });
