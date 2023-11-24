@@ -1,0 +1,296 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700;800&family=Poppins:wght@200;400;500;600&family=Roboto:wght@300;400;500;700;900&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+input:not(input[type=checkbox]) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  font-family: inherit;
+}
+
+:root {
+  --clr-accent: hsl(98, 82%, 74%);
+  --clr-accent2: hsl(192, 21%, 48%);
+  --clr-primary: hsl(0, 0%, 7%);
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-light-gray: hsl(0, 0%, 51%);
+  --clr-dark-gray: hsl(0, 0%, 17%);
+  --clr-darker-gray: hsl(0, 0%, 10%);
+  --clr-black: hsl(0, 0%, 0%);
+  --ff-1: "Poppins", sans-serif;
+  --ff-2: "Bebas Neue", sans-serif;
+  --ff-3: "Merriweather", serif;
+  --ff-4: "Montserrat", sans-serif;
+  --ff-5: "Open Sans", sans-serif;
+  --ff-6: "Roboto", sans-serif;
+  --radius: 0.5rem;
+}
+
+.container {
+  width: 80%;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: hsl(0, 0%, 18%);
+  font-family: var(--ff-4);
+}
+
+header {
+  min-height: 4rem;
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+}
+header .inner-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .inner-wrap .logo {
+  display: inline-flex;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+header .inner-wrap .logo span {
+  color: var(--clr-accent);
+}
+header .inner-wrap .search {
+  width: 100%;
+  display: flex;
+}
+header .inner-wrap input[type=search] {
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+  font-size: 1rem;
+  border: none;
+  border-radius: 100vh;
+  height: 40px;
+  margin-left: auto;
+  width: 80%;
+  max-width: 300px;
+  padding-inline: 1rem;
+}
+header .inner-wrap input[type=search]:focus-visible {
+  outline: 3px solid var(--clr-accent);
+}
+header .inner-wrap input[type=search]::-moz-placeholder {
+  color: var(--clr-light-gray);
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 800;
+}
+header .inner-wrap input[type=search]::placeholder {
+  color: var(--clr-light-gray);
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 800;
+}
+
+main {
+  flex: 1;
+  background-color: var(--clr-primary);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+main h1 {
+  padding-block-end: 1.5rem;
+  color: var(--clr-light-gray);
+  font-size: 1.5rem;
+}
+main .card-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+main .card-grid .modal {
+  position: fixed;
+  border: none;
+  background-color: var(--clr-white);
+  border-radius: var(--radius);
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  padding: 2rem 0;
+  background-color: var(--clr-darker-gray);
+}
+main .card-grid .modal form .form-control {
+  display: flex;
+  flex-direction: column;
+}
+main .card-grid .modal form .form-control label {
+  font-weight: bold;
+  color: var(--clr-white);
+  margin-bottom: 0.5rem;
+}
+main .card-grid .modal form .form-control input[type=text],
+main .card-grid .modal form .form-control input[type=number] {
+  border: none;
+  background-color: var(--clr-primary);
+  border: 2px solid var(--clr-primary);
+  border-radius: var(--radius);
+  height: 40px;
+  color: var(--clr-white);
+  font-size: 1.2rem;
+  padding-inline: 1rem;
+}
+main .card-grid .modal form .form-control input[type=text]::-moz-placeholder, main .card-grid .modal form .form-control input[type=number]::-moz-placeholder {
+  color: var(--clr-light-gray);
+  font-size: 1rem;
+}
+main .card-grid .modal form .form-control input[type=text]::placeholder,
+main .card-grid .modal form .form-control input[type=number]::placeholder {
+  color: var(--clr-light-gray);
+  font-size: 1rem;
+}
+main .card-grid .modal form .form-control + .form-control {
+  margin-top: 1rem;
+}
+main .card-grid .modal form button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--clr-accent);
+  -moz-columns: var(--clr-primary);
+       columns: var(--clr-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--ff-1);
+}
+main .card-grid .card {
+  display: flex;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+main .card-grid .card .card-wrap {
+  overflow: hidden;
+  position: relative;
+  background-color: var(--clr-darker-gray);
+  color: var(--clr-white);
+  border-radius: calc(var(--radius) + 0.5rem);
+  padding: 1rem 2rem 1rem 2rem;
+  width: 100%;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+main .card-grid .card .card-wrap .book__name .book__title {
+  text-transform: capitalize;
+  margin-bottom: 0.3rem;
+}
+main .card-grid .card .card-wrap .book__name .book__serial__title {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+main .card-grid .card .card-wrap .book__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+main .card-grid .card .card-wrap .book__details > span:not(:last-child) {
+  display: flex;
+  flex-wrap: wrap;
+}
+main .card-grid .card .card-wrap .book__details > span:not(:last-child) p:first-child {
+  margin-right: 0.5rem;
+}
+main .card-grid .card .card-wrap .book__details > span:not(:last-child) p:last-child {
+  color: var(--clr-light-gray);
+}
+main .card-grid .card .card-wrap .stripe {
+  position: absolute;
+  background-color: var(--clr-accent);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 0.8rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+main .card-grid .card .actions {
+  color: var(--clr-light-gray);
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+main .card-grid .card .actions span {
+  cursor: pointer;
+}
+main .card-grid .card .actions span:last-child:hover {
+  color: #d9544d;
+}
+main .add-book {
+  display: flex;
+}
+main .add-book button {
+  font-family: var(--ff-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--clr-white);
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--clr-primary);
+  height: 40px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+main .add-book button span {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+footer {
+  color: var(--clr-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}/*# sourceMappingURL=app.css.map */
