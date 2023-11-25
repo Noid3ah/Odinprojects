@@ -30,14 +30,16 @@ submitAndClose.addEventListener("click", (e) => {
   // e.preventDefault();
   if (!author.value || !title.value || !pages.value) return;
 
-  addBookToLibrary(
+  createBook(
     new Book(title.value, author.value, pages.value, checkbox.checked)
   );
   modal.close();
+  renderBook();
   resetFields();
 });
 
 const myLibrary = Array.from(cardArray.children);
+// const myLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -48,6 +50,69 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
+  console.log(myLibrary);
+}
+
+function createBook(book) {
+  const { title, author, pages, read } = book;
+  const div = document.createElement("div");
+  div.classList.add("card", "book");
+
+  div.innerHTML = `
+  <div class="card-wrap">
+    <div class="book__name">
+      <h2 class="book__title">${title}</h2>
+      <h3 class="book__serial__title">A clash of kings</h3>
+    </div>
+
+    <div class="book__details">
+      <span class="author">
+        <p>Author:</p>
+        <p>${author}</p>
+      </span>
+      <span class="pages">
+        <p>Pages:</p>
+        <p>${pages}</p>
+      </span>
+      <span class="status">
+        <p>${read ? "read" : "unread"}</p>
+      </span>
+    </div>
+
+    <div class="stripe"></div>
+  </div>
+  <div class="actions">
+    <span
+      class="material-symbols-outlined vague"
+      data-tooltip='${read ? "read" : "unread"}'
+      title='${read ? "read" : "unread"}'>
+      ${read ? "auto_stories" : "book_2"}  
+    </span>
+    <!-- <span class="material-symbols-outlined">auto_stories</span> 
+    -->
+    <span
+      class="material-symbols-outlined vague"
+      data-tooltip="Bookmark"
+      title="bookmark">
+      bookmark
+    </span>
+    <span
+      class="material-symbols-outlined vague"
+      data-tooltip="delete book"
+      title="delete">
+      delete
+    </span>
+  </div>
+  `;
+
+  myLibrary.push(div);
+  console.log(myLibrary);
+}
+
+function renderBook() {
+  myLibrary.forEach((book) => {
+    cardArray.append(book);
+  });
 }
 
 console.log(myLibrary);
