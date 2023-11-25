@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700;800&family=Poppins:wght@200;400;500;600&family=Roboto:wght@300;400;500;700;900&display=swap");
+@import "https://unpkg.com/open-props";
 *,
 *::before,
 *::after {
@@ -55,6 +56,11 @@ input:not(input[type=checkbox]) {
   width: 80%;
   max-width: 700px;
   margin-inline: auto;
+}
+
+button,
+span.material-symbols-outlined {
+  cursor: pointer;
 }
 
 body {
@@ -137,8 +143,8 @@ main .card-grid {
   gap: 2rem;
   position: relative;
 }
-main .card-grid .modal {
-  position: fixed;
+main .card-grid dialog {
+  display: block;
   border: none;
   background-color: var(--clr-white);
   border-radius: var(--radius);
@@ -146,21 +152,45 @@ main .card-grid .modal {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  width: 80%;
+  max-width: 400px;
   padding: 2rem 0;
   background-color: var(--clr-darker-gray);
+  transition: opacity 0.5s;
+  animation: var(--animation-scale-down) forwards;
+  animation-timing-function: var(--ease-squish-3);
 }
-main .card-grid .modal form .form-control {
+main .card-grid dialog[open] {
+  animation: var(--animation-slide-in-up) forwards;
+}
+main .card-grid dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+main .card-grid dialog::backdrop {
+  -webkit-backdrop-filter: blur(0.25rem);
+          backdrop-filter: blur(0.25rem);
+}
+main .card-grid dialog .cancel span {
+  --position: 0.5rem;
+  color: var(--clr-accent);
+  position: absolute;
+  top: var(--position);
+  right: var(--position);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+main .card-grid dialog form .form-control {
   display: flex;
   flex-direction: column;
 }
-main .card-grid .modal form .form-control label {
+main .card-grid dialog form .form-control label {
   font-weight: bold;
   color: var(--clr-white);
   margin-bottom: 0.5rem;
 }
-main .card-grid .modal form .form-control input[type=text],
-main .card-grid .modal form .form-control input[type=number] {
+main .card-grid dialog form .form-control input[type=text],
+main .card-grid dialog form .form-control input[type=number] {
   border: none;
   background-color: var(--clr-primary);
   border: 2px solid var(--clr-primary);
@@ -169,20 +199,33 @@ main .card-grid .modal form .form-control input[type=number] {
   color: var(--clr-white);
   font-size: 1.2rem;
   padding-inline: 1rem;
+  font-family: var(--ff-1);
 }
-main .card-grid .modal form .form-control input[type=text]::-moz-placeholder, main .card-grid .modal form .form-control input[type=number]::-moz-placeholder {
+main .card-grid dialog form .form-control input[type=text]::-moz-placeholder, main .card-grid dialog form .form-control input[type=number]::-moz-placeholder {
   color: var(--clr-light-gray);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
-main .card-grid .modal form .form-control input[type=text]::placeholder,
-main .card-grid .modal form .form-control input[type=number]::placeholder {
+main .card-grid dialog form .form-control input[type=text]::placeholder,
+main .card-grid dialog form .form-control input[type=number]::placeholder {
   color: var(--clr-light-gray);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
-main .card-grid .modal form .form-control + .form-control {
+main .card-grid dialog form .form-control input[type=text]:focus-visible,
+main .card-grid dialog form .form-control input[type=number]:focus-visible {
+  outline: 3px solid var(--clr-accent);
+}
+main .card-grid dialog form .form-control:last-child {
+  flex-direction: row;
+  align-items: center;
+}
+main .card-grid dialog form .form-control:last-child label {
+  margin-bottom: 0;
+  margin-right: 1rem;
+}
+main .card-grid dialog form .form-control + .form-control {
   margin-top: 1rem;
 }
-main .card-grid .modal form button {
+main .card-grid dialog form button {
   width: 100%;
   height: 40px;
   border: none;
@@ -193,6 +236,7 @@ main .card-grid .modal form button {
   font-size: 1rem;
   font-weight: 600;
   font-family: var(--ff-1);
+  margin-top: 2rem;
 }
 main .card-grid .card {
   display: flex;
@@ -208,7 +252,8 @@ main .card-grid .card .card-wrap {
   padding: 1rem 2rem 1rem 2rem;
   width: 100%;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
@@ -218,10 +263,14 @@ main .card-grid .card .card-wrap {
 main .card-grid .card .card-wrap .book__name .book__title {
   text-transform: capitalize;
   margin-bottom: 0.3rem;
+  font-size: 1.2rem;
+  font-family: var(--ff-6);
 }
 main .card-grid .card .card-wrap .book__name .book__serial__title {
-  font-size: 0.9rem;
+  text-transform: capitalize;
+  font-size: 0.875rem;
   font-weight: 300;
+  color: var(--clr-light-gray);
 }
 main .card-grid .card .card-wrap .book__details {
   display: flex;
@@ -237,6 +286,13 @@ main .card-grid .card .card-wrap .book__details > span:not(:last-child) p:first-
 }
 main .card-grid .card .card-wrap .book__details > span:not(:last-child) p:last-child {
   color: var(--clr-light-gray);
+  text-transform: capitalize;
+}
+main .card-grid .card .card-wrap .book__details > span:last-child {
+  color: var(--clr-accent2);
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
 main .card-grid .card .card-wrap .stripe {
   position: absolute;
@@ -257,11 +313,18 @@ main .card-grid .card .actions {
   justify-content: center;
   gap: 0.7rem;
 }
-main .card-grid .card .actions span {
-  cursor: pointer;
-}
 main .card-grid .card .actions span:last-child:hover {
   color: #d9544d;
+}
+@media (width < 450px) {
+  main .card-grid .card {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  main .card-grid .card .actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 }
 main .add-book {
   display: flex;
@@ -280,7 +343,7 @@ main .add-book button {
   color: var(--clr-primary);
   height: 40px;
   text-transform: capitalize;
-  cursor: pointer;
+  margin-top: 2rem;
 }
 main .add-book button span {
   margin-left: 1rem;

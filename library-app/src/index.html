@@ -30,27 +30,51 @@
       <h1>All books</h1>
       <section class="card-grid">
         <dialog class="modal" data-modal>
-          <form action="#" class="container">
+          <form action="#" class="container" id="book-form" method="dialog">
             <div class="form-control-wrap">
               <div class="form-control">
-                <label for="">Title</label>
-                <input type="text" placeholder="Title of book" />
+                <label for="title">Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="Title of book"
+                  required />
               </div>
               <div class="form-control">
                 <label for="author">Author</label>
-                <input type="text" id="author" placeholder="Author of book" />
+                <input
+                  type="text"
+                  id="author"
+                  placeholder="Author of book"
+                  required />
               </div>
               <div class="form-control">
                 <label for="pages">Pages</label>
-                <input type="number" id="pages" placeholder="Number of pages" />
+                <input
+                  type="number"
+                  id="pages"
+                  min="0"
+                  placeholder="Number of pages"
+                  pattern="[0-9]*"
+                  inputmode="numeric"
+                  required />
               </div>
               <div class="form-control">
-                <label for="read">Read</label>
+                <label for="read">I have read this book</label>
                 <input type="checkbox" id="read" />
               </div>
             </div>
             <button type="submit" data-close-modal>Add book</button>
           </form>
+          <div class="cancel">
+            <span
+              class="material-symbols-outlined cancel vague"
+              data-cancel-modal
+              data-tooltip="Cancel"
+              title="cancel">
+              close
+            </span>
+          </div>
         </dialog>
         <div class="card book">
           <div class="card-wrap">
@@ -75,27 +99,42 @@
             <div class="stripe"></div>
           </div>
           <div class="actions">
-            <span class="material-symbols-outlined">book_2</span>
+            <span
+              class="material-symbols-outlined vague"
+              data-tooltip="Unread"
+              title="unread">
+              book_2
+            </span>
             <!-- <span class="material-symbols-outlined">auto_stories</span> 
             -->
-            <span class="material-symbols-outlined">bookmark</span>
-            <span class="material-symbols-outlined">delete</span>
+            <span
+              class="material-symbols-outlined vague"
+              data-tooltip="Bookmark"
+              title="bookmark">
+              bookmark
+            </span>
+            <span
+              class="material-symbols-outlined vague"
+              data-tooltip="delete book"
+              title="delete">
+              delete
+            </span>
           </div>
         </div>
         <div class="card book">
           <div class="card-wrap">
             <div class="book__name">
-              <h2 class="book__title">Game of thrones</h2>
-              <h3 class="book__serial__title">A clash of kings</h3>
+              <h2 class="book__title">The Stormlight Archive</h2>
+              <h3 class="book__serial__title">The way of kings</h3>
             </div>
             <div class="book__details">
               <span class="author">
                 <p>Author:</p>
-                <p>George r.r. martin</p>
+                <p>Brandon Sanderson</p>
               </span>
               <span class="pages">
                 <p>Pages:</p>
-                <p>369</p>
+                <p>509</p>
               </span>
               <span class="status">
                 <p>unread</p>
@@ -107,6 +146,36 @@
           <div class="actions">
             <span class="material-symbols-outlined">book_2</span>
             <!-- <span class="material-symbols-outlined">auto_stories</span> -->
+            <span class="material-symbols-outlined">bookmark</span>
+            <span class="material-symbols-outlined">delete</span>
+          </div>
+        </div>
+        <div class="card book">
+          <div class="card-wrap">
+            <div class="book__name">
+              <h2 class="book__title">The Wheel of Time</h2>
+              <h3 class="book__serial__title">New spring</h3>
+            </div>
+            <div class="book__details">
+              <span class="author">
+                <p>Author:</p>
+                <p>Robert Jordan</p>
+              </span>
+              <span class="pages">
+                <p>Pages:</p>
+                <p>823</p>
+              </span>
+              <span class="status">
+                <p>unread</p>
+              </span>
+            </div>
+
+            <div class="stripe"></div>
+          </div>
+          <div class="actions">
+            <span class="material-symbols-outlined">book_2</span>
+            <!-- <span class="material-symbols-outlined">auto_stories</span> 
+            -->
             <span class="material-symbols-outlined">bookmark</span>
             <span class="material-symbols-outlined">delete</span>
           </div>
