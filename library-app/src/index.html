@@ -27,55 +27,55 @@
       </div>
     </header>
     <main class="container">
+      <dialog class="modal" data-modal>
+        <form action="#" class="container" id="book-form" method="dialog">
+          <div class="form-control-wrap">
+            <div class="form-control">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                placeholder="Title of book"
+                required />
+            </div>
+            <div class="form-control">
+              <label for="author">Author</label>
+              <input
+                type="text"
+                id="author"
+                placeholder="Author of book"
+                required />
+            </div>
+            <div class="form-control">
+              <label for="pages">Pages</label>
+              <input
+                type="number"
+                id="pages"
+                min="0"
+                placeholder="Number of pages"
+                pattern="[0-9]*"
+                inputmode="numeric"
+                required />
+            </div>
+            <div class="form-control">
+              <label for="read">I have read this book</label>
+              <input type="checkbox" id="read" />
+            </div>
+          </div>
+          <button type="submit" data-close-modal>Add book</button>
+        </form>
+        <div class="cancel">
+          <span
+            class="material-symbols-outlined cancel vague"
+            data-cancel-modal
+            data-tooltip="Cancel"
+            title="cancel">
+            close
+          </span>
+        </div>
+      </dialog>
       <h1>All books</h1>
       <section class="card-grid">
-        <dialog class="modal" data-modal>
-          <form action="#" class="container" id="book-form" method="dialog">
-            <div class="form-control-wrap">
-              <div class="form-control">
-                <label for="title">Title</label>
-                <input
-                  type="text"
-                  id="title"
-                  placeholder="Title of book"
-                  required />
-              </div>
-              <div class="form-control">
-                <label for="author">Author</label>
-                <input
-                  type="text"
-                  id="author"
-                  placeholder="Author of book"
-                  required />
-              </div>
-              <div class="form-control">
-                <label for="pages">Pages</label>
-                <input
-                  type="number"
-                  id="pages"
-                  min="0"
-                  placeholder="Number of pages"
-                  pattern="[0-9]*"
-                  inputmode="numeric"
-                  required />
-              </div>
-              <div class="form-control">
-                <label for="read">I have read this book</label>
-                <input type="checkbox" id="read" />
-              </div>
-            </div>
-            <button type="submit" data-close-modal>Add book</button>
-          </form>
-          <div class="cancel">
-            <span
-              class="material-symbols-outlined cancel vague"
-              data-cancel-modal
-              data-tooltip="Cancel"
-              title="cancel">
-              close
-            </span>
-          </div>
-        </dialog>
         <div class="card book">
           <div class="card-wrap">
             <div class="book__name">

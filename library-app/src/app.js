@@ -1,7 +1,6 @@
 const openButton = document.querySelector("[data-open-modal]");
 const submitAndClose = document.querySelector("[data-close-modal]");
 const cancelButton = document.querySelector("[data-cancel-modal]");
-
 const modal = document.querySelector("[data-modal]");
 
 const form = document.getElementById("book-form");
@@ -9,6 +8,8 @@ const title = form.querySelector("#title");
 const author = form.querySelector("#author");
 const pages = form.querySelector("#pages");
 const checkbox = form.querySelector("#read");
+
+const cardArray = document.querySelector(".card-grid");
 
 function resetFields() {
   title.value = "";
@@ -36,7 +37,7 @@ submitAndClose.addEventListener("click", (e) => {
   resetFields();
 });
 
-const myLibrary = [];
+const myLibrary = Array.from(cardArray.children);
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -47,7 +48,6 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  console.log(myLibrary);
 }
 
 console.log(myLibrary);
