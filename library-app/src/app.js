@@ -5,6 +5,7 @@ const modal = document.querySelector("[data-modal]");
 
 const form = document.getElementById("book-form");
 const title = form.querySelector("#title");
+const series = form.querySelector("#series");
 const author = form.querySelector("#author");
 const pages = form.querySelector("#pages");
 const checkbox = form.querySelector("#read");
@@ -13,6 +14,7 @@ const cardArray = document.querySelector(".card-grid");
 
 function resetFields() {
   title.value = "";
+  series.value = "";
   author.value = "";
   pages.value = "";
   checkbox.checked = false;
@@ -31,7 +33,13 @@ submitAndClose.addEventListener("click", (e) => {
   if (!author.value || !title.value || !pages.value) return;
 
   createBook(
-    new Book(title.value, author.value, pages.value, checkbox.checked)
+    new Book(
+      title.value,
+      series.value,
+      author.value,
+      pages.value,
+      checkbox.checked
+    )
   );
   modal.close();
   renderBook();
@@ -41,8 +49,9 @@ submitAndClose.addEventListener("click", (e) => {
 const myLibrary = Array.from(cardArray.children);
 // const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, series, author, pages, read) {
   this.title = title;
+  this.series = series;
   this.author = author;
   this.pages = pages;
   this.read = Boolean(read);
@@ -54,15 +63,16 @@ function addBookToLibrary(book) {
 }
 
 function createBook(book) {
-  const { title, author, pages, read } = book;
+  const { title, series, author, pages, read } = book;
   const div = document.createElement("div");
   div.classList.add("card", "book");
+  div.dataset.readStatus = read;
 
   div.innerHTML = `
   <div class="card-wrap">
     <div class="book__name">
       <h2 class="book__title">${title}</h2>
-      <h3 class="book__serial__title">A clash of kings</h3>
+      <h3 class="book__series__title">${series ? series : ""}</h3>
     </div>
 
     <div class="book__details">

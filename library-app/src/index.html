@@ -39,6 +39,10 @@
                 required />
             </div>
             <div class="form-control">
+              <label for="series">Series</label>
+              <input type="text" id="series" placeholder="Series title" />
+            </div>
+            <div class="form-control">
               <label for="author">Author</label>
               <input
                 type="text"
@@ -76,11 +80,11 @@
       </dialog>
       <h1>All books</h1>
       <section class="card-grid">
-        <div class="card book">
+        <div class="card book" data-read-status>
           <div class="card-wrap">
             <div class="book__name">
-              <h2 class="book__title">Game of thrones</h2>
-              <h3 class="book__serial__title">A clash of kings</h3>
+              <h2 class="book__title">A clash of kings</h2>
+              <h3 class="book__series__title">Game of thrones</h3>
             </div>
             <div class="book__details">
               <span class="author">
@@ -121,11 +125,11 @@
             </span>
           </div>
         </div>
-        <div class="card book">
+        <div class="card book" data-read-status>
           <div class="card-wrap">
             <div class="book__name">
-              <h2 class="book__title">The Stormlight Archive</h2>
-              <h3 class="book__serial__title">The way of kings</h3>
+              <h2 class="book__title">The way of kings</h2>
+              <h3 class="book__series__title">The Stormlight Archive</h3>
             </div>
             <div class="book__details">
               <span class="author">
@@ -150,11 +154,11 @@
             <span class="material-symbols-outlined">delete</span>
           </div>
         </div>
-        <div class="card book">
+        <div class="card book" data-read-status>
           <div class="card-wrap">
             <div class="book__name">
-              <h2 class="book__title">The Wheel of Time</h2>
-              <h3 class="book__serial__title">New spring</h3>
+              <h2 class="book__title">New spring</h2>
+              <h3 class="book__series__title">The Wheel of Time</h3>
             </div>
             <div class="book__details">
               <span class="author">

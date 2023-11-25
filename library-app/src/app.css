@@ -266,7 +266,7 @@ main .card-grid .card .card-wrap .book__name .book__title {
   font-size: 1.2rem;
   font-family: var(--ff-6);
 }
-main .card-grid .card .card-wrap .book__name .book__serial__title {
+main .card-grid .card .card-wrap .book__name .book__series__title {
   text-transform: capitalize;
   font-size: 0.875rem;
   font-weight: 300;
