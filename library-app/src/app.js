@@ -19,6 +19,7 @@ function resetFields() {
   pages.value = "";
   checkbox.checked = false;
 }
+
 openButton.addEventListener("click", () => {
   modal.showModal();
 });
@@ -59,7 +60,6 @@ function Book(title, series, author, pages, read) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  console.log(myLibrary);
 }
 
 function createBook(book) {
@@ -92,31 +92,32 @@ function createBook(book) {
     <div class="stripe"></div>
   </div>
   <div class="actions">
+
     <span
       class="material-symbols-outlined vague"
       data-tooltip='${read ? "read" : "unread"}'
       title='${read ? "read" : "unread"}'>
-      ${read ? "auto_stories" : "book_2"}  
+      ${read ? "auto_stories" : "book_2"}
     </span>
-    <!-- <span class="material-symbols-outlined">auto_stories</span> 
-    -->
+
     <span
       class="material-symbols-outlined vague"
       data-tooltip="Bookmark"
       title="bookmark">
       bookmark
     </span>
+
     <span
       class="material-symbols-outlined vague"
       data-tooltip="delete book"
       title="delete">
       delete
     </span>
+    
   </div>
   `;
 
   myLibrary.push(div);
-  console.log(myLibrary);
 }
 
 function renderBook() {
@@ -124,5 +125,3 @@ function renderBook() {
     cardArray.append(book);
   });
 }
-
-console.log(myLibrary);
