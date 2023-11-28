@@ -96,6 +96,7 @@ function createBook(book) {
     <span
       class="material-symbols-outlined vague"
       data-tooltip='${read ? "read" : "unread"}'
+      data-action='status'
       title='${read ? "read" : "unread"}'>
       ${read ? "auto_stories" : "book_2"}
     </span>
@@ -103,13 +104,15 @@ function createBook(book) {
     <span
       class="material-symbols-outlined vague"
       data-tooltip="Bookmark"
+      data-action='bookmark'
       title="bookmark">
-      bookmark
+      heart_plus
     </span>
 
     <span
       class="material-symbols-outlined vague"
       data-tooltip="delete book"
+      data-action='remove'
       title="delete">
       delete
     </span>
@@ -124,4 +127,55 @@ function renderBook() {
   myLibrary.forEach((book) => {
     cardArray.append(book);
   });
+}
+
+cardArray.addEventListener("click", (e) => {
+  const card = e.target.closest(".card");
+  const target = e.target;
+  if (!card) return;
+
+  // ( Read || Unread ) button logic
+  if (e.target.matches("[data-action='status']")) {
+    handleBookStatus(card, target);
+  }
+
+  // Bookmark button logic
+  if (e.target.matches("[data-action='bookmark']")) {
+    handleBookmark(target);
+  }
+
+  // Delete button logic
+  if (e.target.matches("[data-action='remove']")) {
+    handleBookRemoval(card);
+  }
+});
+
+function handleBookStatus(card, target) {
+  const readStatus = card.dataset.readStatus;
+  card.dataset.readStatus = readStatus === "true" ? "false" : "true";
+
+  const statusText = card.querySelector(".status p");
+  statusText.textContent = readStatus === "true" ? "unread" : "read";
+
+  target.textContent = readStatus === "false" ? "auto_stories" : "book_2";
+  target.classList.toggle("bookStatus");
+}
+
+function handleBookmark(target) {
+  const bookmarkIcon = target;
+  bookmarkIcon.classList.toggle("bookmarked");
+}
+
+function handleBookRemoval(card) {
+  const shouldDelete = confirm("Are you sure you want to delete this book?");
+  if (shouldDelete) {
+    // Remove the card from the DOM
+    card.remove();
+
+    // Remove it from the array as well
+    const index = myLibrary.indexOf(card);
+    if (index !== -1) {
+      myLibrary.splice(index, 1);
+    }
+  }
 }

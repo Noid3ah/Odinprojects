@@ -63,6 +63,14 @@ span.material-symbols-outlined {
   cursor: pointer;
 }
 
+.bookmarked {
+  color: #d9544d;
+}
+
+.bookStatus {
+  color: var(--clr-accent);
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -242,6 +250,7 @@ main .card-grid .card {
   display: flex;
   max-height: -moz-fit-content;
   max-height: fit-content;
+  position: relative;
 }
 main .card-grid .card .card-wrap {
   overflow: hidden;
@@ -313,6 +322,11 @@ main .card-grid .card .actions {
   justify-content: center;
   gap: 0.7rem;
 }
+main .card-grid .card .actions > span {
+  -webkit-user-select: none; /* Safari */ /* IE 10 and IE 11 */
+  -moz-user-select: none;
+       user-select: none; /* Standard syntax */
+}
 main .card-grid .card .actions span:last-child:hover {
   color: #d9544d;
 }
@@ -341,7 +355,7 @@ main .add-book button {
   font-weight: 900;
   font-size: 1rem;
   color: var(--clr-primary);
-  height: 40px;
+  height: 50px;
   text-transform: capitalize;
   margin-top: 2rem;
 }
