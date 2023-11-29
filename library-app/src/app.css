@@ -64,11 +64,15 @@ span.material-symbols-outlined {
 }
 
 .bookmarked {
-  color: #d9544d;
+  color: var(--clr-accent);
 }
 
 .bookStatus {
-  color: var(--clr-accent);
+  color: var(--clr-accent2);
+}
+
+.fill {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
 body {
@@ -234,10 +238,30 @@ main dialog form button {
   font-family: var(--ff-1);
   margin-top: 2rem;
 }
-main h1 {
-  padding-block-end: 1.5rem;
+main .menu-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 1.5rem;
+}
+main .menu-wrap h1 {
   color: var(--clr-light-gray);
   font-size: 1.5rem;
+}
+main .menu-wrap .show-bookmarks {
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0 1rem 0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: var(--ff-1);
+  color: var(--clr-light-gray);
+}
+main .menu-wrap .show-bookmarks:hover {
+  color: var(--clr-white);
 }
 main .card-grid {
   flex: 1;

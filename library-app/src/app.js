@@ -67,6 +67,7 @@ function createBook(book) {
   const div = document.createElement("div");
   div.classList.add("card", "book");
   div.dataset.readStatus = read;
+  div.dataset.marked = false;
 
   div.innerHTML = `
   <div class="card-wrap">
@@ -129,6 +130,12 @@ function renderBook() {
   });
 }
 
+function handleBookStatusOnRender() {}
+
+// When new book is added and status is read - add classes for color change
+// When toggled - toggle classes for color change
+//
+
 cardArray.addEventListener("click", (e) => {
   const card = e.target.closest(".card");
   const target = e.target;
@@ -141,7 +148,7 @@ cardArray.addEventListener("click", (e) => {
 
   // Bookmark button logic
   if (e.target.matches("[data-action='bookmark']")) {
-    handleBookmark(target);
+    handleBookmark(card, target);
   }
 
   // Delete button logic
@@ -151,19 +158,27 @@ cardArray.addEventListener("click", (e) => {
 });
 
 function handleBookStatus(card, target) {
+  const statusText = card.querySelector(".status p");
   const readStatus = card.dataset.readStatus;
   card.dataset.readStatus = readStatus === "true" ? "false" : "true";
 
-  const statusText = card.querySelector(".status p");
   statusText.textContent = readStatus === "true" ? "unread" : "read";
+  statusText.classList.toggle("bookmarked");
 
   target.textContent = readStatus === "false" ? "auto_stories" : "book_2";
   target.classList.toggle("bookStatus");
 }
 
-function handleBookmark(target) {
+function handleBookmark(card, target) {
   const bookmarkIcon = target;
+  const marked = card.dataset.marked || true;
+  card.dataset.marked = marked === "true" ? "false" : "true";
   bookmarkIcon.classList.toggle("bookmarked");
+
+  if (marked === "false") target.textContent = "bookmark_remove";
+  else target.textContent = "bookmark_add";
+
+  target.classList.toggle("fill");
 }
 
 function handleBookRemoval(card) {

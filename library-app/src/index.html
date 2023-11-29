@@ -78,9 +78,12 @@
           </span>
         </div>
       </dialog>
-      <h1>All books</h1>
+      <div class="menu-wrap">
+        <h1>All books</h1>
+        <button class="show-bookmarks">Bookmarks</button>
+      </div>
       <section class="card-grid">
-        <div class="card book" data-read-status="false">
+        <div class="card book" data-read-status="false" data-marked="false">
           <div class="card-wrap">
             <div class="book__name">
               <h2 class="book__title">A clash of kings</h2>
@@ -117,7 +120,7 @@
               data-tooltip="Bookmark"
               data-action="bookmark"
               title="bookmark">
-              bookmark
+              bookmark_add
             </span>
             <span
               class="material-symbols-outlined vague action"
@@ -129,7 +132,7 @@
             </span>
           </div>
         </div>
-        <div class="card book" data-read-status="false">
+        <div class="card book" data-read-status="false" data-marked="false">
           <div class="card-wrap">
             <div class="book__name">
               <h2 class="book__title">The way of kings</h2>
@@ -166,7 +169,7 @@
               data-tooltip="Bookmark"
               data-action="bookmark"
               title="bookmark">
-              bookmark
+              bookmark_add
             </span>
             <span
               class="material-symbols-outlined vague action"
@@ -178,7 +181,7 @@
             </span>
           </div>
         </div>
-        <div class="card book" data-read-status="false">
+        <div class="card book" data-read-status="false" data-marked="false">
           <div class="card-wrap">
             <div class="book__name">
               <h2 class="book__title">New spring</h2>
@@ -215,7 +218,7 @@
               data-tooltip="Bookmark"
               data-action="bookmark"
               title="bookmark">
-              bookmark
+              bookmark_add
             </span>
             <span
               class="material-symbols-outlined vague action"
