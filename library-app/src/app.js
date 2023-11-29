@@ -224,8 +224,10 @@ function resetBooks() {
 
 search.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
+  const searchTerm = document.querySelector(".term");
 
   if (value) {
+    searchTerm.textContent = `"${value}"`;
     resetBooks();
     renderBook(
       myLibrary.filter(
@@ -237,6 +239,7 @@ search.addEventListener("input", (e) => {
       )
     );
   } else {
+    searchTerm.textContent = "All books";
     resetBooks();
     renderBook(myLibrary);
   }
