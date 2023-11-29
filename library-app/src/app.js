@@ -133,9 +133,17 @@ function createBook(book) {
 
 function renderBook(library) {
   library.forEach((book) => {
-    cardArray.append(book);
+    book.style.opacity = 0;
+
+    cardArray.prepend(book);
 
     const allBooks = cardArray.querySelectorAll(".card");
+
+    setTimeout(() => {
+      allBooks.forEach((book) => {
+        book.style.opacity = 1;
+      });
+    }, 100);
   });
 }
 

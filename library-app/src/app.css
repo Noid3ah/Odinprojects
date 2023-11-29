@@ -347,6 +347,7 @@ main .card-grid .card {
   max-height: -moz-fit-content;
   max-height: fit-content;
   position: relative;
+  transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 main .card-grid .card .card-wrap {
   overflow: hidden;
