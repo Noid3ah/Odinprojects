@@ -3,6 +3,10 @@ const submitAndClose = document.querySelector("[data-close-modal]");
 const cancelButton = document.querySelector("[data-cancel-modal]");
 const modal = document.querySelector("[data-modal]");
 
+const favoritesBtn = document.querySelector(".show-favorites");
+const favoritesTab = document.querySelector(".favorites-container");
+const closeFavoritesTabBtn = favoritesTab.querySelector(".close");
+
 const form = document.getElementById("book-form");
 const title = form.querySelector("#title");
 const series = form.querySelector("#series");
@@ -193,3 +197,11 @@ function handleBookRemoval(card) {
     }
   }
 }
+
+favoritesBtn.addEventListener("click", () => {
+  favoritesTab.classList.add("show");
+});
+
+closeFavoritesTabBtn.addEventListener("click", () => {
+  favoritesTab.classList.remove("show");
+});
