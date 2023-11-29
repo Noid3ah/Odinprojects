@@ -163,20 +163,20 @@ function handleBookStatus(card, target) {
   card.dataset.readStatus = readStatus === "true" ? "false" : "true";
 
   statusText.textContent = readStatus === "true" ? "unread" : "read";
-  statusText.classList.toggle("bookmarked");
+  statusText.classList.toggle("read");
 
   target.textContent = readStatus === "false" ? "auto_stories" : "book_2";
-  target.classList.toggle("bookStatus");
+  target.classList.toggle("read");
 }
 
 function handleBookmark(card, target) {
   const bookmarkIcon = target;
   const marked = card.dataset.marked || true;
   card.dataset.marked = marked === "true" ? "false" : "true";
-  bookmarkIcon.classList.toggle("bookmarked");
+  bookmarkIcon.classList.toggle("favorite");
 
-  if (marked === "false") target.textContent = "bookmark_remove";
-  else target.textContent = "bookmark_add";
+  if (marked === "false") target.textContent = "heart_minus";
+  else target.textContent = "heart_check";
 
   target.classList.toggle("fill");
 }

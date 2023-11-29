@@ -43,6 +43,7 @@ input:not(input[type=checkbox]) {
   --clr-dark-gray: hsl(0, 0%, 17%);
   --clr-darker-gray: hsl(0, 0%, 10%);
   --clr-black: hsl(0, 0%, 0%);
+  --clr-fav: hsl(0, 93%, 63%);
   --ff-1: "Poppins", sans-serif;
   --ff-2: "Bebas Neue", sans-serif;
   --ff-3: "Merriweather", serif;
@@ -63,7 +64,11 @@ span.material-symbols-outlined {
   cursor: pointer;
 }
 
-.bookmarked {
+.favorite {
+  color: var(--clr-fav);
+}
+
+.read {
   color: var(--clr-accent);
 }
 
@@ -352,9 +357,9 @@ main .card-grid .card .actions > span {
        user-select: none; /* Standard syntax */
 }
 main .card-grid .card .actions span:last-child:hover {
-  color: #d9544d;
+  color: var(--clr-white);
 }
-@media (width < 450px) {
+@media (max-width < 450px) {
   main .card-grid .card {
     flex-direction: column;
     gap: 0.6rem;
