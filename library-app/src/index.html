@@ -6,7 +6,7 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>Library App</title>
+    <title>Bookdom</title>
     <link rel="stylesheet" href="app.css" />
     <script src="app.js" defer></script>
   </head>
@@ -80,7 +80,27 @@
       </dialog>
       <div class="menu-wrap">
         <h1>All books</h1>
-        <button class="show-bookmarks">Bookmarks</button>
+        <button class="show-favorites">Favorites</button>
+        <div class="favorites-container">
+          <div class="close">
+            <span class="material-symbols-outlined">close</span>
+          </div>
+          <h2>My Favorites</h2>
+          <ul class="favorites__list">
+            <li>
+              <span>Book name</span>
+              <span class="material-symbols-outlined">more_vert</span>
+            </li>
+            <li>
+              <span>Book name</span>
+              <span class="material-symbols-outlined">more_vert</span>
+            </li>
+            <li>
+              <span>Book name</span>
+              <span class="material-symbols-outlined">more_vert</span>
+            </li>
+          </ul>
+        </div>
       </div>
       <section class="card-grid">
         <div class="card book" data-read-status="false" data-marked="false">
@@ -119,8 +139,8 @@
               type="button"
               data-tooltip="Bookmark"
               data-action="bookmark"
-              title="bookmark">
-              heart_check
+              title="favorite">
+              star
             </span>
             <span
               class="material-symbols-outlined vague action"
@@ -168,8 +188,8 @@
               type="button"
               data-tooltip="Bookmark"
               data-action="bookmark"
-              title="bookmark">
-              heart_check
+              title="favorite">
+              star
             </span>
             <span
               class="material-symbols-outlined vague action"
@@ -217,8 +237,8 @@
               type="button"
               data-tooltip="Bookmark"
               data-action="bookmark"
-              title="bookmark">
-              heart_check
+              title="favorite">
+              star
             </span>
             <span
               class="material-symbols-outlined vague action"

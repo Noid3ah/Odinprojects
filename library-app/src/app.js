@@ -42,6 +42,7 @@ submitAndClose.addEventListener("click", (e) => {
       checkbox.checked
     )
   );
+
   modal.close();
   renderBook();
   resetFields();
@@ -86,7 +87,7 @@ function createBook(book) {
         <p>${pages}</p>
       </span>
       <span class="status">
-        <p>${read ? "read" : "unread"}</p>
+        <p class="${read ? "read" : ""}">${read ? "read" : "unread"}</p>
       </span>
     </div>
 
@@ -95,7 +96,7 @@ function createBook(book) {
   <div class="actions">
 
     <span
-      class="material-symbols-outlined vague"
+      class="material-symbols-outlined vague ${read ? "read" : ""}"
       data-tooltip='${read ? "read" : "unread"}'
       data-action='status'
       title='${read ? "read" : "unread"}'>
@@ -107,7 +108,7 @@ function createBook(book) {
       data-tooltip="Bookmark"
       data-action='bookmark'
       title="bookmark">
-      heart_plus
+      star
     </span>
 
     <span
@@ -129,8 +130,6 @@ function renderBook() {
     cardArray.append(book);
   });
 }
-
-function handleBookStatusOnRender() {}
 
 // When new book is added and status is read - add classes for color change
 // When toggled - toggle classes for color change
@@ -175,8 +174,8 @@ function handleBookmark(card, target) {
   card.dataset.marked = marked === "true" ? "false" : "true";
   bookmarkIcon.classList.toggle("favorite");
 
-  if (marked === "false") target.textContent = "heart_minus";
-  else target.textContent = "heart_check";
+  if (marked === "false") target.textContent = "hotel_class";
+  else target.textContent = "star";
 
   target.classList.toggle("fill");
 }
