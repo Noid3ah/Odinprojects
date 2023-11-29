@@ -1,3 +1,5 @@
+const search = document.querySelector(".search input");
+
 const openButton = document.querySelector("[data-open-modal]");
 const submitAndClose = document.querySelector("[data-close-modal]");
 const cancelButton = document.querySelector("[data-cancel-modal]");
@@ -48,7 +50,7 @@ submitAndClose.addEventListener("click", (e) => {
   );
 
   modal.close();
-  renderBook();
+  renderBook(myLibrary);
   resetFields();
 });
 
@@ -129,9 +131,11 @@ function createBook(book) {
   myLibrary.push(div);
 }
 
-function renderBook() {
-  myLibrary.forEach((book) => {
+function renderBook(library) {
+  library.forEach((book) => {
     cardArray.append(book);
+
+    const allBooks = cardArray.querySelectorAll(".card");
   });
 }
 
@@ -204,4 +208,28 @@ favoritesBtn.addEventListener("click", () => {
 
 closeFavoritesTabBtn.addEventListener("click", () => {
   favoritesTab.classList.remove("show");
+});
+
+function resetBooks() {
+  cardArray.innerHTML = "";
+}
+
+search.addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase();
+
+  if (value) {
+    resetBooks();
+    renderBook(
+      myLibrary.filter(
+        (item) =>
+          item
+            .querySelector(".book__title")
+            .textContent.toLowerCase()
+            .indexOf(value) !== -1
+      )
+    );
+  } else {
+    resetBooks();
+    renderBook(myLibrary);
+  }
 });
