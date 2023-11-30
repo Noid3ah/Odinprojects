@@ -258,6 +258,44 @@ main dialog form button {
   font-family: var(--ff-1);
   margin-top: 2rem;
 }
+main .modal--confirm--delete {
+  color: var(--clr-white);
+  padding: 1rem;
+  max-width: 300px;
+  outline: 5px solid var(--clr-dark-gray);
+  box-shadow: 5px 5px 5px black;
+}
+main .modal--confirm--delete div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+main .modal--confirm--delete div button {
+  font-family: var(--ff-1);
+  padding: 0.3rem 0.6rem;
+  border: none;
+  outline: none;
+  border-radius: calc(var(--radius) - 0.2rem);
+  color: var(--clr-primary);
+  font-weight: 700;
+  background-color: transparent;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+main .modal--confirm--delete div .confirm {
+  border: 3px solid var(--clr-fav-red);
+  color: var(--clr-fav-red);
+  transition: all 0.2s ease;
+}
+main .modal--confirm--delete div .confirm:hover {
+  background-color: var(--clr-fav-red);
+  color: var(--clr-primary);
+  transition: all 0.2s ease;
+}
+main .modal--confirm--delete div .cancel {
+  background-color: var(--clr-accent);
+  color: var(--clr-primary);
+}
 main .favorites-container.show {
   max-width: 1000px;
   opacity: 1;

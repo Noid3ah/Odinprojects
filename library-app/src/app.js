@@ -4,6 +4,9 @@ const openButton = document.querySelector("[data-open-modal]");
 const submitAndClose = document.querySelector("[data-close-modal]");
 const cancelButton = document.querySelector("[data-cancel-modal]");
 const modal = document.querySelector("[data-modal]");
+const bookDeleteModal = document.querySelector("[data-confirm-delete-modal]");
+const confirmDelete = document.querySelector("[data-confirm-delete]");
+const cancelDelete = document.querySelector("[data-cancel-delete]");
 
 const favoritesBtn = document.querySelector(".show-favorites");
 const favoritesTab = document.querySelector(".favorites-container");
@@ -225,9 +228,8 @@ function renderFavorite(card) {
   }
 }
 
-function handleBookRemoval(card) {
-  const shouldDelete = confirm("Are you sure you want to delete this book?");
-  if (shouldDelete) {
+function shouldDelete(card) {
+  confirmDelete.addEventListener("click", () => {
     // Remove the card from the DOM
     card.remove();
 
@@ -236,7 +238,17 @@ function handleBookRemoval(card) {
     if (index !== -1) {
       myLibrary.splice(index, 1);
     }
-  }
+    bookDeleteModal.close();
+  });
+
+  cancelDelete.addEventListener("click", () => {
+    bookDeleteModal.close();
+  });
+}
+
+function handleBookRemoval(card) {
+  bookDeleteModal.showModal();
+  shouldDelete(card);
 }
 
 favoritesBtn.addEventListener("click", () => {
