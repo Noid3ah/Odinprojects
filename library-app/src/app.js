@@ -16,6 +16,7 @@ const author = form.querySelector("#author");
 const pages = form.querySelector("#pages");
 const checkbox = form.querySelector("#read");
 
+const favoritesList = favoritesTab.querySelector(".favorites__list");
 const cardArray = document.querySelector(".card-grid");
 
 function resetFields() {
@@ -55,7 +56,7 @@ submitAndClose.addEventListener("click", (e) => {
 });
 
 const myLibrary = Array.from(cardArray.children);
-// const myLibrary = [];
+const favoritesArray = Array.from(favoritesList.children);
 
 function Book(title, series, author, pages, read) {
   this.title = title;
@@ -163,7 +164,7 @@ cardArray.addEventListener("click", (e) => {
 
   // Bookmark button logic
   if (e.target.matches("[data-action='bookmark']")) {
-    handleBookmark(card, target);
+    handleFavorite(card, target);
   }
 
   // Delete button logic
@@ -184,9 +185,9 @@ function handleBookStatus(card, target) {
   target.classList.toggle("read");
 }
 
-function handleBookmark(card, target) {
+function handleFavorite(card, target) {
   const bookmarkIcon = target;
-  const marked = card.dataset.marked || true;
+  const marked = card.dataset.marked;
   card.dataset.marked = marked === "true" ? "false" : "true";
   bookmarkIcon.classList.toggle("favorite");
 
@@ -194,6 +195,33 @@ function handleBookmark(card, target) {
   else target.textContent = "star";
 
   target.classList.toggle("fill");
+
+  renderFavorite(card);
+}
+
+function createFavorite() {}
+
+function renderFavorite(card) {
+  const li = document.createElement("li");
+  const favoritesList = favoritesTab.querySelector(".favorites__list");
+  const favoritesArray = Array.from(favoritesList.children);
+
+  li.innerHTML = `<span>${card.querySelector(".book__title").textContent}</span>
+  <span class="material-symbols-outlined">more_vert</span>`;
+
+  favoritesArray.push(li);
+
+  // **NOTE
+  // Needs fixing - if favorited item is already prepended then do nothing, else prepend item.
+  const index = favoritesArray.indexOf(li);
+
+  favoritesArray.forEach((item) => {
+    if (index !== -1) {
+      favoritesList.prepend(item);
+    } else {
+      return;
+    }
+  });
 }
 
 function handleBookRemoval(card) {
