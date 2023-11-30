@@ -254,17 +254,21 @@ search.addEventListener("input", (e) => {
   const searchTerm = document.querySelector(".term");
 
   if (value) {
-    searchTerm.textContent = `"${value}"`;
-
-    resetBooks();
-    renderBook(
-      myLibrary.filter((item) =>
-        item
-          .querySelector(".book__title")
-          .textContent.toLowerCase()
-          .includes(value)
-      )
+    const filteredBooks = myLibrary.filter((item) =>
+      item
+        .querySelector(".book__title")
+        .textContent.toLowerCase()
+        .includes(value)
     );
+
+    if (filteredBooks.length > 0) {
+      searchTerm.textContent = `"${value}"`;
+      resetBooks();
+      renderBook(filteredBooks);
+    } else {
+      searchTerm.textContent = `No results found for "${value}"`;
+      resetBooks();
+    }
   } else {
     searchTerm.textContent = "All books";
     resetBooks();
