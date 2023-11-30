@@ -202,26 +202,25 @@ function handleFavorite(card, target) {
 function createFavorite() {}
 
 function renderFavorite(card) {
-  const li = document.createElement("li");
   const favoritesList = favoritesTab.querySelector(".favorites__list");
-  const favoritesArray = Array.from(favoritesList.children);
+  const bookTitle = card.querySelector(".book__title").textContent;
 
-  li.innerHTML = `<span>${card.querySelector(".book__title").textContent}</span>
-  <span class="material-symbols-outlined">more_vert</span>`;
-
-  favoritesArray.push(li);
-
-  // **NOTE
-  // Needs fixing - if favorited item is already prepended then do nothing, else prepend item.
-  const index = favoritesArray.indexOf(li);
-
-  favoritesArray.forEach((item) => {
-    if (index !== -1) {
-      favoritesList.prepend(item);
-    } else {
-      return;
-    }
+  const isFavorite = Array.from(favoritesList.children).some((item) => {
+    const favoriteItemTitle =
+      item.querySelector("span:first-child").textContent;
+    return favoriteItemTitle === bookTitle;
   });
+
+  if (!isFavorite) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${
+      card.querySelector(".book__title").textContent
+    }</span>
+    <span class="material-symbols-outlined">more_vert</span>`;
+
+    favoritesArray.push(li);
+    favoritesList.prepend(li);
+  }
 }
 
 function handleBookRemoval(card) {
@@ -259,12 +258,11 @@ search.addEventListener("input", (e) => {
 
     resetBooks();
     renderBook(
-      myLibrary.filter(
-        (item) =>
-          item
-            .querySelector(".book__title")
-            .textContent.toLowerCase()
-            .indexOf(value) !== -1
+      myLibrary.filter((item) =>
+        item
+          .querySelector(".book__title")
+          .textContent.toLowerCase()
+          .includes(value)
       )
     );
   } else {
