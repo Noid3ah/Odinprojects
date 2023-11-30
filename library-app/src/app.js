@@ -80,14 +80,16 @@ function createBook(book) {
   div.innerHTML = `
   <div class="card-wrap">
     <div class="book__name">
-      <h2 class="book__title">${title}</h2>
-      <h3 class="book__series__title">${series ? series : ""}</h3>
+      <h2 class="book__title title" data-title>${title}</h2>
+      <h3 class="book__series__title series" data-series>${
+        series ? series : ""
+      }</h3>
     </div>
 
     <div class="book__details">
       <span class="author">
         <p>Author:</p>
-        <p>${author}</p>
+        <p data-author>${author}</p>
       </span>
       <span class="pages">
         <p>Pages:</p>
@@ -256,7 +258,7 @@ search.addEventListener("input", (e) => {
   if (value) {
     const filteredBooks = myLibrary.filter((item) =>
       item
-        .querySelector(".book__title")
+        .querySelector(`[data-${filter.value}]`)
         .textContent.toLowerCase()
         .includes(value)
     );
@@ -274,4 +276,12 @@ search.addEventListener("input", (e) => {
     resetBooks();
     renderBook(myLibrary);
   }
+});
+
+const filter = document.querySelector("#filter");
+
+filter.addEventListener("change", (e) => {
+  search.value = "";
+  resetBooks();
+  renderBook(myLibrary);
 });
