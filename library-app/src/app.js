@@ -256,6 +256,7 @@ search.addEventListener("input", (e) => {
 
   if (value) {
     searchTerm.textContent = `"${value}"`;
+
     resetBooks();
     renderBook(
       myLibrary.filter(

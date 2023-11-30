@@ -110,15 +110,28 @@ header .inner-wrap .logo span {
   color: var(--clr-accent);
 }
 header .inner-wrap .search {
-  width: 100%;
   display: flex;
+  background-color: var(--clr-primary);
+  border-radius: 100vh;
+  overflow: hidden;
+}
+header .inner-wrap .search:focus-within {
+  outline: 3px solid var(--clr-accent);
+}
+header .inner-wrap .search select {
+  background-color: var(--clr-darker-gray);
+  border: none;
+  color: var(--clr-white);
+  font-weight: 500;
+  font-family: var(--ff-4);
+  padding-inline-start: 0.5rem;
+  text-align: center;
 }
 header .inner-wrap input[type=search] {
   background-color: var(--clr-primary);
   color: var(--clr-white);
   font-size: 1rem;
   border: none;
-  border-radius: 100vh;
   height: 40px;
   margin-left: auto;
   width: 80%;
@@ -126,7 +139,7 @@ header .inner-wrap input[type=search] {
   padding-inline: 1rem;
 }
 header .inner-wrap input[type=search]:focus-visible {
-  outline: 3px solid var(--clr-accent);
+  outline: none;
 }
 header .inner-wrap input[type=search]::-moz-placeholder {
   color: var(--clr-light-gray);
@@ -423,6 +436,7 @@ main .card-grid .card .actions > span {
   -webkit-user-select: none; /* Safari */ /* IE 10 and IE 11 */
   -moz-user-select: none;
        user-select: none; /* Standard syntax */
+  font-size: 1.3rem;
 }
 main .card-grid .card .actions span:last-child:hover {
   color: var(--clr-white);
