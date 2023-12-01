@@ -105,9 +105,15 @@ header .inner-wrap .logo {
   text-transform: uppercase;
   font-size: 1.5rem;
   font-weight: 900;
+  margin-right: 1.5rem;
 }
 header .inner-wrap .logo span {
   color: var(--clr-accent);
+}
+@media (max-width: 450px) {
+  header .inner-wrap .logo {
+    font-size: 1.2rem;
+  }
 }
 header .inner-wrap .search {
   display: flex;
@@ -162,6 +168,7 @@ main {
   position: relative;
   display: flex;
   flex-direction: column;
+  max-height: 90vh;
 }
 main dialog {
   display: block;
@@ -264,6 +271,11 @@ main .modal--confirm--delete {
   max-width: 300px;
   outline: 5px solid var(--clr-dark-gray);
   box-shadow: 5px 5px 5px black;
+  animation: var(--animation-bloom-fade-out) forwards;
+  animation-timing-function: var(--ease-squish-3);
+}
+main .modal--confirm--delete[open] {
+  animation: var(--animation-bloom-fade-in) forwards;
 }
 main .modal--confirm--delete div {
   display: flex;
@@ -392,6 +404,9 @@ main .card-grid {
   flex-direction: column;
   gap: 1.5rem;
   position: relative;
+  overflow-y: auto;
+  padding-block-end: 8rem;
+  scrollbar-gutter: stable;
 }
 main .card-grid .card {
   display: flex;
@@ -490,7 +505,17 @@ main .card-grid .card .actions span:last-child:hover {
   }
 }
 main .add-book {
+  --btn-size: 100px;
   display: flex;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  overflow: hidden;
 }
 main .add-book button {
   font-family: var(--ff-1);
@@ -498,19 +523,17 @@ main .add-book button {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
   border: none;
-  border-radius: var(--radius);
-  background-color: var(--clr-white);
+  background-color: var(--clr-darker-gray);
   font-weight: 900;
   font-size: 1rem;
-  color: var(--clr-primary);
-  height: 50px;
+  color: var(--clr-accent);
   text-transform: capitalize;
-  margin-top: 2rem;
 }
 main .add-book button span {
-  margin-left: 1rem;
-  font-weight: 400;
+  font-weight: 500;
+  font-size: 3rem;
 }
 
 footer {

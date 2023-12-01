@@ -293,6 +293,9 @@ search.addEventListener("input", (e) => {
 const filter = document.querySelector("#filter");
 
 filter.addEventListener("change", (e) => {
+  const searchTerm = document.querySelector(".term");
+  searchTerm.textContent = "All books";
+
   search.value = "";
   resetBooks();
   renderBook(myLibrary);
