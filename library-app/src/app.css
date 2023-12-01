@@ -534,12 +534,4 @@ main .add-book button {
 main .add-book button span {
   font-weight: 500;
   font-size: 3rem;
-}
-
-footer {
-  color: var(--clr-white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
 }/*# sourceMappingURL=app.css.map */
