@@ -133,16 +133,13 @@ function createBook(book) {
     
   </div>
   `;
-
   myLibrary.push(div);
 }
 
 function renderBook(library) {
   library.forEach((book) => {
     book.style.opacity = 0;
-
     cardArray.prepend(book);
-
     const allBooks = cardArray.querySelectorAll(".card");
 
     setTimeout(() => {
@@ -152,10 +149,6 @@ function renderBook(library) {
     }, 100);
   });
 }
-
-// When new book is added and status is read - add classes for color change
-// When toggled - toggle classes for color change
-//
 
 cardArray.addEventListener("click", (e) => {
   const card = e.target.closest(".card");
