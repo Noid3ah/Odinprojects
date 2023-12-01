@@ -204,8 +204,6 @@ function handleFavorite(card, target) {
   renderFavorite(card);
 }
 
-function createFavorite() {}
-
 function renderFavorite(card) {
   const favoritesList = favoritesTab.querySelector(".favorites__list");
   const bookTitle = card.querySelector(".book__title").textContent;
@@ -215,9 +213,9 @@ function renderFavorite(card) {
       item.querySelector("span:first-child").textContent;
     return favoriteItemTitle === bookTitle;
   });
+  const li = document.createElement("li");
 
   if (!isFavorite) {
-    const li = document.createElement("li");
     li.innerHTML = `<span>${
       card.querySelector(".book__title").textContent
     }</span>
@@ -225,6 +223,22 @@ function renderFavorite(card) {
 
     favoritesArray.push(li);
     favoritesList.prepend(li);
+  }
+  removeFavorite(card, bookTitle);
+}
+
+function removeFavorite(card, bookTitle) {
+  const favoritesList = favoritesTab.querySelector(".favorites__list");
+  const marked = card.dataset.marked;
+
+  const fav = Array.from(favoritesList.children).find((item) => {
+    const favoriteItemTitle =
+      item.querySelector("span:first-child").textContent;
+    return favoriteItemTitle === bookTitle;
+  });
+
+  if (marked === "false") {
+    fav.remove();
   }
 }
 
