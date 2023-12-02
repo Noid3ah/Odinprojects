@@ -59,6 +59,11 @@ input:not(input[type=checkbox]) {
   max-width: 700px;
   margin-inline: auto;
 }
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+}
 
 button,
 span.material-symbols-outlined {
