@@ -168,7 +168,7 @@ main {
   position: relative;
   display: flex;
   flex-direction: column;
-  max-height: 80vh;
+  max-height: 100vh;
 }
 main dialog {
   display: block;
@@ -258,8 +258,7 @@ main dialog form button {
   border: none;
   border-radius: var(--radius);
   background-color: var(--clr-accent);
-  -moz-columns: var(--clr-primary);
-       columns: var(--clr-primary);
+  color: var(--clr-primary);
   font-size: 1rem;
   font-weight: 600;
   font-family: var(--ff-1);
