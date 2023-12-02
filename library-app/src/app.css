@@ -136,7 +136,7 @@ header .inner-wrap .search select {
 header .inner-wrap input[type=search] {
   background-color: var(--clr-primary);
   color: var(--clr-white);
-  font-size: 1rem;
+  font-size: 1.05rem;
   border: none;
   height: 40px;
   margin-left: auto;
