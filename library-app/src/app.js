@@ -217,10 +217,10 @@ function renderFavorite(card) {
     favoritesArray.push(li);
     favoritesList.prepend(li);
   }
-  removeFavorite(bookTitle, card);
+  removeFavorite(card, bookTitle);
 }
 
-function removeFavorite(bookTitle, card) {
+function removeFavorite(card, bookTitle) {
   const favoritesList = favoritesTab.querySelector(".favorites__list");
   const marked = card.dataset.marked;
 
@@ -239,10 +239,19 @@ function handleBookRemoval(card) {
   bookDeleteModal.showModal();
 
   const confirmAction = () => {
-    const bookTitle = card.querySelector(".book__title").textContent;
-    removeFavorite(bookTitle);
-    card.dataset.marked = false;
     card.remove();
+    const favoritesList = favoritesTab.querySelector(".favorites__list");
+    const bookTitle = card.querySelector(".book__title").textContent;
+
+    const fav = Array.from(favoritesList.children).find((item) => {
+      const favoriteItemTitle =
+        item.querySelector("span:first-child").textContent;
+      return favoriteItemTitle === bookTitle;
+    });
+
+    if (fav) {
+      fav.remove();
+    }
 
     // Remove card from the array
     const index = myLibrary.indexOf(card);
@@ -252,7 +261,6 @@ function handleBookRemoval(card) {
     bookDeleteModal.close();
   };
   confirmDelete.addEventListener("click", confirmAction);
-
   cancelDelete.addEventListener("click", () => {
     // Remove the previously added confirmAction listener
     confirmDelete.removeEventListener("click", confirmAction);

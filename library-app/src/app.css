@@ -355,7 +355,7 @@ main .favorites-container.show {
   transition: max-width 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 main .favorites-container {
-  --position: 2rem;
+  --position: 1rem;
   position: absolute;
   color: var(--clr-white);
   inset: var(--position);
