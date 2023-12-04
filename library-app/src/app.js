@@ -191,7 +191,6 @@ function handleFavorite(card, target) {
 
   if (marked === "false") target.textContent = "hotel_class";
   else target.textContent = "star";
-
   target.classList.toggle("fill");
 
   renderFavorite(card);
