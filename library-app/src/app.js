@@ -235,27 +235,26 @@ function removeFavorite(card, bookTitle) {
   }
 }
 
-function shouldDelete(card) {
-  confirmDelete.addEventListener("click", () => {
-    // Remove the card from the DOM
+function handleBookRemoval(card) {
+  bookDeleteModal.showModal();
+
+  const confirmAction = () => {
     card.remove();
 
-    // Remove it from the array as well
+    // Remove card from the array
     const index = myLibrary.indexOf(card);
     if (index !== -1) {
       myLibrary.splice(index, 1);
     }
     bookDeleteModal.close();
-  });
+  };
+  confirmDelete.addEventListener("click", confirmAction);
 
   cancelDelete.addEventListener("click", () => {
+    // Remove the previously added confirmAction listener
+    confirmDelete.removeEventListener("click", confirmAction);
     bookDeleteModal.close();
   });
-}
-
-function handleBookRemoval(card) {
-  bookDeleteModal.showModal();
-  shouldDelete(card);
 }
 
 favoritesBtn.addEventListener("click", () => {
