@@ -308,12 +308,12 @@ filter.addEventListener("change", (e) => {
   renderBook(myLibrary);
 });
 
-document.addEventListener(
-  "touchmove",
-  function (event) {
-    if (event.scale !== 1) {
-      event.preventDefault();
-    }
-  },
-  { passive: false }
-);
+// document.addEventListener(
+//   "touchmove",
+//   function (event) {
+//     if (event.scale !== 1) {
+//       event.preventDefault();
+//     }
+//   },
+//   { passive: false }
+// );
