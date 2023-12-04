@@ -204,7 +204,7 @@ main {
   flex: 1;
   background-color: var(--clr-primary);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: 2rem min(2rem, 5%);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -223,7 +223,7 @@ main dialog {
   transform: translate(-50%, -50%);
   width: 80%;
   max-width: 400px;
-  padding: 2rem 0;
+  padding: 2rem min(2rem, 5%);
   background-color: var(--clr-darker-gray);
   transition: opacity 0.5s;
   animation: var(--animation-scale-down) forwards;
@@ -460,6 +460,11 @@ main .card-grid::-webkit-scrollbar {
 main .card-grid::-webkit-scrollbar-thumb {
   border-radius: 0.125rem;
   background-color: rgb(131, 18, 18);
+}
+@media (max-width: 450px) {
+  main .card-grid {
+    padding-right: 1rem;
+  }
 }
 main .card-grid .card {
   display: flex;

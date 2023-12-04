@@ -217,10 +217,10 @@ function renderFavorite(card) {
     favoritesArray.push(li);
     favoritesList.prepend(li);
   }
-  removeFavorite(card, bookTitle);
+  removeFavorite(bookTitle, card);
 }
 
-function removeFavorite(card, bookTitle) {
+function removeFavorite(bookTitle, card) {
   const favoritesList = favoritesTab.querySelector(".favorites__list");
   const marked = card.dataset.marked;
 
@@ -239,6 +239,9 @@ function handleBookRemoval(card) {
   bookDeleteModal.showModal();
 
   const confirmAction = () => {
+    const bookTitle = card.querySelector(".book__title").textContent;
+    removeFavorite(bookTitle);
+    card.dataset.marked = false;
     card.remove();
 
     // Remove card from the array
