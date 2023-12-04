@@ -34,6 +34,25 @@ input:not(input[type=checkbox]) {
   font-family: inherit;
 }
 
+input[type=color],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+select:focus,
+textarea {
+  font-size: 16px;
+}
+
 :root {
   --clr-accent: hsl(98, 82%, 74%);
   --clr-accent2: hsl(192, 21%, 48%);
@@ -61,7 +80,7 @@ input:not(input[type=checkbox]) {
 }
 @media (max-width: 768px) {
   .container {
-    width: 95%;
+    width: 100%;
   }
 }
 
@@ -105,21 +124,17 @@ header .inner-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-block: 0.8rem;
 }
 header .inner-wrap .logo {
   display: inline-flex;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 900;
   margin-right: 1.5rem;
 }
 header .inner-wrap .logo span {
   color: var(--clr-accent);
-}
-@media (max-width: 450px) {
-  header .inner-wrap .logo {
-    font-size: 1.2rem;
-  }
 }
 header .inner-wrap .search {
   display: flex;
@@ -136,16 +151,18 @@ header .inner-wrap .search select {
   color: var(--clr-white);
   font-weight: 500;
   font-family: var(--ff-4);
-  padding-inline-start: 0.5rem;
+  padding-inline-start: 0.8rem;
+  padding-inline-end: 0.5rem;
   text-align: center;
+  font-size: 16px;
 }
 header .inner-wrap input[type=search] {
+  font-family: var(--ff-1);
   background-color: var(--clr-primary);
   color: var(--clr-white);
   font-size: 1.05rem;
   border: none;
-  height: 40px;
-  margin-left: auto;
+  height: 50px;
   width: 80%;
   max-width: 300px;
   padding-inline: 1rem;
@@ -164,6 +181,22 @@ header .inner-wrap input[type=search]::placeholder {
   font-size: 1rem;
   text-transform: capitalize;
   font-weight: 800;
+}
+@media (max-width: 768px) {
+  header .inner-wrap {
+    flex-direction: column;
+    padding-inline: 0.2rem;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  header .inner-wrap .search {
+    width: 100%;
+    border-radius: var(--radius);
+  }
+  header .inner-wrap input[type=search] {
+    max-width: 1000px;
+    flex: 1;
+  }
 }
 
 main {
@@ -413,6 +446,18 @@ main .card-grid {
   overflow-y: auto;
   padding-block-end: 8rem;
   scrollbar-gutter: stable;
+}
+main .card-grid::-webkit-scrollbar-track {
+  border-radius: 0.125rem;
+  background-color: lightgray;
+}
+main .card-grid::-webkit-scrollbar {
+  width: 0.25rem;
+  border-radius: 0.125rem;
+}
+main .card-grid::-webkit-scrollbar-thumb {
+  border-radius: 0.125rem;
+  background-color: rgb(131, 18, 18);
 }
 main .card-grid .card {
   display: flex;
