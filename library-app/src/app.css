@@ -377,7 +377,7 @@ main .favorites-container .close {
   right: var(--position);
 }
 main .favorites-container .close span {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--clr-accent);
 }
 main .favorites-container h2 {
