@@ -426,18 +426,20 @@ main .menu-wrap .show-favorites {
   color: var(--clr-white);
   display: flex;
   align-items: center;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  padding: 0 1rem 0;
+  padding: 0.3rem 0.7rem;
   font-size: 0.8rem;
   cursor: pointer;
   font-family: var(--ff-1);
-  color: var(--clr-light-gray);
-  background-color: transparent;
+  color: var(--clr-primary);
+  background-color: var(--clr-fav-gold);
   border: none;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: scale 0.2s ease;
 }
 main .menu-wrap .show-favorites:hover {
-  color: var(--clr-white);
+  scale: 0.95;
+  transition: scale 0.2s ease;
 }
 main .card-grid {
   flex: 1;
