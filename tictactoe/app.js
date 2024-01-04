@@ -26,6 +26,7 @@ const Gameboard = (() => {
   const isValidMove = (index, currentPlayerMarker) => {
     if (board[index].querySelector('span').textContent === '') {
       board[index].querySelector('span').textContent = currentPlayerMarker;
+      board[index].querySelector('span').className = currentPlayerMarker;
       return true;
     }
     return false;
@@ -159,11 +160,12 @@ const play = () => {
   const resetButton = document.querySelector('.reset');
   const endButton = document.querySelector('.end');
   const boardBoxes = document.querySelectorAll('.box');
-
+  let playerOneName;
+  let playerTwoName;
   startButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      const playerOneName = prompt("Enter Player 1's name:");
-      const playerTwoName = button.classList.contains('two__player')
+      playerOneName = prompt("Enter Player 1's name:");
+      playerTwoName = button.classList.contains('two__player')
         ? prompt("Enter Player 2's name:")
         : 'Computer';
 
@@ -188,13 +190,12 @@ const play = () => {
   }
 
   resetButton.addEventListener('click', () => {
-    GameController.startGame('', ''); // You can customize player names or leave them empty
+    GameController.startGame(playerOneName, playerTwoName); // You can customize player names or leave them empty
     // Clear the board UI
     Gameboard.resetBoard();
   });
 
   endButton.addEventListener('click', () => {
-    // Show start buttons and hide reset and end buttons
     startButtons.forEach((btn) => btn.classList.remove('hidden'));
     resetButton.classList.add('hidden');
     endButton.classList.add('hidden');
