@@ -131,9 +131,32 @@ const play = () => {
   }
 };
 
-const table = document.querySelector('#table');
+const btns = document.querySelector('.btns');
 
-table.addEventListener('click', (e) => {
-  if (e.target.tagName !== 'TD') return;
-  console.log(e.target);
+btns.addEventListener('mouseover', (e) => {
+  if (e.target.tagName !== 'BUTTON') return;
+  const audio = document.querySelector('.hoverSound');
+  PlaySound(audio);
 });
+
+btns.addEventListener('focusin', (e) => {
+  if (e.target.tagName !== 'BUTTON') return;
+  const audio = document.querySelector('.hoverSound');
+  PlaySound(audio);
+});
+
+btns.addEventListener('click', (e) => {
+  if (e.target.tagName !== 'BUTTON') return;
+  const audio = document.querySelector('.selectSound');
+  console.log('clicked');
+  PlaySound(audio);
+});
+
+function PlaySound(sound) {
+  sound.play();
+}
+
+// function StopSound(sound) {
+//   sound.pause();
+//   sound.currentTime = 0;
+// }

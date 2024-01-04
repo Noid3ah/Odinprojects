@@ -7,21 +7,21 @@
   --ff-markers1: 'Sigmar', sans-serif;
   --ff-markers2: 'Dongle', sans-serif;
   --ff-markers3: 'Bubblegum Sans', sans-serif;
-  --clr-board: var(--yellow);
+  --clr-board: transparent;
   --primary-gradient: linear-gradient(
     176deg,
     rgba(58, 55, 78, 1) 0%,
     rgba(3, 10, 22, 1) 20%
   );
 
-  --yellow: hsl(45, 100%, 58%);
+  --yellow-600: hsl(45, 100%, 58%);
   --yellow: hsl(57, 100%, 81%);
   --red: hsl(0, 100%, 65%);
   --white: hsl(0, 0%, 100%);
   --lilac: hsl(267, 77%, 86%);
 
-  --o: var(--red);
-  --x: white;
+  --o: var(--white);
+  --x: var(--yellow-600);
 }
 
 .fill {
@@ -36,23 +36,33 @@ body {
   align-items: center;
   background-image: linear-gradient(
       to bottom,
-      rgba(18, 18, 18, 0.98),
-      rgba(18, 18, 18, 0.98)
+      rgba(18, 18, 18, 0.993),
+      rgba(18, 18, 18, 0.993)
     ),
     url(./assets/XO_charcoal_750x1000.jpg);
-  // -webkit-background-size: cover;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
   background-size: contain;
   font-family: var(--ff-primary);
+  overflow: clip;
 }
 
 header {
+  width: 100%;
+  height: 10rem;
+  position: relative;
   h1 {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    bottom: -7rem;
+    transform: translate(-50%) rotate(-15deg);
     font-family: var(--ff-markers1);
     color: var(--red);
     font-size: 4rem;
     display: flex;
+    justify-content: center;
     gap: 2rem;
 
     .group {
@@ -62,7 +72,6 @@ header {
 
       span:not(.t) {
         margin-left: -1rem;
-        transform: rotate(45deg);
       }
     }
 
@@ -97,8 +106,11 @@ header {
 
   .btns {
     display: flex;
-    // flex-direction: column;
     gap: 1.5rem;
+
+    .hidden {
+      display: none;
+    }
 
     button {
       padding: 1rem 2.5rem;
@@ -110,11 +122,16 @@ header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: scale 0.2s ease;
+      transition: scale 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-      &:hover {
+      span {
+        pointer-events: none;
+      }
+
+      &:hover,
+      &:focus-visible {
         scale: 1.05;
-        transition: scale 0.2s ease;
+        transition: scale 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
       }
     }
 
@@ -146,6 +163,51 @@ header {
       }
     }
 
+    .container {
+      --mark: 10rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+
+      & > * {
+        width: 100px;
+        height: 100px;
+        background-color: var(--red);
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 0px 5px rgb(black, 0.9);
+        position: relative;
+
+        & > span {
+          font-family: var(--ff-markers2);
+          font-weight: 900;
+          color: #fefefe;
+          position: absolute;
+          top: 52%;
+          left: 50%;
+          line-height: 0;
+
+          transform: translate(-50%);
+        }
+
+        .o,
+        .x {
+          filter: drop-shadow(2px 2px 5px rgb(black, 0.5));
+        }
+
+        & > .o {
+          font-size: var(--mark);
+          color: var(--o);
+        }
+        & > .x {
+          font-size: var(--mark);
+          color: var(--x);
+        }
+      }
+    }
+
     tr {
       margin: 0;
       padding: 0;
@@ -153,11 +215,13 @@ header {
 
     td {
       --size: 120px;
-      --mark: 15rem;
+      --mark: 10rem;
       height: var(--size);
       width: var(--size);
-      margin: 0;
-      padding: 0;
+      margin: 1rem;
+      padding: 1rem;
+      background-color: var(--lilac);
+      box-shadow: inset 16px 16px 0px rgb(transparent, 0.9);
 
       & > span {
         font-family: var(--ff-markers2);
@@ -191,7 +255,7 @@ header {
         height: var(--border);
         width: 100%;
         background-color: var(--clr-board);
-        border-radius: 100vh;
+        // border-radius: 100vh;
 
         bottom: 0;
         left: 0;
@@ -209,7 +273,7 @@ header {
         height: 100%;
         width: var(--border);
         background-color: var(--clr-board);
-        border-radius: 100vh;
+        // border-radius: 100vh;
 
         top: 0;
         right: 0;
