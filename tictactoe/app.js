@@ -24,8 +24,8 @@ const Gameboard = (() => {
   ];
 
   const isValidMove = (index, currentPlayerMarker) => {
-    if (board[index] === '') {
-      board[index] = currentPlayerMarker;
+    if (board[index].querySelector('span').textContent === '') {
+      board[index].querySelector('span').textContent = currentPlayerMarker;
       return true;
     }
     return false;
@@ -34,20 +34,33 @@ const Gameboard = (() => {
   const getWinner = () => {
     for (const sequence of winSequence) {
       const [a, b, c] = sequence;
-      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      if (
+        board[a].querySelector('span').textContent &&
+        board[a].querySelector('span').textContent ===
+          board[b].querySelector('span').textContent &&
+        board[a].querySelector('span').textContent ===
+          board[c].querySelector('span').textContent
+      ) {
         return board[a];
       }
     }
     return null;
   };
 
-  const isBoardFull = () => !board.includes('');
+  const isBoardFull = () => {
+    board.forEach((box) => {
+      if (box.querySelector('span').textContent !== '') {
+        return true;
+      }
+    });
+    return false;
+  };
 
   const getBoard = () => board.slice();
 
   const resetBoard = () => {
     for (let i = 0; i < board.length; i++) {
-      board[i] = '';
+      board[i].querySelector('span').textContent = '';
     }
   };
 
@@ -57,6 +70,9 @@ const Gameboard = (() => {
     isBoardFull,
     getBoard,
     resetBoard,
+    get board() {
+      return board;
+    },
   };
 })();
 
@@ -79,6 +95,8 @@ const GameController = (() => {
 
   const handlePlayerTurn = (index) => {
     if (gameActive && Gameboard.isValidMove(index, currentPlayer.marker)) {
+      const whoTurn = document.querySelector('.player h2');
+      whoTurn.textContent = currentPlayer.name;
       console.log(Gameboard.getBoard());
       const winner = Gameboard.getWinner();
       if (winner) {
@@ -94,8 +112,8 @@ const GameController = (() => {
   };
 
   const startGame = (playerOneName, playerTwoName) => {
-    playerOne = Player(playerOneName, 'X');
-    playerTwo = Player(playerTwoName, 'O');
+    playerOne = Player(playerOneName, 'x');
+    playerTwo = Player(playerTwoName, 'o');
     currentPlayer = playerOne;
     gameActive = true;
     Gameboard.resetBoard();
@@ -158,21 +176,21 @@ const play = () => {
 
       // Add event listeners to board boxes
       boardBoxes.forEach((box) => {
-        box.addEventListener('click', () => {
-          console.log(GameController.currentPlayer.name);
-          const index = box.dataset.index;
-          GameController.handlePlayerTurn(index);
-        });
+        box.addEventListener('click', test);
       });
     });
   });
 
+  function test() {
+    console.log(GameController.currentPlayer.name);
+    const index = this.dataset.index;
+    GameController.handlePlayerTurn(index);
+  }
+
   resetButton.addEventListener('click', () => {
     GameController.startGame('', ''); // You can customize player names or leave them empty
     // Clear the board UI
-    boardBoxes.forEach((box) => {
-      box.textContent = '';
-    });
+    Gameboard.resetBoard();
   });
 
   endButton.addEventListener('click', () => {
@@ -183,7 +201,7 @@ const play = () => {
 
     // Remove event listeners from board boxes
     boardBoxes.forEach((box) => {
-      box.removeEventListener('click', () => {});
+      box.removeEventListener('click', test);
     });
   });
 };
