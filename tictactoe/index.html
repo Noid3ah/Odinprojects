@@ -33,11 +33,11 @@
       <section class="btns">
         <audio class="hoverSound" src="assets/select2.wav"></audio>
         <audio class="selectSound" src="assets/start.wav"></audio>
-        <button class="start" tabindex="0">
+        <button class="start one__player" tabindex="0">
           1 Player
           <span class="material-symbols-outlined fill">sports_esports</span>
         </button>
-        <button class="start" tabindex="0">
+        <button class="start two__player" tabindex="0">
           2 Player
           <span class="material-symbols-outlined fill">sports_esports</span>
           <span class="material-symbols-outlined fill">sports_esports</span>
@@ -52,69 +52,26 @@
         </button>
       </section>
       <section class="board">
-        <!-- <div class="player"><h2>Player 1's turn.</h2></div> -->
-        <div class="container">
-          <div class="box">
+        <div class="player"><h2>Player 1's turn.</h2></div>
+        <div class="container board">
+          <div class="box" data-index="0">
             <span class="o">o</span>
           </div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box">
+          <div class="box" data-index="1"></div>
+          <div class="box" data-index="2"></div>
+          <div class="box" data-index="3"></div>
+          <div class="box" data-index="4">
             <span class="o">o</span>
           </div>
-          <div class="box"></div>
-          <div class="box">
+          <div class="box" data-index="5"></div>
+          <div class="box" data-index="6">
             <span class="x">x</span>
           </div>
-          <div class="box"></div>
-          <div class="box">
+          <div class="box" data-index="7"></div>
+          <div class="box" data-index="8">
             <span class="x">x</span>
           </div>
         </div>
-        <!-- <table id="table" cellpadding="0" cellspacing="0">
-          <tr>
-            <td class="col1 row1">
-              <div class="col__border"></div>
-              <div class="row__border"></div>
-              <span class="material-symbols-outlined o">o</span>
-            </td>
-            <td class="col2 row2">
-              <div class="col__border"></div>
-              <div class="row__border"></div>
-            </td>
-            <td class="row3">
-              <div class="row__border"></div>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="col1 row1 test">
-              <div class="col__border"></div>
-              <div class="row__border"></div>
-            </td>
-            <td class="col2 row2">
-              <div class="col__border"></div>
-              <div class="row__border"></div>
-              <span class="material-symbols-outlined o">o</span>
-            </td>
-            <td class="row3">
-              <div class="row__border"></div>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="col1 row1">
-              <div class="col__border"></div>
-            </td>
-            <td class="col2 row2">
-              <div class="col__border"></div>
-            </td>
-            <td class="row3">
-              <span class="material-symbols-outlined x">x</span>
-            </td>
-          </tr>
-        </table> -->
       </section>
     </main>
   </body>

@@ -126,6 +126,7 @@ header {
 
       span {
         pointer-events: none;
+        color: var(--red);
       }
 
       &:hover,
@@ -208,77 +209,77 @@ header {
       }
     }
 
-    tr {
-      margin: 0;
-      padding: 0;
-    }
+    // tr {
+    //   margin: 0;
+    //   padding: 0;
+    // }
 
-    td {
-      --size: 120px;
-      --mark: 10rem;
-      height: var(--size);
-      width: var(--size);
-      margin: 1rem;
-      padding: 1rem;
-      background-color: var(--lilac);
-      box-shadow: inset 16px 16px 0px rgb(transparent, 0.9);
+    // td {
+    //   --size: 120px;
+    //   --mark: 10rem;
+    //   height: var(--size);
+    //   width: var(--size);
+    //   margin: 1rem;
+    //   padding: 1rem;
+    //   background-color: var(--lilac);
+    //   box-shadow: inset 16px 16px 0px rgb(transparent, 0.9);
 
-      & > span {
-        font-family: var(--ff-markers2);
-        font-weight: 900;
-        color: #fefefe;
-        position: absolute;
-        top: 50%;
-        left: 50%;
+    //   & > span {
+    //     font-family: var(--ff-markers2);
+    //     font-weight: 900;
+    //     color: #fefefe;
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 50%;
 
-        transform: translate(-50%, -50%);
-      }
+    //     transform: translate(-50%, -50%);
+    //   }
 
-      & > .o {
-        font-size: var(--mark);
-        color: var(--o);
-      }
-      & > .x {
-        font-size: var(--mark);
-        color: var(--x);
-      }
-    }
+    //   & > .o {
+    //     font-size: var(--mark);
+    //     color: var(--o);
+    //   }
+    //   & > .x {
+    //     font-size: var(--mark);
+    //     color: var(--x);
+    //   }
+    // }
 
-    .row1,
-    .row2,
-    .row3 {
-      position: relative;
+    // .row1,
+    // .row2,
+    // .row3 {
+    //   position: relative;
 
-      .row__border {
-        content: '';
-        position: absolute;
-        height: var(--border);
-        width: 100%;
-        background-color: var(--clr-board);
-        // border-radius: 100vh;
+    //   .row__border {
+    //     content: '';
+    //     position: absolute;
+    //     height: var(--border);
+    //     width: 100%;
+    //     background-color: var(--clr-board);
+    //     // border-radius: 100vh;
 
-        bottom: 0;
-        left: 0;
-        transform: translate(0%, 50%);
-      }
-    }
+    //     bottom: 0;
+    //     left: 0;
+    //     transform: translate(0%, 50%);
+    //   }
+    // }
 
-    .col1,
-    .col2 {
-      position: relative;
+    // .col1,
+    // .col2 {
+    //   position: relative;
 
-      .col__border {
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: var(--border);
-        background-color: var(--clr-board);
-        // border-radius: 100vh;
+    //   .col__border {
+    //     content: '';
+    //     position: absolute;
+    //     height: 100%;
+    //     width: var(--border);
+    //     background-color: var(--clr-board);
+    //     // border-radius: 100vh;
 
-        top: 0;
-        right: 0;
-        transform: translate(50%);
-      }
-    }
+    //     top: 0;
+    //     right: 0;
+    //     transform: translate(50%);
+    //   }
+    // }
   }
 }

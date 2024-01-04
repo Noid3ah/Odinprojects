@@ -6,7 +6,9 @@
 // Return the board
 // Reset the board
 const Gameboard = (() => {
-  const board = ['', '', '', '', '', '', '', '', ''];
+  const container = document.querySelector('.container');
+  const board = Array.from(container.children);
+  // const board = ['', '', '', '', '', '', '', '', ''];
   const winSequence = [
     //winning rows
     [0, 1, 2],
@@ -117,34 +119,88 @@ const GameController = (() => {
 
 // Get user's name
 // Get input until game ends
+// const play = () => {
+//   const playerOneName = prompt(`Enter player 1's name:`);
+//   const playerTwoName = prompt(`Enter player 2's name:`);
+
+//   GameController.startGame(playerOneName, playerTwoName);
+
+//   while (GameController.gameActive) {
+//     const index = parseInt(
+//       prompt(
+//         `${GameController.currentPlayer.name}'s turn. Enter board position (0-8)`
+//       )
+//     );
+
+//     GameController.handlePlayerTurn(index);
+//   }
+// };
+
 const play = () => {
-  const playerOneName = prompt(`Enter player 1's name:`);
-  const playerTwoName = prompt(`Enter player 2's name:`);
+  const startButtons = document.querySelectorAll('.start');
+  const resetButton = document.querySelector('.reset');
+  const endButton = document.querySelector('.end');
+  const boardBoxes = document.querySelectorAll('.box');
 
-  GameController.startGame(playerOneName, playerTwoName);
+  startButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const playerOneName = prompt("Enter Player 1's name:");
+      const playerTwoName = button.classList.contains('two__player')
+        ? prompt("Enter Player 2's name:")
+        : 'Computer';
 
-  while (GameController.gameActive) {
-    const index = prompt(
-      `${GameController.currentPlayer.name}'s turn. Enter board position (0-8):`
-    );
-    GameController.handlePlayerTurn(index);
-  }
+      GameController.startGame(playerOneName, playerTwoName);
+
+      // Hide start buttons and show reset and end buttons
+      startButtons.forEach((btn) => btn.classList.add('hidden'));
+      resetButton.classList.remove('hidden');
+      endButton.classList.remove('hidden');
+
+      // Add event listeners to board boxes
+      boardBoxes.forEach((box) => {
+        box.addEventListener('click', () => {
+          console.log(GameController.currentPlayer.name);
+          const index = box.dataset.index;
+          GameController.handlePlayerTurn(index);
+        });
+      });
+    });
+  });
+
+  resetButton.addEventListener('click', () => {
+    GameController.startGame('', ''); // You can customize player names or leave them empty
+    // Clear the board UI
+    boardBoxes.forEach((box) => {
+      box.textContent = '';
+    });
+  });
+
+  endButton.addEventListener('click', () => {
+    // Show start buttons and hide reset and end buttons
+    startButtons.forEach((btn) => btn.classList.remove('hidden'));
+    resetButton.classList.add('hidden');
+    endButton.classList.add('hidden');
+
+    // Remove event listeners from board boxes
+    boardBoxes.forEach((box) => {
+      box.removeEventListener('click', () => {});
+    });
+  });
 };
 
-const btns = document.querySelector('.btns');
+play();
 
+const btns = document.querySelector('.btns');
 btns.addEventListener('mouseover', (e) => {
   if (e.target.tagName !== 'BUTTON') return;
   const audio = document.querySelector('.hoverSound');
   PlaySound(audio);
 });
-
 btns.addEventListener('focusin', (e) => {
   if (e.target.tagName !== 'BUTTON') return;
   const audio = document.querySelector('.hoverSound');
   PlaySound(audio);
 });
-
 btns.addEventListener('click', (e) => {
   if (e.target.tagName !== 'BUTTON') return;
   const audio = document.querySelector('.selectSound');

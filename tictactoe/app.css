@@ -420,6 +420,7 @@ header h1 .group:nth-child(3) {
 }
 .wrapper .btns button span {
   pointer-events: none;
+  color: var(--red);
 }
 .wrapper .btns button:hover, .wrapper .btns button:focus-visible {
   scale: 1.05;
@@ -486,67 +487,4 @@ header h1 .group:nth-child(3) {
 .wrapper .board .container > * > .x {
   font-size: var(--mark);
   color: var(--x);
-}
-.wrapper .board tr {
-  margin: 0;
-  padding: 0;
-}
-.wrapper .board td {
-  --size: 120px;
-  --mark: 10rem;
-  height: var(--size);
-  width: var(--size);
-  margin: 1rem;
-  padding: 1rem;
-  background-color: var(--lilac);
-  box-shadow: inset 16px 16px 0px rgba(0, 0, 0, 0.9);
-}
-.wrapper .board td > span {
-  font-family: var(--ff-markers2);
-  font-weight: 900;
-  color: #fefefe;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.wrapper .board td > .o {
-  font-size: var(--mark);
-  color: var(--o);
-}
-.wrapper .board td > .x {
-  font-size: var(--mark);
-  color: var(--x);
-}
-.wrapper .board .row1,
-.wrapper .board .row2,
-.wrapper .board .row3 {
-  position: relative;
-}
-.wrapper .board .row1 .row__border,
-.wrapper .board .row2 .row__border,
-.wrapper .board .row3 .row__border {
-  content: "";
-  position: absolute;
-  height: var(--border);
-  width: 100%;
-  background-color: var(--clr-board);
-  bottom: 0;
-  left: 0;
-  transform: translate(0%, 50%);
-}
-.wrapper .board .col1,
-.wrapper .board .col2 {
-  position: relative;
-}
-.wrapper .board .col1 .col__border,
-.wrapper .board .col2 .col__border {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: var(--border);
-  background-color: var(--clr-board);
-  top: 0;
-  right: 0;
-  transform: translate(50%);
 }/*# sourceMappingURL=app.css.map */
