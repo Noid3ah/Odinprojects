@@ -130,3 +130,10 @@ const play = () => {
     GameController.handlePlayerTurn(index);
   }
 };
+
+const table = document.querySelector('#table');
+
+table.addEventListener('click', (e) => {
+  if (e.target.tagName !== 'TD') return;
+  console.log(e.target);
+});
