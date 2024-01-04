@@ -79,6 +79,7 @@ const Player = (name, marker) => {
 // Handle player turn
 // Instantiate the game
 const GameController = (() => {
+  const whosTurn = document.querySelector('.player h2');
   let playerOne;
   let playerTwo;
   let currentPlayer;
@@ -86,19 +87,18 @@ const GameController = (() => {
 
   const switchPlayer = () => {
     currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+    whosTurn.textContent = `${currentPlayer.name}'s turn.`;
   };
 
   const handlePlayerTurn = (index) => {
     if (gameActive && Gameboard.isValidMove(index, currentPlayer.marker)) {
-      const whoTurn = document.querySelector('.player h2');
-      whoTurn.textContent = currentPlayer.name;
       console.log(Gameboard.getBoard());
       const winner = Gameboard.getWinner();
       if (winner) {
-        console.log(`${currentPlayer.name} wins!`);
+        whosTurn.textContent = `${currentPlayer.name} wins!`;
         gameActive = false;
       } else if (Gameboard.isBoardFull()) {
-        console.log(`It's a draw!`);
+        whosTurn.textContent = `It's a draw!`;
         gameActive = false;
       } else {
         switchPlayer();
@@ -112,6 +112,9 @@ const GameController = (() => {
     currentPlayer = playerOne;
     gameActive = true;
     Gameboard.resetBoard();
+
+    const whosTurn = document.querySelector('.player h2');
+    whosTurn.textContent = `${currentPlayer.name}'s turn.`;
 
     console.log(`Game Started..`);
     console.log(`Current board`);
@@ -132,22 +135,6 @@ const GameController = (() => {
 
 // Get user's name
 // Get input until game ends
-// const play = () => {
-//   const playerOneName = prompt(`Enter player 1's name:`);
-//   const playerTwoName = prompt(`Enter player 2's name:`);
-
-//   GameController.startGame(playerOneName, playerTwoName);
-
-//   while (GameController.gameActive) {
-//     const index = parseInt(
-//       prompt(
-//         `${GameController.currentPlayer.name}'s turn. Enter board position (0-8)`
-//       )
-//     );
-
-//     GameController.handlePlayerTurn(index);
-//   }
-// };
 
 const play = () => {
   const startButtons = document.querySelectorAll('.start');
@@ -156,6 +143,7 @@ const play = () => {
   const boardBoxes = document.querySelectorAll('.box');
   let playerOneName;
   let playerTwoName;
+
   startButtons.forEach((button) => {
     button.addEventListener('click', () => {
       playerOneName = prompt("Enter Player 1's name:");
@@ -172,12 +160,12 @@ const play = () => {
 
       // Add event listeners to board boxes
       boardBoxes.forEach((box) => {
-        box.addEventListener('click', test);
+        box.addEventListener('click', handleBox);
       });
     });
   });
 
-  function test() {
+  function handleBox() {
     console.log(GameController.currentPlayer.name);
     const index = this.dataset.index;
     GameController.handlePlayerTurn(index);
@@ -190,13 +178,16 @@ const play = () => {
   });
 
   endButton.addEventListener('click', () => {
+    const whosTurn = document.querySelector('.player h2');
+    whosTurn.textContent = '';
+
     startButtons.forEach((btn) => btn.classList.remove('hidden'));
     resetButton.classList.add('hidden');
     endButton.classList.add('hidden');
 
     // Remove event listeners from board boxes
     boardBoxes.forEach((box) => {
-      box.removeEventListener('click', test);
+      box.removeEventListener('click', handleBox);
     });
   });
 };
