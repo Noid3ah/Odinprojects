@@ -8,7 +8,6 @@
 const Gameboard = (() => {
   const container = document.querySelector('.container');
   const board = Array.from(container.children);
-  // const board = ['', '', '', '', '', '', '', '', ''];
   const winSequence = [
     //winning rows
     [0, 1, 2],
@@ -49,12 +48,7 @@ const Gameboard = (() => {
   };
 
   const isBoardFull = () => {
-    board.forEach((box) => {
-      if (box.querySelector('span').textContent !== '') {
-        return true;
-      }
-    });
-    return false;
+    return board.every((box) => box.querySelector('span').textContent !== '');
   };
 
   const getBoard = () => board.slice();
@@ -190,7 +184,7 @@ const play = () => {
   }
 
   resetButton.addEventListener('click', () => {
-    GameController.startGame(playerOneName, playerTwoName); // You can customize player names or leave them empty
+    GameController.startGame(playerOneName, playerTwoName);
     // Clear the board UI
     Gameboard.resetBoard();
   });
