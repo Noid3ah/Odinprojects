@@ -62,20 +62,24 @@ header {
 
       span:not(.t) {
         margin-left: -1rem;
+        transform: rotate(45deg);
       }
     }
 
     .group:nth-child(1) {
       white-space: collapse;
       color: var(--white);
+      transform: rotate(15deg);
     }
     .group:nth-child(2) {
       white-space: collapse;
-      color: var(--red);
+      color: var(--white);
+      transform: rotate(-15deg);
     }
     .group:nth-child(3) {
       white-space: collapse;
-      color: var(--yellow);
+      color: var(--white);
+      transform: rotate(15deg);
     }
   }
 }
@@ -115,7 +119,7 @@ header {
     }
 
     .start {
-      background-color: var(--lilac);
+      background-color: var(--white);
     }
 
     .reset {
