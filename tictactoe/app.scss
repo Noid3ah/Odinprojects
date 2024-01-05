@@ -69,7 +69,7 @@ header {
     position: absolute;
     width: 100%;
     left: 50%;
-    bottom: -7rem;
+    bottom: -9rem;
     transform: translate(-50%) rotate(-15deg);
     font-family: var(--ff-markers1);
     color: var(--red);
@@ -116,7 +116,7 @@ header {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap-reverse;
-  gap: 5rem;
+  gap: 3rem;
   padding: 0 1rem;
 
   .btns {
@@ -184,11 +184,33 @@ header {
     align-items: center;
     position: relative;
 
+    .score__board {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: -5.5rem;
+      left: 0;
+
+      .player__score {
+        font-family: var(--ff-markers1);
+        font-weight: 900;
+        font-size: 3rem;
+      }
+
+      .player--one {
+        color: var(--yellow-600);
+      }
+      .player--two {
+        color: var(--white);
+      }
+    }
+
     .player {
       position: absolute;
-      top: -4rem;
+      top: -3.5rem;
       h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: white;
       }
     }
@@ -229,88 +251,15 @@ header {
           filter: drop-shadow(2px 2px 5px rgb(black, 0.5));
         }
 
-        & > .o {
+        & > :is(.o, .default-o) {
           font-size: var(--mark);
           color: var(--o);
         }
-        & > .x {
+        & > :is(.x, .default-x) {
           font-size: var(--mark);
           color: var(--x);
         }
       }
     }
-
-    // tr {
-    //   margin: 0;
-    //   padding: 0;
-    // }
-
-    // td {
-    //   --size: 120px;
-    //   --mark: 10rem;
-    //   height: var(--size);
-    //   width: var(--size);
-    //   margin: 1rem;
-    //   padding: 1rem;
-    //   background-color: var(--lilac);
-    //   box-shadow: inset 16px 16px 0px rgb(transparent, 0.9);
-
-    //   & > span {
-    //     font-family: var(--ff-markers2);
-    //     font-weight: 900;
-    //     color: #fefefe;
-    //     position: absolute;
-    //     top: 50%;
-    //     left: 50%;
-
-    //     transform: translate(-50%, -50%);
-    //   }
-
-    //   & > .o {
-    //     font-size: var(--mark);
-    //     color: var(--o);
-    //   }
-    //   & > .x {
-    //     font-size: var(--mark);
-    //     color: var(--x);
-    //   }
-    // }
-
-    // .row1,
-    // .row2,
-    // .row3 {
-    //   position: relative;
-
-    //   .row__border {
-    //     content: '';
-    //     position: absolute;
-    //     height: var(--border);
-    //     width: 100%;
-    //     background-color: var(--clr-board);
-    //     // border-radius: 100vh;
-
-    //     bottom: 0;
-    //     left: 0;
-    //     transform: translate(0%, 50%);
-    //   }
-    // }
-
-    // .col1,
-    // .col2 {
-    //   position: relative;
-
-    //   .col__border {
-    //     content: '';
-    //     position: absolute;
-    //     height: 100%;
-    //     width: var(--border);
-    //     background-color: var(--clr-board);
-    //     // border-radius: 100vh;
-
-    //     top: 0;
-    //     right: 0;
-    //     transform: translate(50%);
-    //   }
-    // }
   }
 }

@@ -52,11 +52,15 @@
         </button>
       </section>
       <section class="board">
+        <div class="score__board">
+          <div class="player__score player--one" data-playername="">00</div>
+          <div class="player__score player--two" data-playername="">00</div>
+        </div>
         <audio class="placeMarkSound" src="/assets/box.wav"></audio>
         <div class="player"><h2></h2></div>
         <div class="container">
           <div class="box" data-index="0">
-            <span class="o">o</span>
+            <span class="default-o">o</span>
           </div>
           <div class="box" data-index="1">
             <span></span>
@@ -68,19 +72,19 @@
             <span></span>
           </div>
           <div class="box" data-index="4">
-            <span class="o">o</span>
+            <span class="default-o">o</span>
           </div>
           <div class="box" data-index="5">
             <span></span>
           </div>
           <div class="box" data-index="6">
-            <span class="x">x</span>
+            <span class="default-x">x</span>
           </div>
           <div class="box" data-index="7">
             <span></span>
           </div>
           <div class="box" data-index="8">
-            <span class="x">x</span>
+            <span class="default-x">x</span>
           </div>
         </div>
       </section>

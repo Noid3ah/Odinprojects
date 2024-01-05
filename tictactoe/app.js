@@ -47,6 +47,19 @@ const Gameboard = (() => {
     return null;
   };
 
+  const updatePlayerScore = (currentPlayer) => {
+    const playerScore = document.querySelectorAll('.player__score');
+    playerScore.forEach((player) => {
+      let score = 0;
+      if (currentPlayer === player.dataset.playername) {
+        score += 1;
+
+        player.textContent = parseInt(score);
+        console.log(parseInt(score));
+      }
+    });
+  };
+
   const isBoardFull = () => {
     return board.every((box) => box.querySelector('span').textContent !== '');
   };
@@ -56,12 +69,14 @@ const Gameboard = (() => {
   const resetBoard = () => {
     for (let i = 0; i < board.length; i++) {
       board[i].querySelector('span').textContent = '';
+      board[i].querySelector('span').classList.remove('x', 'o');
     }
   };
 
   return {
     isValidMove,
     getWinner,
+    updatePlayerScore,
     isBoardFull,
     getBoard,
     resetBoard,
@@ -90,15 +105,15 @@ const GameController = (() => {
   const handlePlayerTurn = (index) => {
     if (gameActive && Gameboard.isValidMove(index, currentPlayer.marker)) {
       console.log(Gameboard.getBoard());
-      // const boardBoxes = document.querySelectorAll('.box');
-      // boardBoxes.forEach((box) => {
-      //   box.addEventListener('click', boxClickHandler);
-      // });
 
       const winner = Gameboard.getWinner();
       if (winner) {
         whosTurn.textContent = `${currentPlayer.name} wins!`;
         console.log(winner);
+
+        // if currentplayer.name === player score dataset ? score++
+        Gameboard.updatePlayerScore(currentPlayer.name);
+
         gameActive = false;
       } else if (Gameboard.isBoardFull()) {
         whosTurn.textContent = `It's a draw!`;
@@ -108,6 +123,7 @@ const GameController = (() => {
       }
     }
   };
+
   function boxClickHandler(event) {
     const audio = document.querySelector('.placeMarkSound');
     Events.playSound(audio);
@@ -122,17 +138,15 @@ const GameController = (() => {
   });
 
   const startGame = (playerOneName, playerTwoName) => {
+    const header = document.querySelector('.header');
+    const whosTurn = document.querySelector('.player h2');
+
     playerOne = Player(playerOneName, 'x');
     playerTwo = Player(playerTwoName, 'o');
     currentPlayer = playerOne;
-
-    const header = document.querySelector('.header');
     header.classList.add('out-of-view');
-
     gameActive = true;
     Gameboard.resetBoard();
-
-    const whosTurn = document.querySelector('.player h2');
     whosTurn.textContent = `${currentPlayer.name}'s turn.`;
 
     console.log(`Game Started..`);
@@ -168,9 +182,20 @@ const play = () => {
   startButtons.forEach((button) => {
     button.addEventListener('click', () => {
       playerOneName = prompt("Enter Player 1's name:");
-      playerTwoName = button.classList.contains('two__player')
-        ? prompt("Enter Player 2's name:")
-        : 'Computer';
+
+      if (button.classList.contains('two__player')) {
+        playerTwoName = prompt("Enter Player 2's name:");
+      } else {
+        playerTwoName = 'Computer';
+      }
+
+      // Add playerone name to playerone score dataset
+      const playerOneScore = document.querySelector('.player--one');
+      playerOneScore.dataset.playername = playerOneName;
+
+      // Add playertwo name to playertwo score dataset
+      const playerTwoScore = document.querySelector('.player--two');
+      playerTwoScore.dataset.playername = playerTwoName;
 
       GameController.startGame(playerOneName, playerTwoName);
 
@@ -196,16 +221,23 @@ const play = () => {
     GameController.startGame(playerOneName, playerTwoName);
     // Clear the board UI
     Gameboard.resetBoard();
+    Gameboard.updatePlayerScore(GameController.currentPlayer.name);
   });
 
   endButton.addEventListener('click', () => {
     const whosTurn = document.querySelector('.player h2');
     whosTurn.textContent = '';
 
+    Gameboard.resetBoard();
+
     [...Gameboard.getBoard()][0].querySelector('span').textContent = 'o';
+    [...Gameboard.getBoard()][0].querySelector('span').className = 'default-o';
     [...Gameboard.getBoard()][4].querySelector('span').textContent = 'o';
+    [...Gameboard.getBoard()][4].querySelector('span').className = 'default-o';
     [...Gameboard.getBoard()][6].querySelector('span').textContent = 'x';
+    [...Gameboard.getBoard()][6].querySelector('span').className = 'default-x';
     [...Gameboard.getBoard()][8].querySelector('span').textContent = 'x';
+    [...Gameboard.getBoard()][8].querySelector('span').className = 'default-x';
 
     startButtons.forEach((btn) => btn.classList.remove('hidden'));
     resetButton.classList.add('hidden');
