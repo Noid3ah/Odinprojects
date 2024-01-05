@@ -110,7 +110,7 @@ const GameController = (() => {
   };
   function boxClickHandler(event) {
     const audio = document.querySelector('.placeMarkSound');
-    playSound(audio);
+    Events.playSound(audio);
     const index = event.currentTarget.dataset.index;
     console.log(index);
     handlePlayerTurn(index);
@@ -125,6 +125,10 @@ const GameController = (() => {
     playerOne = Player(playerOneName, 'x');
     playerTwo = Player(playerTwoName, 'o');
     currentPlayer = playerOne;
+
+    const header = document.querySelector('.header');
+    header.classList.add('out-of-view');
+
     gameActive = true;
     Gameboard.resetBoard();
 
@@ -157,6 +161,7 @@ const play = () => {
   const resetButton = document.querySelector('.reset');
   const endButton = document.querySelector('.end');
   const boardBoxes = document.querySelectorAll('.box');
+  const header = document.querySelector('.header');
   let playerOneName;
   let playerTwoName;
 
@@ -205,6 +210,7 @@ const play = () => {
     startButtons.forEach((btn) => btn.classList.remove('hidden'));
     resetButton.classList.add('hidden');
     endButton.classList.add('hidden');
+    header.classList.remove('out-of-view');
 
     // Remove event listeners from board boxes
     boardBoxes.forEach((box) => {
@@ -214,31 +220,37 @@ const play = () => {
   });
 };
 
+const Events = (() => {
+  const btns = document.querySelector('.btns');
+  const playSound = (sound) => sound.play();
+
+  const stopSound = (sound) => {
+    sound.pause();
+    sound.currentTime = 0;
+  };
+
+  btns.addEventListener('mouseover', (e) => {
+    if (e.target.tagName !== 'BUTTON') return;
+    const audio = document.querySelector('.hoverSound');
+    playSound(audio);
+  });
+  btns.addEventListener('focusin', (e) => {
+    if (e.target.tagName !== 'BUTTON') return;
+    const audio = document.querySelector('.hoverSound');
+    playSound(audio);
+  });
+
+  btns.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'BUTTON') return;
+    const audio = document.querySelector('.selectSound');
+    console.log('clicked');
+    playSound(audio);
+  });
+
+  return {
+    playSound,
+    stopSound,
+  };
+})();
+
 play();
-
-const btns = document.querySelector('.btns');
-btns.addEventListener('mouseover', (e) => {
-  if (e.target.tagName !== 'BUTTON') return;
-  const audio = document.querySelector('.hoverSound');
-  playSound(audio);
-});
-btns.addEventListener('focusin', (e) => {
-  if (e.target.tagName !== 'BUTTON') return;
-  const audio = document.querySelector('.hoverSound');
-  playSound(audio);
-});
-btns.addEventListener('click', (e) => {
-  if (e.target.tagName !== 'BUTTON') return;
-  const audio = document.querySelector('.selectSound');
-  console.log('clicked');
-  playSound(audio);
-});
-
-function playSound(sound) {
-  sound.play();
-}
-
-// function StopSound(sound) {
-//   sound.pause();
-//   sound.currentTime = 0;
-// }
