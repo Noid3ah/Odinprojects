@@ -170,11 +170,11 @@ header {
     }
 
     .reset {
-      background-color: var(--lilac);
+      background-color: var(--white);
     }
 
     .end {
-      background-color: var(--lilac);
+      background-color: var(--white);
     }
   }
 
@@ -196,6 +196,7 @@ header {
         font-family: var(--ff-markers1);
         font-weight: 900;
         font-size: 3rem;
+        user-select: none;
       }
 
       .player--one {
@@ -207,6 +208,7 @@ header {
     }
 
     .player {
+      user-select: none;
       position: absolute;
       top: -3.5rem;
       h2 {

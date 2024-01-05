@@ -455,10 +455,10 @@ header h1 .group:nth-child(3) {
   background-color: var(--white);
 }
 .wrapper .btns .reset {
-  background-color: var(--lilac);
+  background-color: var(--white);
 }
 .wrapper .btns .end {
-  background-color: var(--lilac);
+  background-color: var(--white);
 }
 .wrapper .board {
   display: flex;
@@ -478,6 +478,9 @@ header h1 .group:nth-child(3) {
   font-family: var(--ff-markers1);
   font-weight: 900;
   font-size: 3rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .wrapper .board .score__board .player--one {
   color: var(--yellow-600);
@@ -486,6 +489,9 @@ header h1 .group:nth-child(3) {
   color: var(--white);
 }
 .wrapper .board .player {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   position: absolute;
   top: -3.5rem;
 }

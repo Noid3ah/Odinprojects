@@ -48,14 +48,17 @@ const Gameboard = (() => {
   };
 
   const updatePlayerScore = (currentPlayer) => {
-    const playerScore = document.querySelectorAll('.player__score');
-    playerScore.forEach((player) => {
-      let score = 0;
-      if (currentPlayer === player.dataset.playername) {
-        score += 1;
+    const playerScore = Array.from(document.querySelectorAll('.player__score'));
+    let score = parseInt(
+      playerScore.find((player) => player.dataset.playername === currentPlayer)
+        .textContent
+    );
+    score++;
 
-        player.textContent = parseInt(score);
-        console.log(parseInt(score));
+    playerScore.forEach((player) => {
+      if (currentPlayer === player.dataset.playername) {
+        player.textContent = score.toString().padStart(2, '0');
+        console.log(score);
       }
     });
   };
@@ -110,7 +113,6 @@ const GameController = (() => {
       if (winner) {
         whosTurn.textContent = `${currentPlayer.name} wins!`;
         console.log(winner);
-
         // if currentplayer.name === player score dataset ? score++
         Gameboard.updatePlayerScore(currentPlayer.name);
 
@@ -169,7 +171,6 @@ const GameController = (() => {
 
 // Get user's name
 // Get input until game ends
-
 const play = () => {
   const startButtons = document.querySelectorAll('.start');
   const resetButton = document.querySelector('.reset');
@@ -219,9 +220,7 @@ const play = () => {
 
   resetButton.addEventListener('click', () => {
     GameController.startGame(playerOneName, playerTwoName);
-    // Clear the board UI
     Gameboard.resetBoard();
-    Gameboard.updatePlayerScore(GameController.currentPlayer.name);
   });
 
   endButton.addEventListener('click', () => {
