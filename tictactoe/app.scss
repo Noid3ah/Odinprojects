@@ -36,8 +36,8 @@ body {
   align-items: center;
   background-image: linear-gradient(
       to bottom,
-      rgba(18, 18, 18, 0.993),
-      rgba(18, 18, 18, 0.993)
+      rgba(18, 18, 18, 0.98),
+      rgba(18, 18, 18, 0.98)
     ),
     url(./assets/XO_charcoal_750x1000.jpg);
   -webkit-background-size: contain;
@@ -157,7 +157,7 @@ header {
 
     .player {
       position: absolute;
-      top: -6rem;
+      top: -4rem;
       h2 {
         font-size: 2rem;
         color: white;
@@ -189,6 +189,8 @@ header {
           top: 52%;
           left: 50%;
           line-height: 0;
+          pointer-events: none;
+          user-select: none;
 
           transform: translate(-50%);
         }

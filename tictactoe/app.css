@@ -342,7 +342,7 @@ body {
   min-height: 100vh;
   min-height: 100svb;
   align-items: center;
-  background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.993), rgba(18, 18, 18, 0.993)), url(./assets/XO_charcoal_750x1000.jpg);
+  background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.98), rgba(18, 18, 18, 0.98)), url(./assets/XO_charcoal_750x1000.jpg);
   background-size: contain;
   font-family: var(--ff-primary);
   overflow: clip;
@@ -443,7 +443,7 @@ header h1 .group:nth-child(3) {
 }
 .wrapper .board .player {
   position: absolute;
-  top: -6rem;
+  top: -4rem;
 }
 .wrapper .board .player h2 {
   font-size: 2rem;
@@ -474,6 +474,10 @@ header h1 .group:nth-child(3) {
   top: 52%;
   left: 50%;
   line-height: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   transform: translate(-50%);
 }
 .wrapper .board .container > * .o,

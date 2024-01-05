@@ -41,7 +41,7 @@ const Gameboard = (() => {
         board[a].querySelector('span').textContent ===
           board[c].querySelector('span').textContent
       ) {
-        return board[a];
+        return [board[a], board[b], board[c]];
       }
     }
     return null;
@@ -93,17 +93,15 @@ const GameController = (() => {
   const handlePlayerTurn = (index) => {
     if (gameActive && Gameboard.isValidMove(index, currentPlayer.marker)) {
       console.log(Gameboard.getBoard());
-      const boardBoxes = document.querySelectorAll('.box');
-      boardBoxes.forEach((box) => {
-        box.addEventListener('click', () => {
-          const audio = document.querySelector('.placeMarkSound');
-          playSound(audio);
-        });
-      });
+      // const boardBoxes = document.querySelectorAll('.box');
+      // boardBoxes.forEach((box) => {
+      //   box.addEventListener('click', boxClickHandler);
+      // });
 
       const winner = Gameboard.getWinner();
       if (winner) {
         whosTurn.textContent = `${currentPlayer.name} wins!`;
+        console.log(winner);
         gameActive = false;
       } else if (Gameboard.isBoardFull()) {
         whosTurn.textContent = `It's a draw!`;
@@ -113,6 +111,18 @@ const GameController = (() => {
       }
     }
   };
+  function boxClickHandler(event) {
+    const audio = document.querySelector('.placeMarkSound');
+    playSound(audio);
+    const index = event.currentTarget.dataset.index;
+    console.log(index);
+    handlePlayerTurn(index);
+  }
+
+  const boardBoxes = document.querySelectorAll('.box');
+  boardBoxes.forEach((box) => {
+    box.addEventListener('click', boxClickHandler);
+  });
 
   const startGame = (playerOneName, playerTwoName) => {
     playerOne = Player(playerOneName, 'x');
@@ -138,6 +148,7 @@ const GameController = (() => {
     },
     handlePlayerTurn,
     startGame,
+    boxClickHandler,
   };
 })();
 
@@ -196,6 +207,7 @@ const play = () => {
     // Remove event listeners from board boxes
     boardBoxes.forEach((box) => {
       box.removeEventListener('click', handleBox);
+      box.removeEventListener('click', GameController.boxClickHandler);
     });
   });
 };
