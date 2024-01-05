@@ -93,6 +93,14 @@ const GameController = (() => {
   const handlePlayerTurn = (index) => {
     if (gameActive && Gameboard.isValidMove(index, currentPlayer.marker)) {
       console.log(Gameboard.getBoard());
+      const boardBoxes = document.querySelectorAll('.box');
+      boardBoxes.forEach((box) => {
+        box.addEventListener('click', () => {
+          const audio = document.querySelector('.placeMarkSound');
+          playSound(audio);
+        });
+      });
+
       const winner = Gameboard.getWinner();
       if (winner) {
         whosTurn.textContent = `${currentPlayer.name} wins!`;
@@ -198,21 +206,21 @@ const btns = document.querySelector('.btns');
 btns.addEventListener('mouseover', (e) => {
   if (e.target.tagName !== 'BUTTON') return;
   const audio = document.querySelector('.hoverSound');
-  PlaySound(audio);
+  playSound(audio);
 });
 btns.addEventListener('focusin', (e) => {
   if (e.target.tagName !== 'BUTTON') return;
   const audio = document.querySelector('.hoverSound');
-  PlaySound(audio);
+  playSound(audio);
 });
 btns.addEventListener('click', (e) => {
   if (e.target.tagName !== 'BUTTON') return;
   const audio = document.querySelector('.selectSound');
   console.log('clicked');
-  PlaySound(audio);
+  playSound(audio);
 });
 
-function PlaySound(sound) {
+function playSound(sound) {
   sound.play();
 }
 
