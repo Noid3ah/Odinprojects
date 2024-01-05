@@ -65,9 +65,6 @@ const Gameboard = (() => {
     isBoardFull,
     getBoard,
     resetBoard,
-    get board() {
-      return board;
-    },
   };
 })();
 
@@ -199,6 +196,11 @@ const play = () => {
   endButton.addEventListener('click', () => {
     const whosTurn = document.querySelector('.player h2');
     whosTurn.textContent = '';
+
+    [...Gameboard.getBoard()][0].querySelector('span').textContent = 'o';
+    [...Gameboard.getBoard()][4].querySelector('span').textContent = 'o';
+    [...Gameboard.getBoard()][6].querySelector('span').textContent = 'x';
+    [...Gameboard.getBoard()][8].querySelector('span').textContent = 'x';
 
     startButtons.forEach((btn) => btn.classList.remove('hidden'));
     resetButton.classList.add('hidden');
