@@ -63,6 +63,11 @@ const Gameboard = (() => {
     });
   };
 
+  const resetScore = () => {
+    const playerScore = Array.from(document.querySelectorAll('.player__score'));
+    playerScore.forEach((player) => (player.textContent = '00'));
+  };
+
   const isBoardFull = () => {
     return board.every((box) => box.querySelector('span').textContent !== '');
   };
@@ -80,6 +85,7 @@ const Gameboard = (() => {
     isValidMove,
     getWinner,
     updatePlayerScore,
+    resetScore,
     isBoardFull,
     getBoard,
     resetBoard,
@@ -228,6 +234,7 @@ const play = () => {
     whosTurn.textContent = '';
 
     Gameboard.resetBoard();
+    Gameboard.resetScore();
 
     [...Gameboard.getBoard()][0].querySelector('span').textContent = 'o';
     [...Gameboard.getBoard()][0].querySelector('span').className = 'default-o';
