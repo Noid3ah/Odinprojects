@@ -346,6 +346,69 @@ body {
   background-size: contain;
   font-family: var(--ff-primary);
   overflow: clip;
+  position: relative;
+}
+body .modal {
+  box-sizing: border-box;
+  z-index: 12;
+  background-color: var(--yellow-600);
+  width: 100%;
+  max-width: 400px;
+  position: absolute;
+  border-radius: 1rem;
+  padding: 2rem;
+  border: none;
+}
+body .modal::backdrop {
+  background-color: #121212;
+  opacity: 0.7;
+  filter: blur(5px);
+}
+body .modal .cancel {
+  --edge: 0.25rem;
+  position: absolute;
+  top: var(--edge);
+  right: var(--edge);
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--red);
+}
+body .modal form {
+  --height: 45px;
+  --radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+body .modal form .form-control {
+  display: flex;
+  flex-direction: column;
+}
+body .modal form .form-control label {
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #121212;
+}
+body .modal form .form-control input {
+  height: var(--height);
+  padding-inline: 1rem;
+  font-size: 16px;
+  border: none;
+  color: #121212;
+  background-color: var(--white);
+  border-radius: var(--radius);
+}
+body .modal form .form-control input:focus-visible {
+  outline: 2px solid var(--red);
+}
+body .modal form button {
+  border: none;
+  height: var(--height);
+  background-color: var(--red);
+  font-weight: 900;
+  color: var(--white);
+  border-radius: var(--radius);
 }
 
 .out-of-view {
@@ -353,6 +416,11 @@ body {
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.2s ease-out;
   position: absolute;
+}
+
+button,
+span.material-symbols-outlined {
+  cursor: pointer;
 }
 
 header {
