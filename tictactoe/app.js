@@ -147,12 +147,19 @@ const GameController = (() => {
 
   const startGame = (playerOneName, playerTwoName) => {
     const header = document.querySelector('.header');
+    const scores = Array.from(document.querySelector('.score__board').children);
+    const p1Score = document.querySelector('.player--one');
+    const p2Score = document.querySelector('.player--two');
     const whosTurn = document.querySelector('.player h2');
 
     playerOne = Player(playerOneName, 'x');
     playerTwo = Player(playerTwoName, 'o');
     currentPlayer = playerOne;
     header.classList.add('out-of-view');
+
+    scores.forEach((score) => score.classList.add('in-view'));
+    // p1Score.classList.add('in-view');
+    // p1Score.classList.add('in-view');
     gameActive = true;
     Gameboard.resetBoard();
     whosTurn.textContent = `${currentPlayer.name}'s turn.`;
@@ -183,6 +190,7 @@ const play = () => {
   const endButton = document.querySelector('.end');
   const boardBoxes = document.querySelectorAll('.box');
   const header = document.querySelector('.header');
+  const scores = Array.from(document.querySelector('.score__board').children);
   let playerOneName;
   let playerTwoName;
 
@@ -249,6 +257,7 @@ const play = () => {
     resetButton.classList.add('hidden');
     endButton.classList.add('hidden');
     header.classList.remove('out-of-view');
+    scores.forEach((score) => score.classList.remove('in-view'));
 
     // Remove event listeners from board boxes
     boardBoxes.forEach((box) => {

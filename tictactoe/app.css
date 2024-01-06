@@ -484,9 +484,21 @@ header h1 .group:nth-child(3) {
 }
 .wrapper .board .score__board .player--one {
   color: var(--yellow-600);
+  transform: translate(-2000px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.2s ease-out;
 }
 .wrapper .board .score__board .player--two {
   color: var(--white);
+  transform: translate(2000px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.2s ease-out;
+}
+.wrapper .board .score__board .player--one.in-view,
+.wrapper .board .score__board .player--two.in-view {
+  transform: translateX(0px);
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.2s ease-out;
 }
 .wrapper .board .player {
   -webkit-user-select: none;
