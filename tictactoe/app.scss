@@ -29,6 +29,7 @@
 }
 
 body {
+  padding-inline: 1rem;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -107,8 +108,6 @@ body {
           color: #121212;
           background-color: var(--white);
           border-radius: var(--radius);
-          // box-shadow: inset -5px -5px 9px rgba(255, 255, 255, 0.45),
-          // inset 5px 5px 9px rgba(94, 104, 121, 0.3);
 
           &:focus-visible {
             outline: 2px solid var(--red);
@@ -154,18 +153,18 @@ header {
     position: absolute;
     width: 100%;
     left: 50%;
-    bottom: -9rem;
+    bottom: -80%;
     transform: translate(-50%) rotate(-15deg);
     font-family: var(--ff-markers1);
     color: var(--red);
-    font-size: 4rem;
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     gap: 2rem;
 
     .group {
       .t {
-        font-size: 6rem;
+        font-size: 4.5rem;
       }
 
       span:not(.t) {
@@ -188,10 +187,20 @@ header {
       color: var(--white);
       transform: rotate(15deg);
     }
+
+    @media (min-width: 490px) {
+      font-size: 4rem;
+      .group {
+        .t {
+          font-size: 6rem;
+        }
+      }
+    }
   }
 }
 
 .wrapper {
+  --box: 90px;
   transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   flex: 1;
   width: 100%;
@@ -203,12 +212,38 @@ header {
   flex-wrap: wrap-reverse;
   gap: 3rem;
   padding: 0 1rem;
+  position: relative;
+
+  .audio-icon {
+    --edge: 3rem;
+    position: absolute;
+    color: var(--white);
+    top: 1.5rem;
+    color: var(--red);
+
+    .hidden {
+      display: none;
+    }
+
+    span {
+      font-size: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      top: var(--edge);
+      right: var(--edge);
+
+      span {
+        font-size: 4rem;
+      }
+    }
+  }
 
   .btns {
     display: flex;
     justify-content: center;
     width: 100%;
-    max-width: 430px;
+    max-width: calc(var(--box) * 3 + 30px);
     gap: 1.5rem;
     flex-wrap: wrap;
 
@@ -245,7 +280,7 @@ header {
 
       &:hover,
       &:focus-visible {
-        scale: 1.05;
+        scale: 1.03;
         transition: scale 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
       }
     }
@@ -260,6 +295,10 @@ header {
 
     .end {
       background-color: var(--white);
+    }
+
+    @media (min-width: 430px) {
+      max-width: 430px;
     }
   }
 
@@ -321,9 +360,13 @@ header {
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
 
+      .shake {
+        animation: scaleup 0.2s linear 0s infinite alternate forwards;
+      }
+
       & > * {
-        width: 100px;
-        height: 100px;
+        width: var(--box);
+        height: var(--box);
         background-color: var(--red);
         border-radius: 1rem;
         display: flex;
@@ -358,6 +401,20 @@ header {
         & > :is(.x, .default-x) {
           font-size: var(--mark);
           color: var(--x);
+        }
+
+        @keyframes scaleup {
+          from {
+            // scale: 2;
+            rotate: 5deg;
+          }
+          to {
+            rotate: -5deg;
+          }
+        }
+
+        @media (min-width: 430px) {
+          --box: 100px;
         }
       }
     }

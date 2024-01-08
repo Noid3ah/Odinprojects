@@ -118,13 +118,23 @@ const GameController = (() => {
       const winner = Gameboard.getWinner();
       if (winner) {
         whosTurn.textContent = `${currentPlayer.name} wins!`;
-        console.log(winner);
-        Events.playSound(document.querySelector('.winSound'));
+        for (let i = 0; i < winner.length; i++) {
+          setTimeout(() => {
+            winner[0].classList.add('shake');
+          }, 100);
+          setTimeout(() => {
+            winner[1].classList.add('shake');
+          }, 200);
+          setTimeout(() => {
+            winner[2].classList.add('shake');
+          }, 300);
+        }
+        Events.playSound('winSound');
         Gameboard.updatePlayerScore(currentPlayer.name);
         gameActive = false;
       } else if (Gameboard.isBoardFull()) {
         whosTurn.textContent = `It's a draw!`;
-        Events.playSound(document.querySelector('.drawSound'));
+        Events.playSound('drawSound');
         gameActive = false;
       } else {
         switchPlayer();
@@ -134,6 +144,7 @@ const GameController = (() => {
 
   const startGame = (playerOneName, playerTwoName) => {
     const header = document.querySelector('.header');
+    const soundIcon = document.querySelector('.audio-icon span');
     const scores = Array.from(document.querySelector('.score__board').children);
 
     const whosTurn = document.querySelector('.player h2');
@@ -142,6 +153,7 @@ const GameController = (() => {
     playerTwo = Player(playerTwoName, 'o');
     currentPlayer = playerOne;
     header.classList.add('out-of-view');
+    soundIcon.classList.remove('hidden');
 
     scores.forEach((score) => score.classList.add('in-view'));
     gameActive = true;
@@ -150,16 +162,14 @@ const GameController = (() => {
 
     const boardBoxes = document.querySelectorAll('.box');
     boardBoxes.forEach((box) => {
-      box.addEventListener(
-        'click',
-        Events.playSound(document.querySelector('.placeMarkSound'))
-      );
+      box.addEventListener('click', Events.boxClickHandler);
     });
 
     console.log(`Game Started..`);
     console.log(`Current board`);
     console.log(Gameboard.getBoard());
-    Events.playSound(document.querySelector('.bgSound'), 0.05);
+    Events.isBackgroundMusic();
+    // Events.playSound('bgSound', 0.03);
   };
 
   return {
@@ -182,6 +192,7 @@ const play = () => {
   const endButton = document.querySelector('.end');
   const boardBoxes = document.querySelectorAll('.box');
   const header = document.querySelector('.header');
+  const soundIcon = document.querySelector('.audio-icon span');
   const scores = Array.from(document.querySelector('.score__board').children);
   let playerOneName;
   let playerTwoName;
@@ -230,6 +241,8 @@ const play = () => {
   }
 
   resetButton.addEventListener('click', () => {
+    const winner = Gameboard.getWinner();
+    winner.forEach((winningBox) => winningBox.classList.remove('shake'));
     GameController.startGame(playerOneName, playerTwoName);
     Gameboard.resetBoard();
   });
@@ -254,53 +267,72 @@ const play = () => {
     resetButton.classList.add('hidden');
     endButton.classList.add('hidden');
     header.classList.remove('out-of-view');
+    soundIcon.classList.add('hidden');
     scores.forEach((score) => score.classList.remove('in-view'));
 
     // Remove event listeners from board boxes
     boardBoxes.forEach((box) => {
       box.removeEventListener('click', handleBox);
-      box.removeEventListener(
-        'click',
-        Events.playSound(document.querySelector('.placeMarkSound'))
-      );
+      box.removeEventListener('click', Events.boxClickHandler);
     });
-    Events.stopSound(document.querySelector('.bgSound'));
+    Events.stopSound('bgSound');
   });
 };
 
 const Events = (() => {
   const btns = document.querySelector('.btns');
-  const playSound = (sound, vol = 0.7) => {
+  const playSound = (selector, vol = 0.7) => {
+    const sound = document.querySelector(`.${selector}`);
     sound.volume = vol;
     sound.play();
   };
 
-  const stopSound = (sound) => {
+  const stopSound = (selector) => {
+    const sound = document.querySelector(`.${selector}`);
     sound.pause();
     sound.currentTime = 0;
   };
 
+  const boxClickHandler = () => {
+    playSound('placeMarkSound');
+  };
+
+  const isBackgroundMusic = () => {
+    const icon = document.querySelector('.audio-icon span');
+    let isPlaying = false;
+
+    icon.addEventListener('click', () => {
+      if (isPlaying) {
+        stopSound('bgSound');
+        icon.textContent = 'volume_off';
+        isPlaying = false;
+      } else {
+        playSound('bgSound', 0.03);
+        icon.textContent = 'volume_up';
+        isPlaying = true;
+      }
+    });
+  };
+
   btns.addEventListener('mouseover', (e) => {
     if (e.target.tagName !== 'BUTTON') return;
-    const audio = document.querySelector('.hoverSound');
-    playSound(audio);
+    playSound('hoverSound');
   });
   btns.addEventListener('focusin', (e) => {
     if (e.target.tagName !== 'BUTTON') return;
-    const audio = document.querySelector('.hoverSound');
-    playSound(audio);
+    playSound('hoverSound');
   });
 
   btns.addEventListener('click', (e) => {
     if (e.target.tagName !== 'BUTTON') return;
-    const audio = document.querySelector('.selectSound');
-    console.log('clicked');
-    playSound(audio);
+    playSound('selectSound');
   });
 
   return {
     playSound,
     stopSound,
+    boxClickHandler,
+    isBackgroundMusic,
   };
 })();
 

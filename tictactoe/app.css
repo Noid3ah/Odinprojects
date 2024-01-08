@@ -337,6 +337,7 @@ template {
 }
 
 body {
+  padding-inline: 1rem;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -436,17 +437,17 @@ header h1 {
   position: absolute;
   width: 100%;
   left: 50%;
-  bottom: -9rem;
+  bottom: -80%;
   transform: translate(-50%) rotate(-15deg);
   font-family: var(--ff-markers1);
   color: var(--red);
-  font-size: 4rem;
+  font-size: 2rem;
   display: flex;
   justify-content: center;
   gap: 2rem;
 }
 header h1 .group .t {
-  font-size: 6rem;
+  font-size: 4.5rem;
 }
 header h1 .group span:not(.t) {
   margin-left: -1rem;
@@ -466,8 +467,17 @@ header h1 .group:nth-child(3) {
   color: var(--white);
   transform: rotate(15deg);
 }
+@media (min-width: 490px) {
+  header h1 {
+    font-size: 4rem;
+  }
+  header h1 .group .t {
+    font-size: 6rem;
+  }
+}
 
 .wrapper {
+  --box: 90px;
   transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   flex: 1;
   width: 100%;
@@ -479,12 +489,35 @@ header h1 .group:nth-child(3) {
   flex-wrap: wrap-reverse;
   gap: 3rem;
   padding: 0 1rem;
+  position: relative;
+}
+.wrapper .audio-icon {
+  --edge: 3rem;
+  position: absolute;
+  color: var(--white);
+  top: 1.5rem;
+  color: var(--red);
+}
+.wrapper .audio-icon .hidden {
+  display: none;
+}
+.wrapper .audio-icon span {
+  font-size: 2.5rem;
+}
+@media (min-width: 768px) {
+  .wrapper .audio-icon {
+    top: var(--edge);
+    right: var(--edge);
+  }
+  .wrapper .audio-icon span {
+    font-size: 4rem;
+  }
 }
 .wrapper .btns {
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 430px;
+  max-width: calc(var(--box) * 3 + 30px);
   gap: 1.5rem;
   flex-wrap: wrap;
 }
@@ -516,7 +549,7 @@ header h1 .group:nth-child(3) {
   margin-left: 0rem;
 }
 .wrapper .btns button:hover, .wrapper .btns button:focus-visible {
-  scale: 1.05;
+  scale: 1.03;
   transition: scale 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .wrapper .btns .start {
@@ -527,6 +560,11 @@ header h1 .group:nth-child(3) {
 }
 .wrapper .btns .end {
   background-color: var(--white);
+}
+@media (min-width: 430px) {
+  .wrapper .btns {
+    max-width: 430px;
+  }
 }
 .wrapper .board {
   display: flex;
@@ -585,9 +623,12 @@ header h1 .group:nth-child(3) {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
+.wrapper .board .container .shake {
+  animation: scaleup 0.2s linear 0s infinite alternate forwards;
+}
 .wrapper .board .container > * {
-  width: 100px;
-  height: 100px;
+  width: var(--box);
+  height: var(--box);
   background-color: var(--red);
   border-radius: 1rem;
   display: flex;
@@ -621,4 +662,17 @@ header h1 .group:nth-child(3) {
 .wrapper .board .container > * > :is(.x, .default-x) {
   font-size: var(--mark);
   color: var(--x);
+}
+@keyframes scaleup {
+  from {
+    rotate: 5deg;
+  }
+  to {
+    rotate: -5deg;
+  }
+}
+@media (min-width: 430px) {
+  .wrapper .board .container > * {
+    --box: 100px;
+  }
 }/*# sourceMappingURL=app.css.map */
