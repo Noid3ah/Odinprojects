@@ -242,12 +242,18 @@ const play = () => {
 
   resetButton.addEventListener('click', () => {
     const winner = Gameboard.getWinner();
-    winner.forEach((winningBox) => winningBox.classList.remove('shake'));
+
+    if (winner) {
+      winner.forEach((winningBox) => winningBox.classList.remove('shake'));
+    }
+
     GameController.startGame(playerOneName, playerTwoName);
     Gameboard.resetBoard();
   });
 
   endButton.addEventListener('click', () => {
+    const winner = Gameboard.getWinner();
+
     const whosTurn = document.querySelector('.player h2');
     whosTurn.textContent = '';
 
@@ -269,6 +275,9 @@ const play = () => {
     header.classList.remove('out-of-view');
     soundIcon.classList.add('hidden');
     scores.forEach((score) => score.classList.remove('in-view'));
+    if (winner || Gameboard.isBoardFull()) {
+      winner.forEach((winningBox) => winningBox.classList.remove('shake'));
+    }
 
     // Remove event listeners from board boxes
     boardBoxes.forEach((box) => {
