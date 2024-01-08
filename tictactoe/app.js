@@ -119,31 +119,18 @@ const GameController = (() => {
       if (winner) {
         whosTurn.textContent = `${currentPlayer.name} wins!`;
         console.log(winner);
-        // if currentplayer.name === player score dataset ? score++
+        Events.playSound(document.querySelector('.winSound'));
         Gameboard.updatePlayerScore(currentPlayer.name);
-
         gameActive = false;
       } else if (Gameboard.isBoardFull()) {
         whosTurn.textContent = `It's a draw!`;
+        Events.playSound(document.querySelector('.drawSound'));
         gameActive = false;
       } else {
         switchPlayer();
       }
     }
   };
-
-  function boxClickHandler(event) {
-    const audio = document.querySelector('.placeMarkSound');
-    Events.playSound(audio);
-    // const index = event.currentTarget.dataset.index;
-    // console.log(index);
-    // handlePlayerTurn(index);
-  }
-
-  const boardBoxes = document.querySelectorAll('.box');
-  boardBoxes.forEach((box) => {
-    box.addEventListener('click', boxClickHandler);
-  });
 
   const startGame = (playerOneName, playerTwoName) => {
     const header = document.querySelector('.header');
@@ -161,9 +148,18 @@ const GameController = (() => {
     Gameboard.resetBoard();
     whosTurn.textContent = `${currentPlayer.name}'s turn.`;
 
+    const boardBoxes = document.querySelectorAll('.box');
+    boardBoxes.forEach((box) => {
+      box.addEventListener(
+        'click',
+        Events.playSound(document.querySelector('.placeMarkSound'))
+      );
+    });
+
     console.log(`Game Started..`);
     console.log(`Current board`);
     console.log(Gameboard.getBoard());
+    Events.playSound(document.querySelector('.bgSound'), 0.05);
   };
 
   return {
@@ -175,7 +171,6 @@ const GameController = (() => {
     },
     handlePlayerTurn,
     startGame,
-    boxClickHandler,
   };
 })();
 
@@ -264,14 +259,21 @@ const play = () => {
     // Remove event listeners from board boxes
     boardBoxes.forEach((box) => {
       box.removeEventListener('click', handleBox);
-      // box.removeEventListener('click', GameController.boxClickHandler);
+      box.removeEventListener(
+        'click',
+        Events.playSound(document.querySelector('.placeMarkSound'))
+      );
     });
+    Events.stopSound(document.querySelector('.bgSound'));
   });
 };
 
 const Events = (() => {
   const btns = document.querySelector('.btns');
-  const playSound = (sound) => sound.play();
+  const playSound = (sound, vol = 0.7) => {
+    sound.volume = vol;
+    sound.play();
+  };
 
   const stopSound = (sound) => {
     sound.pause();
