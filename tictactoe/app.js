@@ -199,7 +199,6 @@ const play = () => {
 
   startButtons.forEach((button) => {
     const modals = Array.from(document.querySelector('.modals').children);
-
     const getData = async (selector, defaultStr) => {
       let player;
       const findModal = modals.find((modal) =>
@@ -207,6 +206,7 @@ const play = () => {
       );
       findModal.showModal();
       const input = findModal.querySelector(`input`);
+      input.value = '';
       const confirmName = findModal.querySelector('.confirm');
 
       return new Promise((resolve) => {
