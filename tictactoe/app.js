@@ -1,10 +1,3 @@
-// Define the board
-// Define all winning sequences
-// Make a move if position on board is available
-// Check for wins
-// Is the board full (no winner: "tie")
-// Return the board
-// Reset the board
 const Gameboard = (() => {
   const container = document.querySelector('.container');
   const board = Array.from(container.children);
@@ -58,7 +51,6 @@ const Gameboard = (() => {
     playerScore.forEach((player) => {
       if (currentPlayer === player.dataset.playername) {
         player.textContent = score.toString().padStart(2, '0');
-        console.log(score);
       }
     });
   };
@@ -96,9 +88,6 @@ const Player = (name, marker) => {
   return { name, marker };
 };
 
-// Switch player after a move
-// Handle player turn
-// Instantiate the game
 const GameController = (() => {
   const whosTurn = document.querySelector('.player h2');
   let playerOne;
@@ -113,8 +102,6 @@ const GameController = (() => {
 
   const handlePlayerTurn = (index) => {
     if (gameActive && Gameboard.isValidMove(index, currentPlayer.marker)) {
-      console.log(Gameboard.getBoard());
-
       const winner = Gameboard.getWinner();
       if (winner) {
         whosTurn.textContent = `${currentPlayer.name} wins!`;
@@ -190,11 +177,7 @@ const GameController = (() => {
       box.addEventListener('click', Events.boxClickHandler);
     });
 
-    console.log(`Game Started..`);
-    console.log(`Current board`);
-    console.log(Gameboard.getBoard());
     Events.isBackgroundMusic();
-    // Events.playSound('bgSound', 0.03);
   };
 
   return {
@@ -209,8 +192,6 @@ const GameController = (() => {
   };
 })();
 
-// Get user's name
-// Get input until game ends
 const play = () => {
   const startButtons = document.querySelectorAll('.start');
   const resetButton = document.querySelector('.reset');
@@ -260,8 +241,6 @@ const play = () => {
       const playerTwoScore = document.querySelector('.player--two');
       playerTwoScore.dataset.playername = playerTwoName;
 
-      // GameController.startGame(playerOneName, playerTwoName);
-
       // Hide start buttons and show reset and end buttons
       startButtons.forEach((btn) => btn.classList.add('hidden'));
       resetButton.classList.remove('hidden');
@@ -275,7 +254,6 @@ const play = () => {
   });
 
   function handleBox() {
-    console.log(GameController.currentPlayer.name);
     const index = this.dataset.index;
     GameController.handlePlayerTurn(index);
   }
