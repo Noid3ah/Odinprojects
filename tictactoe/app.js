@@ -138,6 +138,31 @@ const GameController = (() => {
         gameActive = false;
       } else {
         switchPlayer();
+        if (currentPlayer.name === 'Computer') {
+          handleComputerTurn();
+        }
+      }
+    }
+  };
+
+  const handleComputerTurn = () => {
+    if (
+      GameController.gameActive &&
+      GameController.currentPlayer.name === 'Computer'
+    ) {
+      let availableIndexes = [];
+      Gameboard.getBoard().forEach((box, index) => {
+        if (box.querySelector('span').textContent === '') {
+          availableIndexes.push(index);
+        }
+      });
+
+      if (availableIndexes.length > 0) {
+        const randomIndex = Math.floor(Math.random() * availableIndexes.length);
+        const computerMove = availableIndexes[randomIndex];
+        setTimeout(() => {
+          GameController.handlePlayerTurn(computerMove);
+        }, 500);
       }
     }
   };
