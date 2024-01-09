@@ -54,7 +54,7 @@ body {
     z-index: 12;
     background-color: var(--yellow-600);
     width: 100%;
-    max-width: 400px;
+    max-width: 330px;
     position: absolute;
     // left: 50%;
     // top: 50%;
@@ -152,9 +152,9 @@ header {
   h1 {
     position: absolute;
     width: 100%;
-    left: 50%;
+    left: 0;
     bottom: -80%;
-    transform: translate(-50%) rotate(-15deg);
+    // transform: translate(0) rotate(0deg);
     font-family: var(--ff-markers1);
     color: var(--red);
     font-size: 2rem;
@@ -175,25 +175,41 @@ header {
     .group:nth-child(1) {
       white-space: collapse;
       color: var(--white);
-      transform: rotate(15deg);
     }
     .group:nth-child(2) {
       white-space: collapse;
       color: var(--white);
-      transform: rotate(-15deg);
     }
     .group:nth-child(3) {
       white-space: collapse;
       color: var(--white);
-      transform: rotate(15deg);
     }
 
     @media (min-width: 490px) {
+      left: 50%;
+      transform: translate(-50%) rotate(-15deg);
+
       font-size: 4rem;
       .group {
         .t {
           font-size: 6rem;
         }
+      }
+
+      .group:nth-child(1) {
+        white-space: collapse;
+        color: var(--white);
+        transform: rotate(15deg);
+      }
+      .group:nth-child(2) {
+        white-space: collapse;
+        color: var(--white);
+        transform: rotate(-15deg);
+      }
+      .group:nth-child(3) {
+        white-space: collapse;
+        color: var(--white);
+        transform: rotate(15deg);
       }
     }
   }
@@ -298,6 +314,10 @@ header {
     }
 
     @media (min-width: 430px) {
+      max-width: 330px;
+    }
+
+    @media (min-width: 460px) {
       max-width: 430px;
     }
   }

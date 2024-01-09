@@ -198,29 +198,44 @@ const play = () => {
   let playerTwoName;
 
   startButtons.forEach((button) => {
-    const modals = Array.from(document.querySelectorAll('.modal'));
-    button.addEventListener('click', () => {
-      playerOneName = prompt("Enter Player 1's name:");
+    const modals = Array.from(document.querySelector('.modals').children);
 
-      // modals[0].showModal();
-      // const proceed = modals[0].querySelector('button');
-      // const inputVal = modals[0].querySelector('#player1');
+    const getData = async (selector, defaultStr) => {
+      let player;
+      const findModal = modals.find((modal) =>
+        modal.classList.contains(`modal--${selector}`)
+      );
+      findModal.showModal();
+      const input = findModal.querySelector(`input`);
+      const confirmName = findModal.querySelector('.confirm');
+
+      return new Promise((resolve) => {
+        confirmName.addEventListener('click', () => {
+          player = input.value ? input.value : `${defaultStr}`;
+          findModal.close();
+          resolve(player);
+        });
+      });
+    };
+
+    button.addEventListener('click', async () => {
+      playerOneName = await getData('one', 'Player one');
 
       if (button.classList.contains('two__player')) {
-        playerTwoName = prompt("Enter Player 2's name:");
+        playerTwoName = await getData('two', 'Player two');
       } else {
         playerTwoName = 'Computer';
       }
 
-      // Add playerone name to playerone score dataset
+      GameController.startGame(playerOneName, playerTwoName);
+
       const playerOneScore = document.querySelector('.player--one');
       playerOneScore.dataset.playername = playerOneName;
 
-      // Add playertwo name to playertwo score dataset
       const playerTwoScore = document.querySelector('.player--two');
       playerTwoScore.dataset.playername = playerTwoName;
 
-      GameController.startGame(playerOneName, playerTwoName);
+      // GameController.startGame(playerOneName, playerTwoName);
 
       // Hide start buttons and show reset and end buttons
       startButtons.forEach((btn) => btn.classList.add('hidden'));
@@ -253,7 +268,6 @@ const play = () => {
 
   endButton.addEventListener('click', () => {
     const winner = Gameboard.getWinner();
-
     const whosTurn = document.querySelector('.player h2');
     whosTurn.textContent = '';
 
@@ -290,7 +304,7 @@ const play = () => {
 
 const Events = (() => {
   const btns = document.querySelector('.btns');
-  const playSound = (selector, vol = 0.7) => {
+  const playSound = (selector, vol = 0.4) => {
     const sound = document.querySelector(`.${selector}`);
     sound.volume = vol;
     sound.play();

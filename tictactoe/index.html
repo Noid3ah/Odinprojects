@@ -29,30 +29,32 @@
         </div>
       </h1>
     </header>
-    <dialog class="modal">
-      <form action="" method="dialog">
-        <div class="cancel">
-          <span class="material-symbols-outlined cancel">close</span>
-        </div>
-        <div class="form-control">
-          <label for="player1">Player 1 name:</label>
-          <input type="text" id="player1" />
-        </div>
-        <button>Start Game</button>
-      </form>
-    </dialog>
-    <dialog class="modal">
-      <form action="" method="dialog">
-        <div class="cancel">
-          <span class="material-symbols-outlined cancel">close</span>
-        </div>
-        <div class="form-control">
-          <label for="player2">Player 2 name:</label>
-          <input type="text" id="player2" />
-        </div>
-        <button>Start Game</button>
-      </form>
-    </dialog>
+    <div class="modals">
+      <dialog class="modal modal--one">
+        <form action="" method="dialog">
+          <div class="cancel">
+            <span class="material-symbols-outlined cancel">close</span>
+          </div>
+          <div class="form-control">
+            <label for="player1">Player 1 name:</label>
+            <input type="text" id="player1" />
+          </div>
+          <button class="confirm">Start Game</button>
+        </form>
+      </dialog>
+      <dialog class="modal modal--two">
+        <form action="" method="dialog">
+          <div class="cancel">
+            <span class="material-symbols-outlined cancel">close</span>
+          </div>
+          <div class="form-control">
+            <label for="player2">Player 2 name:</label>
+            <input type="text" id="player2" />
+          </div>
+          <button class="confirm">Start Game</button>
+        </form>
+      </dialog>
+    </div>
     <main class="wrapper">
       <div class="audio-icon">
         <span class="material-symbols-outlined hidden">volume_off</span>

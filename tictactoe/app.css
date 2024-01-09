@@ -354,7 +354,7 @@ body .modal {
   z-index: 12;
   background-color: var(--yellow-600);
   width: 100%;
-  max-width: 400px;
+  max-width: 330px;
   position: absolute;
   border-radius: 1rem;
   padding: 2rem;
@@ -436,9 +436,8 @@ header {
 header h1 {
   position: absolute;
   width: 100%;
-  left: 50%;
+  left: 0;
   bottom: -80%;
-  transform: translate(-50%) rotate(-15deg);
   font-family: var(--ff-markers1);
   color: var(--red);
   font-size: 2rem;
@@ -455,24 +454,38 @@ header h1 .group span:not(.t) {
 header h1 .group:nth-child(1) {
   white-space: collapse;
   color: var(--white);
-  transform: rotate(15deg);
 }
 header h1 .group:nth-child(2) {
   white-space: collapse;
   color: var(--white);
-  transform: rotate(-15deg);
 }
 header h1 .group:nth-child(3) {
   white-space: collapse;
   color: var(--white);
-  transform: rotate(15deg);
 }
 @media (min-width: 490px) {
   header h1 {
+    left: 50%;
+    transform: translate(-50%) rotate(-15deg);
     font-size: 4rem;
   }
   header h1 .group .t {
     font-size: 6rem;
+  }
+  header h1 .group:nth-child(1) {
+    white-space: collapse;
+    color: var(--white);
+    transform: rotate(15deg);
+  }
+  header h1 .group:nth-child(2) {
+    white-space: collapse;
+    color: var(--white);
+    transform: rotate(-15deg);
+  }
+  header h1 .group:nth-child(3) {
+    white-space: collapse;
+    color: var(--white);
+    transform: rotate(15deg);
   }
 }
 
@@ -562,6 +575,11 @@ header h1 .group:nth-child(3) {
   background-color: var(--white);
 }
 @media (min-width: 430px) {
+  .wrapper .btns {
+    max-width: 330px;
+  }
+}
+@media (min-width: 460px) {
   .wrapper .btns {
     max-width: 430px;
   }
