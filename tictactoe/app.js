@@ -219,7 +219,6 @@ const play = () => {
         input.value = '';
         return;
       });
-
       const input = findModal.querySelector(`input`);
       input.value = '';
       const confirmName = findModal.querySelector('.confirm');
