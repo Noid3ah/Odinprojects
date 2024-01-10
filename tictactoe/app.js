@@ -155,8 +155,6 @@ const GameController = (() => {
   };
 
   const startGame = (playerOneName, playerTwoName) => {
-    const header = document.querySelector('.header');
-    const soundIcon = document.querySelector('.audio-icon span');
     const scores = Array.from(document.querySelector('.score__board').children);
 
     const whosTurn = document.querySelector('.player h2');
@@ -164,8 +162,6 @@ const GameController = (() => {
     playerOne = Player(playerOneName, 'x');
     playerTwo = Player(playerTwoName, 'o');
     currentPlayer = playerOne;
-    header.classList.add('out-of-view');
-    soundIcon.classList.remove('hidden');
 
     scores.forEach((score) => score.classList.add('in-view'));
     gameActive = true;
@@ -197,14 +193,19 @@ const play = () => {
   const resetButton = document.querySelector('.reset');
   const endButton = document.querySelector('.end');
   const boardBoxes = document.querySelectorAll('.box');
-  const header = document.querySelector('.header');
-  const soundIcon = document.querySelector('.audio-icon span');
+  const musicToggle = document.querySelector('#music-toggle');
+  const sfxToggle = document.querySelector('#sfx-toggle');
   const scores = Array.from(document.querySelector('.score__board').children);
   let playerOneName;
   let playerTwoName;
 
+  if (musicToggle.checked) {
+    console.log('Music playing...');
+  }
+
   startButtons.forEach((button) => {
     const modals = Array.from(document.querySelector('.modals').children);
+
     const getData = async (selector, defaultStr) => {
       let player;
       const findModal = modals.find((modal) =>
@@ -289,8 +290,8 @@ const play = () => {
     startButtons.forEach((btn) => btn.classList.remove('hidden'));
     resetButton.classList.add('hidden');
     endButton.classList.add('hidden');
-    header.classList.remove('out-of-view');
-    soundIcon.classList.add('hidden');
+    // header.classList.remove('out-of-view');
+    // soundIcon.classList.add('hidden');
     scores.forEach((score) => score.classList.remove('in-view'));
     if (winner || Gameboard.isBoardFull()) {
       winner.forEach((winningBox) => winningBox.classList.remove('shake'));
@@ -324,18 +325,24 @@ const Events = (() => {
   };
 
   const isBackgroundMusic = () => {
-    const icon = document.querySelector('.audio-icon span');
+    const musicToggle = document.querySelector('#music-toggle');
+    const sfxToggle = document.querySelector('#sfx-toggle');
+
     let isPlaying = false;
 
-    icon.addEventListener('click', () => {
-      if (isPlaying) {
+    musicToggle.addEventListener('change', () => {
+      if (!musicToggle.checked) {
         stopSound('bgSound');
-        icon.textContent = 'volume_off';
-        isPlaying = false;
       } else {
         playSound('bgSound', 0.03);
-        icon.textContent = 'volume_up';
-        isPlaying = true;
+      }
+    });
+
+    sfxToggle.addEventListener('change', () => {
+      if (!sfxToggle.checked) {
+        stopSound('bgSound');
+      } else {
+        playSound('bgSound', 0.03);
       }
     });
   };

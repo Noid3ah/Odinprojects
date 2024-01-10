@@ -450,6 +450,7 @@ span.material-symbols-outlined {
   right: 0;
   color: var(--red);
   height: var(--h);
+  padding: 1rem;
   display: flex;
   flex-direction: row;
   gap: 2rem;
