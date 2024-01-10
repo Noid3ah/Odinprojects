@@ -207,11 +207,19 @@ const play = () => {
     const modals = Array.from(document.querySelector('.modals').children);
 
     const getData = async (selector, defaultStr) => {
-      let player;
       const findModal = modals.find((modal) =>
         modal.classList.contains(`modal--${selector}`)
       );
+      const cancelBtn = findModal.querySelector('.cancel');
+      let player;
+
       findModal.showModal();
+
+      cancelBtn.addEventListener('click', () => {
+        input.value = '';
+        return;
+      });
+
       const input = findModal.querySelector(`input`);
       input.value = '';
       const confirmName = findModal.querySelector('.confirm');
