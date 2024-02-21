@@ -101,6 +101,7 @@ const GameController = (() => {
   };
 
   const handlePlayerTurn = (index) => {
+    const sfxToggle = document.querySelector('#sfx-toggle');
     if (gameActive && Gameboard.isValidMove(index, currentPlayer.marker)) {
       const winner = Gameboard.getWinner();
       if (winner) {
@@ -116,12 +117,12 @@ const GameController = (() => {
             winner[2].classList.add('shake');
           }, 300);
         }
-        Events.playSound('winSound');
+        if (sfxToggle.checked) Events.playSound('winSound');
         Gameboard.updatePlayerScore(currentPlayer.name);
         gameActive = false;
       } else if (Gameboard.isBoardFull()) {
         whosTurn.textContent = `It's a draw!`;
-        Events.playSound('drawSound');
+        if (sfxToggle.checked) Events.playSound('drawSound');
         gameActive = false;
       } else {
         switchPlayer();
@@ -154,10 +155,12 @@ const GameController = (() => {
     }
   };
 
-  const startGame = (playerOneName, playerTwoName) => {
+  const startGame = async (playerOneName, playerTwoName) => {
+    const header = document.querySelector('.head');
     const scores = Array.from(document.querySelector('.score__board').children);
-
     const whosTurn = document.querySelector('.player h2');
+
+    console.log(Gameboard.getBoard());
 
     playerOne = Player(playerOneName, 'x');
     playerTwo = Player(playerTwoName, 'o');
@@ -172,8 +175,6 @@ const GameController = (() => {
     boardBoxes.forEach((box) => {
       box.addEventListener('click', Events.boxClickHandler);
     });
-
-    Events.isBackgroundMusic();
   };
 
   return {
@@ -199,10 +200,6 @@ const play = () => {
   let playerOneName;
   let playerTwoName;
 
-  if (musicToggle.checked) {
-    console.log('Music playing...');
-  }
-
   startButtons.forEach((button) => {
     const modals = Array.from(document.querySelector('.modals').children);
 
@@ -210,15 +207,22 @@ const play = () => {
       const findModal = modals.find((modal) =>
         modal.classList.contains(`modal--${selector}`)
       );
-      const cancelBtn = findModal.querySelector('.cancel');
+      const cancelBtn = document.querySelectorAll('.cancel');
       let player;
+
+      // if (document.querySelector('.modal--one').classList.contains('cancelled'))
+      // return;
 
       findModal.showModal();
 
-      cancelBtn.addEventListener('click', () => {
-        input.value = '';
-        return;
+      cancelBtn.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          btn.closest('.modal').close();
+          btn.closest('.modal').classList.add('cancelled');
+          return;
+        });
       });
+
       const input = findModal.querySelector(`input`);
       input.value = '';
       const confirmName = findModal.querySelector('.confirm');
@@ -233,17 +237,31 @@ const play = () => {
     };
 
     button.addEventListener('click', async () => {
-      playerOneName = await getData('one', 'Player one');
+      // const cancelBtn = document.querySelector('.cancel');
+      const m1 = document.querySelector('.modal--one');
+
+      if (button.classList.contains('one__player')) {
+        playerOneName = await getData('one', 'Player one');
+        // playerTwoName = 'Computer';
+      }
 
       if (button.classList.contains('two__player')) {
+        const m1 = document.querySelector('.modal--one');
+        m1.classList.remove('cancelled');
+        playerOneName = await getData('one', 'Player one');
         playerTwoName = await getData('two', 'Player two');
       } else {
         playerTwoName = 'Computer';
       }
 
-      GameController.startGame(playerOneName, playerTwoName);
+      if (m1.classList.contains('cancelled')) {
+        return;
+      } else {
+        GameController.startGame(playerOneName, playerTwoName);
+      }
 
       const playerOneScore = document.querySelector('.player--one');
+
       playerOneScore.dataset.playername = playerOneName;
 
       const playerTwoScore = document.querySelector('.player--two');
@@ -297,8 +315,6 @@ const play = () => {
     startButtons.forEach((btn) => btn.classList.remove('hidden'));
     resetButton.classList.add('hidden');
     endButton.classList.add('hidden');
-    // header.classList.remove('out-of-view');
-    // soundIcon.classList.add('hidden');
     scores.forEach((score) => score.classList.remove('in-view'));
     if (winner || Gameboard.isBoardFull()) {
       winner.forEach((winningBox) => winningBox.classList.remove('shake'));
@@ -311,6 +327,8 @@ const play = () => {
     });
     Events.stopSound('bgSound');
   });
+
+  Events.isBackgroundMusic();
 };
 
 const Events = (() => {
@@ -335,8 +353,6 @@ const Events = (() => {
     const musicToggle = document.querySelector('#music-toggle');
     const sfxToggle = document.querySelector('#sfx-toggle');
 
-    let isPlaying = false;
-
     musicToggle.addEventListener('change', () => {
       if (!musicToggle.checked) {
         stopSound('bgSound');
@@ -345,13 +361,13 @@ const Events = (() => {
       }
     });
 
-    sfxToggle.addEventListener('change', () => {
-      if (!sfxToggle.checked) {
-        stopSound('bgSound');
-      } else {
-        playSound('bgSound', 0.03);
-      }
-    });
+    // sfxToggle.addEventListener('change', () => {
+    //   if (!sfxToggle.checked) {
+    //     stopSound('bgSound');
+    //   } else {
+    //     playSound('bgSound', 0.03);
+    //   }
+    // });
   };
 
   btns.addEventListener('mouseover', (e) => {
