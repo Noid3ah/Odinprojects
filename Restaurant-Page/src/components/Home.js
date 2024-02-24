@@ -9,7 +9,7 @@ export default function Home() {
   heroSpan.className = 'dress';
   heroText.textContent = 'Good food is the foundation of genuine happiness';
   heroSpan.textContent = '"Food is a passion, food is love"';
-  cta.textContent = 'Order now';
+  cta.textContent = "I'm hungry";
   element.append(heroText, heroSpan, cta);
   return element;
 }
